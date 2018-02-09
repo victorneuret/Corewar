@@ -16,16 +16,6 @@ size_t my_strlen(char const *str)
 	return i;
 }
 
-void putstr(char const *str)
-{
-	write(1, str, my_strlen(str));
-}
-
-void puterr(char const *str)
-{
-	write(2, str, my_strlen(str));
-}
-
 int str_eq(char const *str1, char const *str2)
 {
 	int len1 = my_strlen(str1);
@@ -51,4 +41,22 @@ int my_strncmp(char const *s1, char const *s2, size_t n)
 			return c1 - c2;
 	}
 	return 0;
+}
+
+char *my_revstr(char *str)
+{
+	char temp;
+	size_t index1 = 0;
+	size_t index2 = my_strlen(str) - 1;
+
+	if (!str)
+		return 0;
+	while (index1 < index2) {
+		temp = str[index1];
+		str[index1] = str[index2];
+		str[index2] = temp;
+		index1++;
+		index2--;
+	}
+	return str;
 }
