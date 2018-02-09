@@ -6,14 +6,14 @@
 ##
 
 ASM	=	asm
-CWR	=	corewar
+CRW	=	corewar
 
 SRC_ASM	+=	$(shell find src/asm -name "*.c")
-SRC_CWR	+=	$(shell find src/corewar -name "*.c")
+SRC_CRW	+=	$(shell find src/corewar -name "*.c")
 SRC_COM += 	$(shell find src/common -name "*.c")
 
 OBJ_ASM	+=	$(SRC_ASM:.c=.o)
-OBJ_CWR	+=	$(SRC_CWR:.c=.o)
+OBJ_CRW	+=	$(SRC_CRW:.c=.o)
 OBJ_COM +=	$(SRC_COM:.c=.o)
 
 CC	=	gcc
@@ -21,7 +21,7 @@ CC	=	gcc
 CFLAGS	+=	-Wall -Wextra
 CFLAGS	+=	-I include
 
-all:		$(ASM) $(CWR)
+all:		$(ASM) $(CRW)
 
 %.o:		%.c
 		@echo -e "[\e[34mcorewar\e[39m] : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
@@ -32,9 +32,9 @@ $(ASM):		$(OBJ_COM) $(OBJ_ASM)
 		@$(CC) $(OBJ_ASM) $(OBJ_COM) $(CFLAGS) -o $(ASM)
 		@echo -e " Done"
 
-$(CWR):		$(OBJ_COM) $(OBJ_CWR)
-		@echo -en "Compiling $(CWR) ..."
-		@$(CC) $(OBJ_CWR) $(OBJ_COM) $(CFLAGS) -o $(CWR)
+$(CRW):		$(OBJ_COM) $(OBJ_CRW)
+		@echo -en "Compiling $(CRW) ..."
+		@$(CC) $(OBJ_CRW) $(OBJ_COM) $(CFLAGS) -o $(CRW)
 		@echo -e " Done"
 
 clean_asm:
@@ -54,7 +54,7 @@ clean_crw:
 
 fclean_crw:	clean_crw
 		@echo -en "FCleaning corewar..."
-		@rm -f $(CWR)
+		@rm -f $(CRW)
 		@echo -e " Done"
 
 clean:		clean_asm clean_crw
@@ -62,11 +62,11 @@ fclean:		fclean_asm fclean_crw
 
 re:		fclean all
 re_asm:		fclean_asm $(ASM)
-re_crw:		fclean_crw $(CWR)
+re_crw:		fclean_crw $(CRW)
 
 valgrind:
 		@echo -en "Compiling debug binaries..."
-		@$(CC) $(SRC_CWR) $(SRC_COM) $(CFLAGS) $(CFLAGS_CWR) -g3 -o $(CWR)
+		@$(CC) $(SRC_CRW) $(SRC_COM) $(CFLAGS) $(CFLAGS_CRW) -g3 -o $(CRW)
 		@$(CC) $(SRC_ASM) $(SRC_COM) $(CFLAGS) $(CFLAGS_ASM) -g3 -o $(ASM)
 		@echo -e " Done"
 
