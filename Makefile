@@ -24,7 +24,7 @@ CFLAGS	+=	-I include
 all:		$(ASM) $(CWR)
 
 %.o:		%.c
-		@echo -e "[\e[34m$(CC)\e[39m] : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
+		@echo -e "[\e[34mcorewar\e[39m] : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
 		@$(CC) -c $(CFLAGS) -o $@ $<
 
 $(ASM):		$(OBJ_COM) $(OBJ_ASM)
@@ -37,17 +37,32 @@ $(CWR):		$(OBJ_COM) $(OBJ_CWR)
 		@$(CC) $(OBJ_CWR) $(OBJ_COM) $(CFLAGS) -o $(CWR)
 		@echo -e " Done"
 
-clean:
-		@echo -en "Cleaning object files..."
-		@rm -f $(OBJ_ASM) $(OBJ_CWR) $(OBJ_COM)
+clean_asm:
+		@echo -en "Cleaning asm object files..."
+		@rm -f $(OBJ_ASM) $(OBJ_COM)
 		@echo -e " Done"
 
-fclean:		clean
-		@echo -en "FCleaning project..."
-		@rm -f $(ASM) $(CWR)
+fclean_asm:	clean_asm
+		@echo -en "FCleaning asm..."
+		@rm -f $(ASM)
 		@echo -e " Done"
+
+clean_crw:
+		@echo -en "Cleaning corewar object files..."
+		@rm -f $(OBJ_CRW) $(OBJ_COM)
+		@echo -e " Done"
+
+fclean_crw:	clean_crw
+		@echo -en "FCleaning corewar..."
+		@rm -f $(CWR)
+		@echo -e " Done"
+
+clean:		clean_asm clean_crw
+fclean:		fclean_asm fclean_crw
 
 re:		fclean all
+re_asm:		fclean_asm $(ASM)
+re_crw:		fclean_crw $(CWR)
 
 valgrind:
 		@echo -en "Compiling debug binaries..."
@@ -55,4 +70,4 @@ valgrind:
 		@$(CC) $(SRC_ASM) $(SRC_COM) $(CFLAGS) $(CFLAGS_ASM) -g3 -o $(ASM)
 		@echo -e " Done"
 
-.PHONY:		all clean fclean re valgrind
+.PHONY:		clean_asm fclean_asm clean_crw fclean_crw clean fclean re re_asm re_crw valgrind
