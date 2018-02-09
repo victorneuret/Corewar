@@ -19,11 +19,7 @@ OBJ_COM +=	$(SRC_COM:.c=.o)
 CC	=	gcc
 
 CFLAGS	+=	-Wall -Wextra
-CFLAGS	+=	-I include/common
-
-CFLAGS_ASM +=	-I include/asm
-
-CFLAGS_CWR +=	-I include/corewar
+CFLAGS	+=	-I include
 
 all:		$(ASM) $(CWR)
 
@@ -33,12 +29,12 @@ all:		$(ASM) $(CWR)
 
 $(ASM):		$(OBJ_COM) $(OBJ_ASM)
 		@echo -en "Compiling $(ASM) ..."
-		@$(CC) $(OBJ_ASM) $(OBJ_COM) $(CFLAGS) $(CFLAGS_ASM) -o $(ASM)
+		@$(CC) $(OBJ_ASM) $(OBJ_COM) $(CFLAGS) -o $(ASM)
 		@echo -e " Done"
 
 $(CWR):		$(OBJ_COM) $(OBJ_CWR)
 		@echo -en "Compiling $(CWR) ..."
-		@$(CC) $(OBJ_CWR) $(OBJ_COM) $(CFLAGS) $(CFLAGS_CWR) -o $(CWR)
+		@$(CC) $(OBJ_CWR) $(OBJ_COM) $(CFLAGS) -o $(CWR)
 		@echo -e " Done"
 
 clean:
