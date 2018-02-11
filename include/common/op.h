@@ -44,14 +44,13 @@ typedef char    args_type_t;
                                    into r1 (4 bytes )) */
 # define T_LAB           8       /* LABEL */
 
-struct  op_s
-{
-   char         *mnemonique;
-   char         nbr_args;
-   args_type_t  type[MAX_ARGS_NUMBER];
-   char         code;
-   int          nbr_cycles;
-   char         *comment;
+struct  op_s {
+	char         *mnemonique;
+	char         nbr_args;
+	args_type_t  type[MAX_ARGS_NUMBER];
+	char         code;
+	int          nbr_cycles;
+	char         *comment;
 };
 
 typedef struct op_s     op_t;
@@ -74,13 +73,12 @@ extern  op_t    op_tab[];
 # define PROG_NAME_LENGTH        128
 # define COMMENT_LENGTH          2048
 
-struct header_s
-{
-   int  magic;
+struct header_s {
+	int  magic;
 # define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
-   char prog_name[PROG_NAME_LENGTH + 1];
-   int  prog_size;
-   char comment[COMMENT_LENGTH + 1];
+	char prog_name[PROG_NAME_LENGTH + 1];
+	int  prog_size;
+	char comment[COMMENT_LENGTH + 1];
 };
 
 typedef struct header_s header_t;
