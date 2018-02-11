@@ -20,8 +20,9 @@ CC	=	gcc
 
 CFLAGS	+=	-Wall -Wextra
 CFLAGS	+=	-I include
+CFLAGS	+=	-L lib -lprintf
 
-all:		$(ASM) $(CRW)
+all:		lib $(ASM) $(CRW)
 
 %.o:		%.c
 		@echo -e "[\e[34mcorewar\e[39m] : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
@@ -58,11 +59,22 @@ fclean_crw:	clean_crw
 		@echo -e " Done"
 
 clean:		clean_asm clean_crw
-fclean:		fclean_asm fclean_crw
 
-re:		fclean all
+fclean:		fclean_asm fclean_crw
+		@make -C lib/printf --no-print-directory fclean
+
+re:		fclean_lib fclean all
 re_asm:		fclean_asm $(ASM)
 re_crw:		fclean_crw $(CRW)
+
+lib:
+		@make -C lib/printf --no-print-directory
+clean_lib:
+		@make -C lib/printf --no-print-directory clean
+fclean_lib:
+		@make -C lib/printf --no-print-directory fclean
+re_lib:
+		@make -C lib/printf --no-print-directory re
 
 valgrind:
 		@echo -en "Compiling debug binaries..."
@@ -70,4 +82,4 @@ valgrind:
 		@$(CC) $(SRC_ASM) $(SRC_COM) $(CFLAGS) $(CFLAGS_ASM) -g3 -o $(ASM)
 		@echo -e " Done"
 
-.PHONY:		clean_asm fclean_asm clean_crw fclean_crw clean fclean re re_asm re_crw valgrind
+.PHONY:		clean_asm fclean_asm clean_crw fclean_crw clean fclean re re_asm re_crw valgrind lib clean_lib fclean_lib re_lib
