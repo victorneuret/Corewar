@@ -25,11 +25,11 @@ $(NAME):	$(OBJ)
 
 clean:
 		@rm -rf $(OBJ) $(UNIT_OBJ)
-		@echo -e "[\e[33mprintf\e[39m] : Deleted object files"
+		@echo -e "[\e[33mprintf\e[39m] : Removed object files"
 
 fclean:		clean
 		@rm -rf $(NAME)
-		@echo -e "[\e[33mprintf\e[39m] : Deleted library"
+		@echo -e "[\e[33mprintf\e[39m] : Removed library"
 
 re:		fclean all
 

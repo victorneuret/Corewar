@@ -22,41 +22,35 @@ CFLAGS	+=	-Wall -Wextra
 CFLAGS	+=	-I include
 CFLAGS	+=	-L lib -lprintf
 
-all:		lib $(ASM) $(CRW)
+all:		$(ASM) $(CRW)
 
 %.o:		%.c
-		@echo -e "[\e[34mcorewar\e[39m] : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
+		@echo -e "[\e[34mcore\e[39m]\t : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
 		@$(CC) -c $(CFLAGS) -o $@ $<
 
-$(ASM):		$(OBJ_COM) $(OBJ_ASM)
-		@echo -en "Compiling $(ASM) ..."
+$(ASM):		lib $(OBJ_COM) $(OBJ_ASM)
 		@$(CC) $(OBJ_ASM) $(OBJ_COM) $(CFLAGS) -o $(ASM)
-		@echo -e " Done"
+		@echo -e "[\e[36masm\e[39m]\t : Compiled $(ASM)"
 
-$(CRW):		$(OBJ_COM) $(OBJ_CRW)
-		@echo -en "Compiling $(CRW) ..."
+$(CRW):		lib $(OBJ_COM) $(OBJ_CRW)
 		@$(CC) $(OBJ_CRW) $(OBJ_COM) $(CFLAGS) -o $(CRW)
-		@echo -e " Done"
+		@echo -e "[\e[31mvm\e[39m]\t : Compiled $(CRW)"
 
 clean_asm:
-		@echo -en "Cleaning asm object files..."
 		@rm -f $(OBJ_ASM) $(OBJ_COM)
-		@echo -e " Done"
+		@echo -e "[\e[36masm\e[39m]\t : Removed object files"
 
 fclean_asm:	clean_asm
-		@echo -en "FCleaning asm..."
 		@rm -f $(ASM)
-		@echo -e " Done"
+		@echo -e "[\e[36masm\e[39m]\t : Removed binary file"
 
 clean_crw:
-		@echo -en "Cleaning corewar object files..."
 		@rm -f $(OBJ_CRW) $(OBJ_COM)
-		@echo -e " Done"
+		@echo -e "[\e[31mvm\e[39m]\t : Removed object files"
 
 fclean_crw:	clean_crw
-		@echo -en "FCleaning corewar..."
 		@rm -f $(CRW)
-		@echo -e " Done"
+		@echo -e "[\e[31mvm\e[39m]\t : Removed binary file"
 
 clean:		clean_asm clean_crw
 
@@ -76,7 +70,7 @@ fclean_lib:
 re_lib:
 		@make -C lib/printf --no-print-directory re
 
-valgrind:
+valgrind:	lib
 		@echo -en "Compiling debug binaries..."
 		@$(CC) $(SRC_CRW) $(SRC_COM) $(CFLAGS) $(CFLAGS_CRW) -g3 -o $(CRW)
 		@$(CC) $(SRC_ASM) $(SRC_COM) $(CFLAGS) $(CFLAGS_ASM) -g3 -o $(ASM)
