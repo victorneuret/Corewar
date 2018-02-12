@@ -15,7 +15,7 @@
 
 int print_file_content(char const *path)
 {
-	char buffer[16384];
+	char buffer[HELPS_READ_SIZE];
 	int fd = open(path, O_RDONLY);
 
 	for (size_t i = 0; i < 16384; i++)
