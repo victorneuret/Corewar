@@ -12,6 +12,8 @@ SRC_ASM	+=	$(shell find src/asm -name "*.c")
 SRC_CRW	+=	$(shell find src/corewar -name "*.c")
 SRC_COM += 	$(shell find src/common -name "*.c")
 
+SRC_UNIT+=	$(shell find tests -name "*.c")
+
 OBJ_ASM	+=	$(SRC_ASM:.c=.o)
 OBJ_CRW	+=	$(SRC_CRW:.c=.o)
 OBJ_COM +=	$(SRC_COM:.c=.o)
@@ -55,6 +57,7 @@ fclean_crw:	clean_crw
 clean:		clean_asm clean_crw
 
 fclean:		fclean_asm fclean_crw
+		@rm -f tests_run
 		@make -C lib/printf --no-print-directory fclean
 
 re:		fclean_lib fclean all
@@ -76,4 +79,19 @@ valgrind:	lib
 		@$(CC) $(SRC_ASM) $(SRC_COM) $(CFLAGS) $(CFLAGS_ASM) -g3 -o $(ASM)
 		@echo -e " Done"
 
-.PHONY:		clean_asm fclean_asm clean_crw fclean_crw clean fclean re re_asm re_crw valgrind lib clean_lib fclean_lib re_lib
+clean_coverage:
+		@find . \( -name '*.gcda' -o -name '*.gcno' -o -name '*.gcov' \) -delete
+
+tests_run:	lib
+		@echo -en "Compiling debug binaries..."
+		@$(CC) $(SRC_UNIT) $(SRC_COM) $(CFLAGS) $(CFLAGS_CRW) -g3 -o tests_run --coverage -lcriterion
+		@echo -e " Done"
+		./tests_run
+
+.PHONY:		clean fclean				\
+		clean_asm fclean_asm			\
+		clean_crw fclean_crw			\
+		re re_asm re_crw			\
+		lib clean_lib fclean_lib re_lib		\
+		tests_run clean_coverage		\
+		valgrind
