@@ -13,6 +13,7 @@
 
 #include "common/utils/io_utils.h"
 #include "common/utils/str_utils.h"
+#include "corewar/lexer/lexer.h"
 
 static int print_help(void)
 {
@@ -37,5 +38,8 @@ int main(int ac, char **av)
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_help();
+	my_printf("Hello %s!\n", "world");
+	lexer("../Corewar_files/binaires-champ-corewar/"
+		"corewar/assets/champions/abel.cor");
 	return 0;
 }
