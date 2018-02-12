@@ -8,17 +8,13 @@
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
 
+#include "tests.h"
+
 #include "common/my_printf.h"
 
 #include "common/utils/nbr_base.h"
 #include "common/utils/io_utils.h"
 #include "common/utils/str_utils.h"
-
-void redirect(void)
-{
-	cr_redirect_stdout();
-	cr_redirect_stderr();
-}
 
 Test(str_utils, putstr, .init = redirect)
 {
