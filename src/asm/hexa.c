@@ -5,7 +5,7 @@
 ** ASM hexa
 */
 
-#include "include/asm/asm.h"
+#include "asm/asm.h"
 
 void write_file(char *str)
 {
