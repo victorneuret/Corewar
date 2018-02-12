@@ -23,7 +23,7 @@ char *my_strdup(char const *src)
 	return dest;
 }
 
-char *strncpy(char *dest, const char *src, size_t n)
+char *my_strncpy(char *dest, const char *src, size_t n)
 {
 	size_t i = 0;
 
