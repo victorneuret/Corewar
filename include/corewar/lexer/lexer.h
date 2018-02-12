@@ -29,5 +29,6 @@ typedef struct token_list {
 } token_t;
 
 #include "corewar/lexer/champion_lexer.h"
+#include "corewar/lexer/lexer_utils.h"
 
 token_t *lexer(char *champion);
