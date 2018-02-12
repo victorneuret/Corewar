@@ -9,3 +9,4 @@
 
 void putstr(char const *str);
 void puterr(char const *str);
+int print_file_content(char const *path);
