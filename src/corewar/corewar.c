@@ -5,8 +5,9 @@
 ** Corewar Main file
 */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #include "common/bool.h"
 #include "common/my_printf.h"
@@ -17,19 +18,16 @@
 
 static int print_help(void)
 {
-	char *line = 0;
-	size_t n = 0;
-	FILE *file = fopen("README.txt", "r");
+	char buffer[16384];
+	int fd = open("README.txt", O_RDONLY);
 
-	if (!file)
+	for (size_t i = 0; i < 16384; i++)
+		buffer[i] = 0;
+	if (fd == -1)
 		return 84;
-	while (getline(&line, &n, file) > 0 && line) {
-		putstr(line);
-		free(line);
-		line = 0;
-	}
-	free(line);
-	fclose(file);
+	read(fd, buffer, 16384);
+	putstr(buffer);
+	close(fd);
 	return 0;
 }
 
