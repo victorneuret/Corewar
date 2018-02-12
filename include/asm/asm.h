@@ -17,7 +17,11 @@
 
 #include "common/utils/str_utils.h"
 #include "common/utils/io_utils.h"
+#include "common/bool.h"
+#include "common/my_printf.h"
 
 char *conv_hexa(int nb);
 void asm_help(void);
-void write_file(char *str);
+int write_file(char *file, char *str);
+char *open_file(char *file);
+void file_handling(char *file);
