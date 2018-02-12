@@ -60,3 +60,14 @@ char *my_revstr(char *str)
 	}
 	return str;
 }
+
+char *my_strncat(char *dest, char const *to_add, size_t n)
+{
+	size_t i;
+	size_t dest_len = my_strlen(dest);
+
+	for (i = 0; to_add[i] && i < n; i++)
+		dest[dest_len + i] = to_add[i];
+	dest[dest_len + i] = 0;
+	return dest;
+}

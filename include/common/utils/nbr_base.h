@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <stdlib.h>
+
 #define BASE_BIN "01"
 #define BASE_OCT "01234567"
 #define BASE_DEC "0123456789"
