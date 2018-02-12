@@ -38,7 +38,7 @@ static char *add_string(char c, char *str)
 	return ptr;
 }
 
-static char *check_letter_add(char c, char *str)
+char *check_letter_add(char c, char *str)
 {
 	if (c >= 20 && c <= 126)
 		str = add_string(c, str);
