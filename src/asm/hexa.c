@@ -33,9 +33,6 @@ char *conv_hexa(int nb)
 			result[i] = temp + 87;
 		nb = nb / 16;
 	}
-	result[i] = 'x';
-	result[i + 1] = '0';
-	result[i + 2] = '\\';
-	result[i + 3] = '\0';
+	result[i] = '\0';
 	return (my_revstr(result));
 }
