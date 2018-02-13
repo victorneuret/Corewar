@@ -73,8 +73,10 @@ champion_t *lexer(char *champion_path, champion_t *new)
 {
 	int fd = open(champion_path, O_RDONLY);
 
-	if (fd == -1)
+	if (fd == -1) {
+		free(new);
 		return NULL;
+	}
 	if (!exec_magic(new, fd) || !champion_name(new, fd)
 		|| !champion_size(new, fd) || !champion_comment(new, fd))
 		return NULL;
