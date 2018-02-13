@@ -12,9 +12,9 @@
 
 #include "common/my_printf.h"
 
-#include "common/utils/nbr_base.h"
-#include "common/utils/io_utils.h"
-#include "common/utils/str_utils.h"
+#include "common/utils/nbr/nbr_base.h"
+#include "common/utils/io/io_utils.h"
+#include "common/utils/str/str_utils.h"
 
 Test(str_utils, putstr, .init = redirect)
 {

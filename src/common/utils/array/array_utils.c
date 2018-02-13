@@ -5,8 +5,8 @@
 ** Array utils
 */
 
-#include "common/utils/getnbr.h"
-#include "common/utils/str_utils.h"
+#include "common/utils/nbr/getnbr.h"
+#include "common/utils/str/str_utils.h"
 
 int get_or_default(char **arr, char *key, int default_value)
 {

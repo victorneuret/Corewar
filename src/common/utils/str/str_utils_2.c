@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "common/utils/str_utils.h"
+#include "common/utils/str/str_utils.h"
 
 char *my_strdup(char const *src)
 {
