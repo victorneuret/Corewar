@@ -13,6 +13,29 @@
 
 #include "corewar/lexer/lexer.h"
 
+static void free_champion_list(champion_t *champion_list)
+{
+	champion_t *tmp = champion_list;
+	token_t *temp;
+
+	while(champion_list) {
+		tmp = champion_list->next;
+		free(champion_list->exec_magic);
+		free(champion_list->champion_name);
+		free(champion_list->size);
+		free(champion_list->comment);
+		temp = champion_list->token_list;
+		while (champion_list->token_list) {
+			temp = champion_list->token_list->next;
+			free(champion_list->token_list->token);
+			free(champion_list->token_list);
+			champion_list->token_list = temp;
+		}
+		free(champion_list);
+		champion_list = tmp;
+	}
+}
+
 static champion_t *init_champion_list(char *champion_path,
 	champion_t *champion_list)
 {
@@ -50,5 +73,6 @@ int main(int ac, char **av)
 			if (!champ_list)
 				return 84;
 		}
+	free_champion_list(champ_list);
 	return 0;
 }
