@@ -13,8 +13,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include "common/utils/str_utils.h"
-#include "common/utils/io_utils.h"
+#include "common/utils/str/str_utils.h"
+#include "common/utils/io/io_utils.h"
 #include "common/bool.h"
 #include "common/my_printf.h"
 
@@ -25,7 +25,6 @@ typedef struct {
 	char **array;
 } asm_t;
 
-char *conv_hexa(int nb);
 void asm_help(void);
 int write_file(char *file, char *str);
 char *open_file(char *file);

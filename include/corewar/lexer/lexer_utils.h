@@ -9,7 +9,7 @@
 
 #include <stdlib.h>
 
-#include "common/utils/str_utils.h"
+#include "common/utils/str/str_utils.h"
 #include "common/bool.h"
 #include "corewar/lexer/lexer.h"
 

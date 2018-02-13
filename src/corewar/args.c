@@ -9,9 +9,9 @@
 
 #include "common/op.h"
 #include "common/bool.h"
-#include "common/utils/getnbr.h"
-#include "common/utils/str_utils.h"
-#include "common/utils/array_utils.h"
+#include "common/utils/nbr/getnbr.h"
+#include "common/utils/str/str_utils.h"
+#include "common/utils/array/array_utils.h"
 
 #include "corewar/args.h"
 

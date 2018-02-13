@@ -14,8 +14,8 @@
 
 #include "common/op.h"
 #include "common/bool.h"
-#include "common/utils/str_utils.h"
-#include "common/utils/nbr_base.h"
+#include "common/utils/str/str_utils.h"
+#include "common/utils/nbr/nbr_base.h"
 
 #include "corewar/champion_struct.h"
 #include "corewar/lexer/lexer_utils.h"

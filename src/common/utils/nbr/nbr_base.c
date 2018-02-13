@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "common/utils/str_utils.h"
+#include "common/utils/str/str_utils.h"
 
 static void recursive_append_nb(size_t nb, char const *base,
 				char *result, size_t *index)
