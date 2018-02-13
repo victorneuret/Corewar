@@ -78,7 +78,7 @@ champion_t *lexer(char *champion_path, champion_t *new)
 	if (!exec_magic(new, fd) || !champion_name(new, fd)
 		|| !champion_size(new, fd) || !champion_comment(new, fd))
 		return NULL;
-	//champion_lexer(new, fd);
+	champion_lexer(new, fd);
 	close(fd);
 	return new;
 }

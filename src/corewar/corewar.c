@@ -39,9 +39,7 @@ static void free_champion_list(champion_t *champion_list)
 	}
 }
 
-__attribute__((unused))
-static champion_t *init_champion_list(char *champion_path,
-	champion_t *champion_list)
+static champion_t *init_champion_list(prog_t *programs, champion_t *champion_list)
 {
 	static int nb_champion = 1;
 	champion_t *new = malloc(sizeof(champion_t));
@@ -49,8 +47,8 @@ static champion_t *init_champion_list(char *champion_path,
 
 	if (!new)
 		return NULL;
-	new->nb_champion = nb_champion;
-	new = lexer(champion_path, new);
+	new->nb_champion = programs->prog_nb;
+	new = lexer(programs->prog_path, new);
 	if (!new)
 		return NULL;
 	new->token_list = NULL;
@@ -67,7 +65,6 @@ static champion_t *init_champion_list(char *champion_path,
 
 int main(int ac, char **av)
 {
-	__attribute__((unused)) champion_t *champion_list = NULL;
 	args_t *args;
 	champion_t *champ_list = NULL;
 
@@ -77,6 +74,12 @@ int main(int ac, char **av)
 	args = parse_arguments(av);
 	if (!args)
 		return 84;
+	for (int i = 0; args->programs[i].prog_path; i++)
+		champ_list = init_champion_list(&args->programs[i], champ_list);
+	if (!champ_list)
+		return 84;
+	for (champion_t *tmp = champ_list; tmp; tmp = tmp->next)
+		printf("%d %s\n", tmp->nb_champion, tmp->champion_name);
 	free_args(args);
 	free_champion_list(champ_list);
 	return 0;
