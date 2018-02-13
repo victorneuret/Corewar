@@ -40,14 +40,14 @@ static champion_t *init_champion_list(char *champion_path,
 
 int main(int ac, char **av)
 {
-	champion_t *champion_list = NULL;
+	champion_t *champ_list = NULL;
 
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_file_content("src/corewar/README.txt");
 		else {
-			champion_list = init_champion_list(av[i], champion_list);
-			if (!champion_list)
+			champ_list = init_champion_list(av[i], champ_list);
+			if (!champ_list)
 				return 84;
 		}
 	return 0;
