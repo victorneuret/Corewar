@@ -15,7 +15,7 @@ static bool champion_comment(champion_t *new, int fd)
 
 	str[0] = '\0';
 	read_size = read(fd, buffer, 1);
-	for (int i = 1; read_size != 0 && i < PROG_NAME_LENGTH; i++) {
+	for (int i = 1; read_size != 0 && i < COMMENT_LENGTH; i++) {
 		str = check_letter_add(buffer[0], str);
 		read_size = read(fd, buffer, 1);
 	}
@@ -75,10 +75,10 @@ champion_t *lexer(char *champion_path, champion_t *new)
 
 	if (fd == -1)
 		return NULL;
-	if (!exec_magic(new, fd) || !champion_name(new, fd))
+	if (!exec_magic(new, fd) || !champion_name(new, fd)
+		|| !champion_size(new, fd) || !champion_comment(new, fd))
 		return NULL;
-	if (!champion_size(new, fd) || !champion_comment(new, fd))
-		return NULL;
+	//champion_lexer(new, fd);
 	close(fd);
 	return new;
 }
