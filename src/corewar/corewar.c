@@ -13,12 +13,42 @@
 
 #include "corewar/lexer/lexer.h"
 
+static champion_t *init_champion_list(char *champion_path,
+	champion_t *champion_list)
+{
+	static int nb_champion = 1;
+	champion_t *new = malloc(sizeof(champion_t));
+	champion_t *tmp = champion_list;
+
+	if (!new)
+		return NULL;
+	new->nb_champion = nb_champion;
+	new = lexer(champion_path, new);
+	if (!new)
+		return NULL;
+	new->token_list = NULL;
+	new->next = NULL;
+	nb_champion++;
+	if (!champion_list) {
+		return new;
+	} else {
+		for (; tmp->next; tmp = tmp->next);
+		tmp->next = new;
+	}
+	return tmp;
+}
+
 int main(int ac, char **av)
 {
+	champion_t *champion_list = NULL;
+
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_file_content("src/corewar/README.txt");
-	lexer("../Corewar_files/binaires-champ-corewar/"
-		"corewar/assets/champions/abel.cor");
+		else {
+			champion_list = init_champion_list(av[i], champion_list);
+			if (!champion_list)
+				return 84;
+		}
 	return 0;
 }

@@ -15,20 +15,10 @@
 #include "common/op.h"
 #include "common/bool.h"
 #include "common/utils/str_utils.h"
+#include "common/utils/nbr_base.h"
 
-typedef enum {
-	NAME,
-	COMMENT,
-	ASM
-} token_type;
-
-typedef struct token_list {
-	token_type type;
-	char *token;
-	struct token_list *next;
-} token_t;
-
-#include "corewar/lexer/champion_lexer.h"
+#include "corewar/champion_struct.h"
 #include "corewar/lexer/lexer_utils.h"
+#include "corewar/champion_struct.h"
 
-token_t *lexer(char *champion);
+champion_t *lexer(char *champion_path, champion_t *new);

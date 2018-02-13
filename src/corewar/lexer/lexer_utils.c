@@ -7,7 +7,7 @@
 
 #include "corewar/lexer/lexer_utils.h"
 
-static char *add_string(char c, char *str)
+char *add_string(char c, char *str)
 {
 	char *ptr;
 
