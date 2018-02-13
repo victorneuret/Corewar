@@ -20,8 +20,12 @@
 #include "common/bool.h"
 #include "common/my_printf.h"
 
+#define SIZE_EXTENSION 4
+
 char *conv_hexa(int nb);
 void asm_help(void);
 int write_file(char *file, char *str);
 char *open_file(char *file);
-void file_handling(char *file);
+int file_handling(char *file);
+void check_file(char *str);
+char **conv_file(char *buff);
