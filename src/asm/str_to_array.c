@@ -43,11 +43,9 @@ char **conv_file(char *buff)
 			return (NULL);
 		for (j = 0; buff[k] != '\n' && buff[k] != '\0'; j++) {
 			str[i][j] = buff[k];
-			write(1, &str[i][j], 1);
 			k++;
 		}
 		str[i][j] = '\0';
-		write(1, "\n", 1);
 		k++;
 	}
 	return (str);

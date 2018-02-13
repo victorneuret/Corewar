@@ -7,8 +7,15 @@
 
 #include "asm/asm.h"
 
-void check_file(char *str)
+int check_format(asm_t *asm_struct)
 {
-	str = str;
-	return;
+	int i = 0;
+
+	while (asm_struct->array[i][0] != '\0');
+	return (0);
+}
+
+void check_file(asm_t *asm_struct)
+{
+	check_format(asm_struct);
 }

@@ -53,20 +53,20 @@ int write_file(char *file, char *str)
 	return (0);
 }
 
-int file_handling(char *file)
+int file_handling(char *file, asm_t *asm_struct)
 {
 	char *str = NULL;
-	char **array;
+	asm_struct->array = NULL;
 
 	str = open_file(file);
 	if (!str) {
 		puterr("Error: Can't open file\n");
 		return (84);
 	}
-	check_file(str);
-	array = conv_file(str);
-	if (!array)
+	asm_struct->array = conv_file(str);
+	if (!asm_struct->array)
 		return (84);
+	check_file(asm_struct);
 	if (write_file(conv_filename(file), str) == 84)
 		return (84);
 	free(str);
