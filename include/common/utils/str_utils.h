@@ -17,4 +17,5 @@ int my_strncmp(char const *s1, char const *s2, size_t n);
 char *my_strncat(char *dest, char const *to_add, size_t n);
 
 /* str_utils_2.c */
+char *my_strdup(char const *src);
 char *my_strncpy(char *dest, const char *src, size_t n);

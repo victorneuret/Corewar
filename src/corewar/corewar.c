@@ -5,14 +5,18 @@
 ** Corewar Main file
 */
 
+#include <stdio.h>
+
 #include "common/bool.h"
 #include "common/my_printf.h"
 
 #include "common/utils/io_utils.h"
 #include "common/utils/str_utils.h"
 
+#include "corewar/args.h"
 #include "corewar/lexer/lexer.h"
 
+__attribute__((unused))
 static champion_t *init_champion_list(char *champion_path,
 	champion_t *champion_list)
 {
@@ -40,15 +44,15 @@ static champion_t *init_champion_list(char *champion_path,
 
 int main(int ac, char **av)
 {
-	champion_t *champion_list = NULL;
+	__attribute__((unused)) champion_t *champion_list = NULL;
+	args_t *args;
 
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_file_content("src/corewar/README.txt");
-		else {
-			champion_list = init_champion_list(av[i], champion_list);
-			if (!champion_list)
-				return 84;
-		}
+	args = parse_arguments(av);
+	if (!args)
+		return 84;
+	free_args(args);
 	return 0;
 }
