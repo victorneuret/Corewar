@@ -22,7 +22,6 @@
 
 #define SIZE_EXTENSION 4
 
-char *conv_hexa(int nb);
 void asm_help(void);
 int write_file(char *file, char *str);
 char *open_file(char *file);
