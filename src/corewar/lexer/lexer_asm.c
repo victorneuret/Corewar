@@ -7,9 +7,10 @@
 
 #include "corewar/lexer/lexer_asm.h"
 
-bool champion_lexer(__attribute__((unused)) champion_t *new, int fd)
+bool champion_lexer(__attribute__((unused)) champion_t *new,
+	__attribute__((unused)) int fd)
 {
-	char buffer[1];
+	//char buffer[1];
 
 	// while (read(fd, buffer, 1)) {
 	// 	printf("%x\n", buffer[0]);

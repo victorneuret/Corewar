@@ -78,8 +78,6 @@ int main(int ac, char **av)
 		champ_list = init_champion_list(&args->programs[i], champ_list);
 	if (!champ_list)
 		return 84;
-	for (champion_t *tmp = champ_list; tmp; tmp = tmp->next)
-		printf("%d %s\n", tmp->nb_champion, tmp->champion_name);
 	free_args(args);
 	free_champion_list(champ_list);
 	return 0;
