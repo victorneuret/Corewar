@@ -39,7 +39,8 @@ static void free_champion_list(champion_t *champion_list)
 	}
 }
 
-static champion_t *init_champion_list(prog_t *programs, champion_t *champion_list)
+static champion_t *init_champ_list(prog_t *programs,
+	champion_t *champion_list)
 {
 	static int nb_champion = 1;
 	champion_t *new = malloc(sizeof(champion_t));
@@ -75,7 +76,7 @@ int main(int ac, char **av)
 	if (!args)
 		return 84;
 	for (int i = 0; args->programs[i].prog_path; i++)
-		champ_list = init_champion_list(&args->programs[i], champ_list);
+		champ_list = init_champ_list(&args->programs[i], champ_list);
 	if (!champ_list)
 		return 84;
 	free_args(args);
