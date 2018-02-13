@@ -10,8 +10,8 @@
 #include "common/bool.h"
 #include "common/my_printf.h"
 
-#include "common/utils/io_utils.h"
-#include "common/utils/str_utils.h"
+#include "common/utils/io/io_utils.h"
+#include "common/utils/str/str_utils.h"
 
 #include "corewar/args.h"
 #include "corewar/lexer/lexer.h"
