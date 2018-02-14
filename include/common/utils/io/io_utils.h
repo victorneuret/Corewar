@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define HELPS_READ_SIZE 16384
+#define HELP_READ_SIZE 16384
 
 void putstr(char const *str);
 void puterr(char const *str);

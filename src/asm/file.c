@@ -26,8 +26,12 @@ char *open_file(char *file)
 	char *str = malloc(sizeof(char));
 	int size = 0;
 
-	if (fd == -1 || !str)
+	if (!str)
 		return (NULL);
+	if (fd == -1) {
+		free(str);
+		return (NULL);
+	}
 	for (int i = 1; (size = read(fd, buff, 1)) != 0; i++) {
 		if (size == -1)
 			return (NULL);
