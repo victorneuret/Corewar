@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "common/bool.h"
+
 #include "common/utils/str/str_utils.h"
 
 char *my_strdup(char const *src)
@@ -32,4 +34,16 @@ char *my_strncpy(char *dest, const char *src, size_t n)
 	for (; i < n; i++)
 		dest[i] = 0;
 	return dest;
+}
+
+bool ends_with(char const *str, char const *suffix)
+{
+	size_t src_len = my_strlen(str);
+	size_t suf_len = my_strlen(suffix);
+
+	if (suf_len > src_len)
+		return false;
+	if (!str)
+		return false;
+	return (my_strncmp(str + src_len - suf_len, suffix, suf_len)) == 0;
 }

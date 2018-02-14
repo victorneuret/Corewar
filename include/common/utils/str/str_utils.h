@@ -9,6 +9,8 @@
 
 #include <unistd.h>
 
+#include "common/bool.h"
+
 /* str_utils_1.c */
 char *my_revstr(char *str);
 int str_eq(char const *str1, char const *str2);
@@ -19,3 +21,4 @@ char *my_strncat(char *dest, char const *to_add, size_t n);
 /* str_utils_2.c */
 char *my_strdup(char const *src);
 char *my_strncpy(char *dest, const char *src, size_t n);
+bool ends_with(char const *str, char const *suffix);
