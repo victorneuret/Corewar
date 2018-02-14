@@ -72,6 +72,7 @@ int write_file(char *file, char *str)
 		return 84;
 	for (int i = 0; str[i] != '\0'; i++)
 		write(fd, &str[i], 1);
+	close(fd);
 	return (0);
 }
 
@@ -88,8 +89,7 @@ int file_handling(char *file, asm_t *asm_struct)
 	asm_struct->array = conv_file(str);
 	if (!asm_struct->array)
 		return (84);
-	if (write_file(conv_filename(file), str) == 84)
-		return (84);
+	write_file(conv_filename(file), conv_hex(COREWAR_EXEC_MAGIC));
 	free(str);
 	return (0);
 }
