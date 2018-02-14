@@ -21,7 +21,6 @@ static char *get_file_name(char *str)
 		str[k] = str[path++];
 
 	str[len] = '\0';
-	printf("File : %s\n", str);
 	return (str);
 }
 

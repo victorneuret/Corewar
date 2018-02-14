@@ -13,9 +13,8 @@ static bool compile(asm_t *asm_s)
 
 	if (!lines)
 		return false;
-	for (size_t i = 0; lines[i]; i++) {
+	for (size_t i = 0; lines[i]; i++)
 		my_printf("%s\n", lines[i]);
-	}
 	return true;
 }
 

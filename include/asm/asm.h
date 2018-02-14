@@ -21,7 +21,6 @@
 #define SIZE_EXT 5
 
 typedef struct {
-	int lines;
 	char **array;
 } asm_t;
 

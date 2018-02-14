@@ -13,10 +13,9 @@ int count_lines(char *buff)
 
 	if (buff == NULL)
 		return (0);
-	for (int i = 0; buff[i] != '\0'; i++) {
+	for (int i = 0; buff[i] != '\0'; i++)
 		if (buff[i] == '\n')
 			lines += 1;
-	}
 	return (lines + 1);
 }
 
@@ -30,10 +29,10 @@ char **conv_file(char *buff)
 {
 	char **str;
 	int columns = 0;
-	int k = 0;
 	int j = 0;
+	int k = 0;
 
-	str = malloc(sizeof(char*) * count_lines(buff));
+	str = malloc(sizeof(char*) * (count_lines(buff) + 1));
 	if (!str)
 		return (NULL);
 	for (int i = 0; i < count_lines(buff); i++) {
@@ -41,12 +40,11 @@ char **conv_file(char *buff)
 		str[i] = malloc(sizeof(char) * (columns + 1));
 		if (!str)
 			return (NULL);
-		for (j = 0; buff[k] != '\n' && buff[k] != '\0'; j++) {
-			str[i][j] = buff[k];
-			k++;
-		}
+		for (j = 0; buff[k] != '\n' && buff[k] != '\0'; j++)
+			str[i][j] = buff[k++];
 		str[i][j] = '\0';
 		k++;
 	}
+	str[count_lines(buff)] = 0;
 	return (str);
 }
