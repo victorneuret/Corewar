@@ -58,6 +58,9 @@ char **str_split(char const *str, char separator)
 
 	if (!array)
 		return 0;
+	for (int i = 0; array[0][i] != '\0'; i++)
+		if (array[0][i] == separator)
+			array[0][i] = '\0';
 	if (word_count == 1)
 		array[0] = my_strdup(str);
 	else
