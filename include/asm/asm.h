@@ -18,7 +18,7 @@
 #include "common/bool.h"
 #include "common/my_printf.h"
 
-#define SIZE_EXTENSION 4
+#define SIZE_EXT 5
 
 typedef struct {
 	int lines;

@@ -7,12 +7,31 @@
 
 #include "asm/asm.h"
 
+static char *get_file_name(char *str)
+{
+	int path = 0;
+	int len = 0;
+
+	for (int i = 0; str[i] != '\0'; i++)
+		if (str[i] == '/')
+			path = i + 1;
+	for (int j = path; str[j] != '.' && str[j] != '\0'; j++)
+		len += 1;
+	for (int k = 0; k < len; k++)
+		str[k] = str[path++];
+
+	str[len] = '\0';
+	printf("File : %s\n", str);
+	return (str);
+}
+
 static char *conv_filename(char *str)
 {
-	char *result = malloc(sizeof(str) + sizeof(char) * SIZE_EXTENSION);
+	char *result = malloc(sizeof(char) * (my_strlen(str) + SIZE_EXT));
 
 	if (!result)
 		return (NULL);
+	str = get_file_name(str);
 	result[0] = '\0';
 	my_strncpy(result, str, my_strlen(str) + 1);
 	my_strncat(result, ".cor", 4);
