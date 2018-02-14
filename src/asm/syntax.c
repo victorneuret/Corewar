@@ -56,16 +56,13 @@ static bool line_syntax(char *line, int i)
 bool check_syntax(asm_t *asm_s)
 {
 	int i = 0;
-	char *comment = malloc(sizeof(char) * 2);
 
-	comment[0] = COMMENT_CHAR;
-	comment[1] = '\0';
 	for (; asm_s->array[i] != NULL; i++) {
-		if (my_strncmp(asm_s->array[i], comment, 1) == 0 || my_strlen(asm_s->array[i]) == 0)
+		if (my_strlen(asm_s->array[i]) == 0 ||
+				asm_s->array[i][0] == COMMENT_CHAR)
 			my_printf("Line: %d #\n", i);
 		else
 			line_syntax(asm_s->array[i], i);
 	}
-	free(comment);
 	return (true);
 }
