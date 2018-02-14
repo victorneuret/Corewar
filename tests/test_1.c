@@ -37,6 +37,19 @@ Test(nbr_base, nbr_base)
 	free(ptr);
 }
 
+Test(str_utils, ends_with)
+{
+	cr_assert_eq(ends_with("corewar.c", ".c"), true);
+	cr_assert_eq(ends_with("corewar.c", ".h"), false);
+	cr_assert_eq(ends_with("corewar.c", ""), true);
+	cr_assert_eq(ends_with("corewar.c", "corewar"), false);
+	cr_assert_eq(ends_with("", ""), true);
+	cr_assert_eq(ends_with("corewar.c", "corewar.c"), true);
+	cr_assert_eq(ends_with("corewar.c", "_corewar.c"), false);
+	cr_assert_eq(ends_with("corewar.c", NULL), true);
+	cr_assert_eq(ends_with(NULL, ".c"), false);
+}
+
 // int main(void)
 // {
 // 	char *ptr;
