@@ -18,6 +18,6 @@ typedef struct champion_list {
 	char *champion_name;
 	char *size;
 	char *comment;
-	token_t *token_list;
+	char *asm_token;
 	struct champion_list *next;
 } champion_t;

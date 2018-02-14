@@ -19,7 +19,6 @@
 static void free_champion_list(champion_t *champion_list)
 {
 	champion_t *tmp = champion_list;
-	token_t *temp;
 
 	while (champion_list) {
 		tmp = champion_list->next;
@@ -27,13 +26,7 @@ static void free_champion_list(champion_t *champion_list)
 		free(champion_list->champion_name);
 		free(champion_list->size);
 		free(champion_list->comment);
-		temp = champion_list->token_list;
-		while (champion_list->token_list) {
-			temp = champion_list->token_list->next;
-			free(champion_list->token_list->token);
-			free(champion_list->token_list);
-			champion_list->token_list = temp;
-		}
+		free(champion_list->asm_token);
 		free(champion_list);
 		champion_list = tmp;
 	}
@@ -51,7 +44,6 @@ static champion_t *init_champ_list(prog_t *programs,
 	new = lexer(programs->prog_path, new);
 	if (!new)
 		return NULL;
-	new->token_list = NULL;
 	new->next = NULL;
 	if (!champion_list) {
 		return new;

@@ -15,9 +15,13 @@ static bool champion_comment(champion_t *new, int fd)
 
 	str[0] = '\0';
 	read_size = read(fd, buffer, 1);
+	if (read_size == -1)
+		return false;
 	for (int i = 1; read_size != 0 && i < COMMENT_LENGTH; i++) {
 		str = check_letter_add(buffer[0], str);
 		read_size = read(fd, buffer, 1);
+		if (read_size == -1)
+			return false;
 	}
 	new->comment = str;
 	return true;
@@ -29,7 +33,8 @@ static bool champion_size(champion_t *new, int fd)
 
 	if (!buffer)
 		return false;
-	read(fd, buffer, 8);
+	if (read(fd, buffer, 8) == -1)
+		return false;
 	new->size = buffer;
 	return true;
 }
@@ -42,9 +47,13 @@ static bool champion_name(champion_t *new, int fd)
 
 	str[0] = '\0';
 	read_size = read(fd, buffer, 1);
+	if (read_size == -1)
+		return false;
 	for (int i = 1; read_size != 0 && i < PROG_NAME_LENGTH; i++) {
 		str = check_letter_add(buffer[0], str);
 		read_size = read(fd, buffer, 1);
+		if (read_size == -1)
+			return false;
 	}
 	new->champion_name = str;
 	return true;
@@ -60,7 +69,8 @@ static bool exec_magic(champion_t *new, int fd)
 		return false;
 	for (int i = 0; i < 5; i++)
 		new->exec_magic[i] = '\0';
-	read(fd, buffer, 4);
+	if (read(fd, buffer, 4) == -1)
+		return false;
 	for (int i = 0; i < 4; i++)
 		if (buffer[i] != '\0') {
 			new->exec_magic[j] = buffer[i];

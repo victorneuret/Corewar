@@ -12,5 +12,6 @@
 
 #include "corewar/champion_struct.h"
 #include "common/bool.h"
+#include "corewar/lexer/lexer_utils.h"
 
 bool champion_lexer(champion_t *new, int fd);

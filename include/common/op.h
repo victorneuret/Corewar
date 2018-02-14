@@ -45,16 +45,19 @@ typedef char args_type_t;
 				into r1 (4 bytes )) */
 # define T_LAB	8	/* LABEL */
 
-struct op_s {
+typedef struct op_s {
 	char		*mnemonique;
 	char		nbr_args;
 	args_type_t	type[MAX_ARGS_NUMBER];
 	char		code;
 	int		nbr_cycles;
 	char		*comment;
-};
+} op_t;
 
-typedef struct op_s op_t;
+/*
+** op_tab
+*/
+extern op_t op_tab[];
 
 /*
 ** size (in bytes)
@@ -63,26 +66,20 @@ typedef struct op_s op_t;
 # define DIR_SIZE	4
 # define REG_SIZE	DIR_SIZE
 
-/*
-** op_tab
-*/
-extern op_t op_tab[];
 
 /*
 ** header
 */
 # define PROG_NAME_LENGTH	128
 # define COMMENT_LENGTH		2048
+# define COREWAR_EXEC_MAGIC	0xea83f3
 
-struct header_s {
+typedef struct header_s {
 	int magic;
-# define COREWAR_EXEC_MAGIC	0xea83f3	/* why not */
 	char prog_name[PROG_NAME_LENGTH + 1];
 	int prog_size;
 	char comment[COMMENT_LENGTH + 1];
-};
-
-typedef struct header_s header_t;
+} header_t;
 
 /*
 ** live
