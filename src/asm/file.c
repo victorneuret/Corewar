@@ -70,7 +70,6 @@ int file_handling(char *file, asm_t *asm_struct)
 	asm_struct->array = conv_file(str);
 	if (!asm_struct->array)
 		return (84);
-	check_file(asm_struct);
 	if (write_file(conv_filename(file), str) == 84)
 		return (84);
 	free(str);
