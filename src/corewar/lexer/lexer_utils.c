@@ -7,7 +7,7 @@
 
 #include "corewar/lexer/lexer_utils.h"
 
-char *add_string(char c, char *str)
+static char *add_string(char const c, char *str)
 {
 	char *ptr;
 
@@ -29,7 +29,7 @@ char *add_string(char c, char *str)
 	return ptr;
 }
 
-char *check_letter_add(char c, char *str)
+char *check_letter_add(char const c, char *str)
 {
 	if (c >= 20 && c <= 126)
 		str = add_string(c, str);

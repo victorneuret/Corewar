@@ -13,7 +13,7 @@
 #include "common/utils/io/io_utils.h"
 #include "common/utils/str/str_utils.h"
 
-int print_file_content(char const *path)
+bool print_file_content(char const *path)
 {
 	char buffer[HELP_READ_SIZE];
 	int fd = open(path, O_RDONLY);
@@ -21,11 +21,12 @@ int print_file_content(char const *path)
 	for (size_t i = 0; i < 16384; i++)
 		buffer[i] = 0;
 	if (fd == -1)
-		return 84;
-	read(fd, buffer, 16384);
+		return false;
+	if (read(fd, buffer, 16384) == -1)
+		return false;
 	putstr(buffer);
 	close(fd);
-	return 0;
+	return true;
 }
 
 void putstr(char const *str)

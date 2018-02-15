@@ -8,8 +8,14 @@
 #pragma once
 
 typedef struct token_list {
-	char *token;
+	unsigned int command;
+	unsigned int args_type;
+	int arg_one;
+	int arg_two;
+	int arg_three;
+	unsigned int nb_bytes;
 	struct token_list *next;
+	struct token_list *prev;
 } token_t;
 
 typedef struct champion_list {
@@ -19,5 +25,6 @@ typedef struct champion_list {
 	char *size;
 	char *comment;
 	char *asm_token;
+	token_t *token_list;
 	struct champion_list *next;
 } champion_t;

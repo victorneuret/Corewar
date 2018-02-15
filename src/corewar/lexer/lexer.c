@@ -7,7 +7,7 @@
 
 #include "corewar/lexer/lexer.h"
 
-static bool champion_comment(champion_t *new, int fd)
+static bool champion_comment(champion_t *new, int const fd)
 {
 	char buffer[1];
 	int read_size = 0;
@@ -27,7 +27,7 @@ static bool champion_comment(champion_t *new, int fd)
 	return true;
 }
 
-static bool champion_size(champion_t *new, int fd)
+static bool champion_size(champion_t *new, int const fd)
 {
 	char *buffer = malloc(sizeof(char) * 8);
 
@@ -39,7 +39,7 @@ static bool champion_size(champion_t *new, int fd)
 	return true;
 }
 
-static bool champion_name(champion_t *new, int fd)
+static bool champion_name(champion_t *new, int const fd)
 {
 	char buffer[1];
 	int read_size = 0;
@@ -59,7 +59,7 @@ static bool champion_name(champion_t *new, int fd)
 	return true;
 }
 
-static bool exec_magic(champion_t *new, int fd)
+static bool exec_magic(champion_t *new, int const fd)
 {
 	char buffer[4];
 	new->exec_magic = malloc(sizeof(char) * 5);
