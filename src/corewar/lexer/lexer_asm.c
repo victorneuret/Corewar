@@ -18,12 +18,13 @@ bool champion_lexer(champion_t *new, int fd)
 	if (read_size == -1)
 		return false;
 	while (read_size != 0) {
-		str = check_letter_add(buffer[0], str);
+		str = add_string(buffer[0], str);
+		if (!str)
+			return false;
 		read_size = read(fd, buffer, 1);
 		if (read_size == -1)
 			return false;
 	}
 	new->asm_token = str;
-	return true;
 	return true;
 }
