@@ -12,7 +12,7 @@ SRC_ASM	+=	$(shell find src/asm -name "*.c")
 SRC_CRW	+=	$(shell find src/corewar -name "*.c")
 SRC_COM += 	$(shell find src/common -name "*.c")
 
-SRC_UNIT+=	$(shell find tests -name "*.c")
+SRC_UNIT+=	$(shell find tests/unit_tests -name "*.c")
 
 OBJ_ASM	+=	$(SRC_ASM:.c=.o)
 OBJ_CRW	+=	$(SRC_CRW:.c=.o)
