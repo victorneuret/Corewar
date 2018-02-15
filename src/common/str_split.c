@@ -63,10 +63,9 @@ char **str_split(char const *str, char separator)
 	else
 		fill_array(array, word_count, str, separator);
 	array[word_count] = 0;
-	for (int i = 0; array[0][i] != '\0'; i++) {
-	 	if (array[0][i] == separator)
+	for (int i = 0; array[0][i] != '\0'; i++)
+		if (array[0][i] == separator)
 			array[0][i] = '\0';
-	}
 	return array;
 }
 
