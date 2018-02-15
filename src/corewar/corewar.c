@@ -18,6 +18,7 @@ static champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 		return NULL;
 	new->nb_champion = programs->prog_nb;
 	new->token_list = NULL;
+	new->asm_token_len = 0;
 	new = lexer(programs->prog_path, new);
 	if (!new)
 		return NULL;

@@ -7,6 +7,12 @@
 
 #include "corewar/parser/parser.h"
 
+static asm_parser_t pars_asm[] = {
+	{1, &live_parser},
+	{2, &ld_parser},
+	{0, NULL}
+};
+
 static token_t *init_parser_list(token_t *token)
 {
 	token_t *tmp = token;
@@ -17,7 +23,6 @@ static token_t *init_parser_list(token_t *token)
 			return NULL;
 		token->next = NULL;
 		token->prev = NULL;
-		token->command = 21;
 	} else {
 		for (; tmp->next; tmp = tmp->next);
 		tmp->next = malloc(sizeof(token_t));
@@ -25,9 +30,18 @@ static token_t *init_parser_list(token_t *token)
 			return NULL;
 		tmp->next->prev = tmp;
 		tmp->next->next = NULL;
-		tmp->next->command = 42;
 	}
 	return token;
+}
+
+bool parser_op_tab(champion_t *champ, int *i)
+{
+
+	for (int j = 0; op_tab[j].mnemonique; j++)
+		if (champ->asm_token[*i] == op_tab[j].code)
+			return (pars_asm[j].func(champ->token_list,
+				champ->asm_token, i));
+	return true;
 }
 
 bool parser(champion_t *champ)
@@ -35,5 +49,8 @@ bool parser(champion_t *champ)
 	champ->token_list = init_parser_list(champ->token_list);
 	if (!champ->token_list)
 		return false;
+	for (int i = 0; i < champ->asm_token_len; i++)
+		if (!parser_op_tab(champ, &i))
+			return false;
 	return true;
 }

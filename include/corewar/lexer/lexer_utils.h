@@ -14,4 +14,3 @@
 #include "corewar/lexer/lexer.h"
 
 char *check_letter_add(char c, char *str);
-char *add_string(char const c, char *str);

@@ -25,6 +25,7 @@ typedef struct champion_list {
 	char *size;
 	char *comment;
 	char *asm_token;
+	int asm_token_len;
 	token_t *token_list;
 	struct champion_list *next;
 } champion_t;
