@@ -10,6 +10,20 @@
 static asm_parser_t pars_asm[] = {
 	{1, &live_parser},
 	{2, &ld_parser},
+	{3, &st_parser},
+	{4, &add_parser},
+	{5, &add_parser},
+	{6, &and_parser},
+	{7, &and_parser},
+	{8, &and_parser},
+	{9, &zjmp_parser},
+	{10, &ldi_parser},
+	{11, &sti_parser},
+	{12, &fork_parser},
+	{13, &lld_parser},
+	{14, &lldi_parser},
+	{15, &fork_parser},
+	{16, &aff_parser},
 	{0, NULL}
 };
 

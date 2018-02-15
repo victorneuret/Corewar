@@ -10,7 +10,7 @@
 bool live_parser(__attribute__((unused)) token_t *token,
 	__attribute__((unused)) char *asm_token, int *i)
 {
-	printf("%s\n", "live");
+	my_printf("%s\n", "live");
 	*i += 4;
 	return true;
 }
