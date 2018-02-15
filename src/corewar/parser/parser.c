@@ -9,12 +9,24 @@
 
 static token_t *init_parser_list(token_t *token)
 {
-	token = malloc(sizeof(token_t));
+	token_t *tmp = token;
 
-	if (!token)
-		return NULL;
-	token->next = NULL;
-	token->prev = NULL;
+	if (!token) {
+		token = malloc(sizeof(token_t));
+		if (!token)
+			return NULL;
+		token->next = NULL;
+		token->prev = NULL;
+		token->command = 21;
+	} else {
+		for (; tmp->next; tmp = tmp->next);
+		tmp->next = malloc(sizeof(token_t));
+		if (!tmp->next)
+			return NULL;
+		tmp->next->prev = tmp;
+		tmp->next->next = NULL;
+		tmp->next->command = 42;
+	}
 	return token;
 }
 
