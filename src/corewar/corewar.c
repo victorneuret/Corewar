@@ -17,6 +17,7 @@ static champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 	if (!new)
 		return NULL;
 	new->nb_champion = programs->prog_nb;
+	new->token_list = NULL;
 	new = lexer(programs->prog_path, new);
 	if (!new)
 		return NULL;
@@ -38,6 +39,8 @@ static champion_t *init_champions(args_t *args, champion_t *champ_list)
 		free_args(args);
 		return NULL;
 	}
+	for (champion_t *tmp = champ_list; tmp; tmp = tmp->next)
+		parser(tmp);
 	return champ_list;
 }
 

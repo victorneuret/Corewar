@@ -16,3 +16,4 @@
 #include "corewar/args.h"
 #include "corewar/lexer/lexer.h"
 #include "corewar/lexer/free_lexer.h"
+#include "corewar/parser/parser.h"
