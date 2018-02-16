@@ -79,8 +79,10 @@ int write_file(char *file, char *str)
 int file_handling(char *file, asm_t *asm_struct)
 {
 	char *str = NULL;
-	asm_struct->array = NULL;
+	char *hex = NULL;
+	char *file_name = NULL;
 
+	asm_struct->array = NULL;
 	str = open_file(file);
 	if (!str) {
 		puterr("Error: Can't open file\n");
@@ -89,7 +91,11 @@ int file_handling(char *file, asm_t *asm_struct)
 	asm_struct->array = conv_file(str);
 	if (!asm_struct->array)
 		return (84);
-	write_file(conv_filename(file), conv_hex(COREWAR_EXEC_MAGIC));
+	file_name = conv_filename(file);
+	hex = conv_hex(COREWAR_EXEC_MAGIC);
+	write_file(file_name, hex);
+	free(file_name);
+	free(hex);
 	free(str);
 	return (0);
 }

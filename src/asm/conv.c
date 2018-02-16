@@ -18,6 +18,8 @@ char *conv_hex(int nb)
 	while ((tmp = tmp / 10) != 0)
 		len++;
 	str = malloc(sizeof(char) * len);
+	if (!str)
+		return NULL;
 	tmp = nb;
 	for (; tmp != 0; i++) {
 		str[i] = tmp % 256;

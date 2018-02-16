@@ -34,5 +34,6 @@ int main(int ac, char **av)
 		puterr("Compilation failed.\n");
 		return 84;
 	}
+	free_str_array(asm_struct.array);
 	return 0;
 }
