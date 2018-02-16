@@ -1,0 +1,1 @@
+tests/asm_tester/test_asm.sh
