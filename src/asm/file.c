@@ -37,7 +37,7 @@ static char *conv_filename(char *str)
 	return (result);
 }
 
-char *open_file(char *file)
+static char *open_file(char *file)
 {
 	int fd = open(file, O_RDONLY);
 	char buff[1];
@@ -62,23 +62,7 @@ char *open_file(char *file)
 	return (str);
 }
 
-static bool write_magic(char *file, char *str)
-{
-	int fd = open(file, O_RDWR | O_CREAT, 0666);
-
-	if (file == NULL)
-		return false;
-	else if (fd == -1)
-		return false;
-	for (size_t i = my_strlen(str); i < 4; i++)
-		write(fd, "\0", 1);
-	for (int i = 0; str[i] != '\0'; i++)
-		write(fd, &str[i], 1);
-	close(fd);
-	return true;
-}
-
-int file_handling(char *file, asm_t *asm_struct)
+bool compile(char *file, asm_t *asm_struct)
 {
 	char *str = NULL;
 	char *hex = NULL;
@@ -88,16 +72,16 @@ int file_handling(char *file, asm_t *asm_struct)
 	str = open_file(file);
 	if (!str) {
 		puterr("Error: Can't open file\n");
-		return (84);
+		return false;
 	}
 	asm_struct->array = conv_file(str);
 	if (!asm_struct->array)
-		return (84);
+		return false;
 	file_name = conv_filename(file);
 	hex = conv_hex(COREWAR_EXEC_MAGIC);
-	write_magic(file_name, hex);
+	write_bytes(file_name, hex);
 	free(file_name);
 	free(hex);
 	free(str);
-	return (0);
+	return true;
 }

@@ -7,16 +7,6 @@
 
 #include "asm/asm.h"
 
-static bool compile(asm_t *asm_s)
-{
-	char **lines = asm_s->array;
-
-	if (!lines)
-		return false;
-	check_syntax(asm_s);
-	return true;
-}
-
 int main(int ac, char **av)
 {
 	asm_t asm_struct;
@@ -28,9 +18,7 @@ int main(int ac, char **av)
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_file_content("src/asm/README.txt");
-	if (file_handling(av[1], &asm_struct) == 84)
-		return (84);
-	if (!compile(&asm_struct)) {
+	if (!compile(av[1], &asm_struct)) {
 		puterr("Compilation failed.\n");
 		return 84;
 	}

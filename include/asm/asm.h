@@ -29,9 +29,9 @@ typedef struct {
 } asm_t;
 
 void asm_help(void);
-char *open_file(char *file);
 void check_file(asm_t *asm_struct);
-char **conv_file(char *buff);
-int file_handling(char *file, asm_t *asm_struct);
 char *conv_hex(int nb);
+char **conv_file(char *buff);
 bool check_syntax(asm_t *asm_s);
+bool write_bytes(char *file, char *str);
+bool compile(char *file, asm_t *asm_struct);
