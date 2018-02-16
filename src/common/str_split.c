@@ -9,18 +9,6 @@
 
 #include "common/utils/str/str_utils.h"
 
-static char *substring(char const *src, int begin, int end)
-{
-	char *result = malloc(end - begin + 2);
-
-	if (!result)
-		return 0;
-	for (int i = 0; i < end - begin + 1; i++)
-		result[i] = src[begin + i];
-	result[end - begin + 1] = 0;
-	return result;
-}
-
 static size_t count_words(char const *str, char separator)
 {
 	size_t word_count = 1;

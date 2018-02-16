@@ -37,6 +37,15 @@ Test(nbr_base, nbr_base)
 	free(ptr);
 }
 
+Test(str_utils, substring)
+{
+	char test[] = "Hello world, my name is Elon Musk.";
+	char *result = substring(test, 24, 32);
+
+	cr_assert_str_eq(result, "Elon Musk");
+	free(result);
+}
+
 Test(str_utils, ends_with)
 {
 	cr_assert_eq(ends_with("corewar.c", ".c"), true);

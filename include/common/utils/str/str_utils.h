@@ -22,3 +22,4 @@ char *my_strncat(char *dest, char const *to_add, size_t n);
 char *my_strdup(char const *src);
 char *my_strncpy(char *dest, const char *src, size_t n);
 bool ends_with(char const *str, char const *suffix);
+char *substring(char const *src, int begin, int end);
