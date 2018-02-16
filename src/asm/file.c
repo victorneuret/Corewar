@@ -62,18 +62,20 @@ char *open_file(char *file)
 	return (str);
 }
 
-int write_file(char *file, char *str)
+static bool write_magic(char *file, char *str)
 {
 	int fd = open(file, O_RDWR | O_CREAT, 0666);
 
 	if (file == NULL)
-		return (84);
+		return false;
 	else if (fd == -1)
-		return 84;
+		return false;
+	for (size_t i = my_strlen(str); i < 4; i++)
+		write(fd, "\0", 1);
 	for (int i = 0; str[i] != '\0'; i++)
 		write(fd, &str[i], 1);
 	close(fd);
-	return (0);
+	return true;
 }
 
 int file_handling(char *file, asm_t *asm_struct)
@@ -93,7 +95,7 @@ int file_handling(char *file, asm_t *asm_struct)
 		return (84);
 	file_name = conv_filename(file);
 	hex = conv_hex(COREWAR_EXEC_MAGIC);
-	write_file(file_name, hex);
+	write_magic(file_name, hex);
 	free(file_name);
 	free(hex);
 	free(str);

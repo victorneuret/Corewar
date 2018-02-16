@@ -35,4 +35,3 @@ char **conv_file(char *buff);
 int file_handling(char *file, asm_t *asm_struct);
 char *conv_hex(int nb);
 bool check_syntax(asm_t *asm_s);
-int write_file(char *file, char *str);
