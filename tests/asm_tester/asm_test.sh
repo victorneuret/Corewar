@@ -31,6 +31,14 @@ fi
 mkdir -p $TMP
 
 $ASM $1 1> /dev/null
+mv *.cor $TMP/asm.cor
+
 $REF $1 1> /dev/null
+mv *.cor $TMP/ref.cor
+
+hexdump -C $TMP/asm.cor > $TMP/dump_asm.txt
+hexdump -C $TMP/ref.cor > $TMP/dump_ref.txt
+
+diff -y $TMP/dump_asm.txt $TMP/dump_ref.txt
 
 rm -rf $TMP
