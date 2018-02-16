@@ -18,6 +18,7 @@
 #include "common/str_split.h"
 #include "common/utils/nbr/nbr_base.h"
 #include "common/utils/str/str_utils.h"
+#include "common/utils/char/char_utils.h"
 #include "common/utils/io/io_utils.h"
 #include "common/bool.h"
 #include "common/my_printf.h"
@@ -26,6 +27,8 @@
 
 typedef struct {
 	char **array;
+	char *name;
+	char *comment;
 } asm_t;
 
 void asm_help(void);
@@ -33,5 +36,5 @@ void check_file(asm_t *asm_struct);
 char *conv_hex(int nb);
 char **conv_file(char *buff);
 bool check_syntax(asm_t *asm_s);
-bool write_bytes(char *file, char *str);
 bool compile(char *file, asm_t *asm_struct);
+bool write_bytes(char *file, asm_t *asm_struct, char *hex);

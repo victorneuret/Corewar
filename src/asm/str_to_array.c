@@ -38,7 +38,7 @@ char **conv_file(char *buff)
 	for (int i = 0; i < count_lines(buff); i++) {
 		columns = next_line(buff, k);
 		str[i] = malloc(sizeof(char) * (columns + 1));
-		if (!str)
+		if (!str[i])
 			return (NULL);
 		for (j = 0; buff[k] != '\n' && buff[k] != '\0'; j++)
 			str[i][j] = buff[k++];

@@ -22,6 +22,8 @@ int main(int ac, char **av)
 		puterr("Compilation failed.\n");
 		return 84;
 	}
+	free(asm_struct.name);
+	free(asm_struct.comment);
 	free_str_array(asm_struct.array);
 	return 0;
 }

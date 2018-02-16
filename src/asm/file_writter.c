@@ -16,7 +16,17 @@ static bool write_magic(int fd, char *str)
 	return true;
 }
 
-bool write_bytes(char *file, char *hex)
+static bool write_name(int fd, char const *name)
+{
+	size_t len = my_strlen(name);
+
+	write(fd, name, len);
+	for (size_t i = 0; len + i < PROG_NAME_LENGTH; i++)
+		write(fd, "\0", 1);
+	return true;
+}
+
+bool write_bytes(char *file, asm_t *asm_struct, char *hex)
 {
 	int fd = open(file, O_RDWR | O_CREAT, 0666);
 
@@ -24,7 +34,7 @@ bool write_bytes(char *file, char *hex)
 		return false;
 	else if (fd == -1)
 		return false;
-	if (write_magic(fd, hex)) {
+	if (write_magic(fd, hex) && write_name(fd, asm_struct->name)) {
 		close(fd);
 		return true;
 	}
