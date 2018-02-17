@@ -5,8 +5,8 @@
 ## Makefile
 ##
 
-ASM	=	asm
-CRW	=	corewar
+ASM	=	./asm/asm
+CRW	=	./corewar
 
 SRC_ASM	+=	$(shell find src/asm -name "*.c")
 SRC_CRW	+=	$(shell find src/corewar -name "*.c")

@@ -3,6 +3,8 @@
 !*/
 !*.c
 !*.h
+!*.s
+!*.cor
 !Makefile
 !README.*
 !.gitignore

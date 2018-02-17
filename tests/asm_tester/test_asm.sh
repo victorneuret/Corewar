@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-ASM=./asm
+ASM=./asm/asm
 REF=./tests/asm_tester/asm_ref
 TMP=./tests/asm_tester/tmp
 
