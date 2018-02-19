@@ -65,11 +65,13 @@ static char *open_file(char *file)
 static void fill_struct(asm_t *asm_struct)
 {
 	for (size_t i = 0; asm_struct->array[i]; i++) {
-		if (my_strncmp(asm_struct->array[i], ".name", 5) == 0)
+		if (my_strncmp(asm_struct->array[i], NAME_CMD_STRING,
+		my_strlen(NAME_CMD_STRING)) == 0)
 			asm_struct->name = substring(asm_struct->array[i],
 				first_index_of(asm_struct->array[i], '\"') + 1,
 				last_index_of(asm_struct->array[i], '\"') - 1);
-		else if (my_strncmp(asm_struct->array[i], ".comment", 8) == 0)
+		else if (my_strncmp(asm_struct->array[i], COMMENT_CMD_STRING,
+		my_strlen(COMMENT_CMD_STRING)) == 0)
 			asm_struct->comment = substring(asm_struct->array[i],
 				first_index_of(asm_struct->array[i], '\"') + 1,
 				last_index_of(asm_struct->array[i], '\"') - 1);

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** Corewar
 ** File description:
-**
+** Parser
 */
 
 #include "corewar/parser/parser.h"
