@@ -13,7 +13,7 @@
 #include "common/utils/io/io_utils.h"
 #include "common/utils/str/str_utils.h"
 
-bool print_file_content(char const *path)
+bool print_file_bytes(char const *path)
 {
 	char buffer[HELP_READ_SIZE];
 	int fd = open(path, O_RDONLY);

@@ -52,7 +52,7 @@ static bool corewar(int ac, char **av)
 
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
-			return print_file_content("src/corewar/README.txt");
+			return print_file_bytes("src/corewar/README.txt");
 	args = parse_arguments(av);
 	if (!args)
 		return false;

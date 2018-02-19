@@ -17,7 +17,7 @@ int main(int ac, char **av)
 	}
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
-			return print_file_content("src/asm/README.txt");
+			return print_file_bytes("src/asm/README.txt") ? 0 : 84;
 	if (!compile(av[1], &asm_struct)) {
 		puterr("Compilation failed.\n");
 		return 84;

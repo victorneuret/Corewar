@@ -13,4 +13,4 @@
 
 void putstr(char const *str);
 void puterr(char const *str);
-bool print_file_content(char const *path);
+bool print_file_bytes(char const *path);
