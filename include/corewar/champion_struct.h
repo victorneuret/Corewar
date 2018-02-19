@@ -9,7 +9,7 @@
 
 typedef struct token_list {
 	unsigned int command;
-	unsigned int args_type;
+	unsigned char args_type;
 	int arg_one;
 	int arg_two;
 	int arg_three;

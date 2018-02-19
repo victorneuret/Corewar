@@ -11,6 +11,7 @@
 #include "common/op.h"
 #include "common/my_printf.h"
 #include "corewar/champion_struct.h"
+#include "corewar/parser/parser_utils.h"
 
 bool live_parser(token_t *token, char *asm_token, int *i);
 bool ld_parser(token_t *token, char *asm_token, int *i);

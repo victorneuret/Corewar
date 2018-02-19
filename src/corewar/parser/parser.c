@@ -27,7 +27,7 @@ static asm_parser_t pars_asm[] = {
 	{0, NULL}
 };
 
-static token_t *init_parser_list(token_t *token)
+static token_t *init_list_pars(token_t *token)
 {
 	token_t *tmp = token;
 
@@ -37,6 +37,7 @@ static token_t *init_parser_list(token_t *token)
 			return NULL;
 		token->next = NULL;
 		token->prev = NULL;
+		token->nb_bytes = 0;
 	} else {
 		for (; tmp->next; tmp = tmp->next);
 		tmp->next = malloc(sizeof(token_t));
@@ -44,25 +45,30 @@ static token_t *init_parser_list(token_t *token)
 			return NULL;
 		tmp->next->prev = tmp;
 		tmp->next->next = NULL;
+		tmp->nb_bytes = 0;
 	}
 	return token;
 }
 
-bool parser_op_tab(champion_t *champ, int *i)
+static bool call_function_parser(champion_t *champ, int *i, int j)
 {
+	champ->token_list = init_list_pars(champ->token_list);
+	if (!champ->token_list)
+		return false;
+	return (pars_asm[j].func(champ->token_list, champ->asm_token, i));
+}
 
+static bool parser_op_tab(champion_t *champ, int *i)
+{
 	for (int j = 0; op_tab[j].mnemonique; j++)
-		if (champ->asm_token[*i] == op_tab[j].code)
-			return (pars_asm[j].func(champ->token_list,
-				champ->asm_token, i));
+		if (champ->asm_token[*i] == op_tab[j].code) {
+			return call_function_parser(champ, i, j);
+		}
 	return true;
 }
 
 bool parser(champion_t *champ)
 {
-	champ->token_list = init_parser_list(champ->token_list);
-	if (!champ->token_list)
-		return false;
 	for (int i = 0; i < champ->asm_token_len; i++)
 		if (!parser_op_tab(champ, &i))
 			return false;

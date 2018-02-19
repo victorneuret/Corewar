@@ -16,7 +16,7 @@
 
 typedef struct {
 	int id;
-	bool (*func)(token_t *token,char *asm_token, int *i);
+	bool (*func)(token_t *token, char *asm_token, int *i);
 } asm_parser_t;
 
 bool parser(champion_t *champ);
