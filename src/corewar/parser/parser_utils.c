@@ -17,7 +17,7 @@ static int bytes_sum(char a, char b, char c, char d)
 	return (int_a * 1048576 + int_b * 4096 + int_c * 256 + int_d);
 }
 
-static bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
+bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 {
 	char *dir = substring(asm_token, *i, *i + 4);
 
@@ -36,7 +36,7 @@ static bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 	return true;
 }
 
-static bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
+bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
 {
 	char *dir = substring(asm_token, *i, *i + 4);
 
@@ -55,7 +55,7 @@ static bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
 	return true;
 }
 
-static bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
+bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
 {
 	char *reg = substring(asm_token, *i, *i + 1);
 
@@ -80,11 +80,9 @@ bool asm_arg_parser(token_t *token, char *asm_token, int *i)
 	*i += 2;
 	for (int k = 0; k < MAX_ARGS_NUMBER; k++) {
 		switch ((div >> bit_shift) & 3) {
-		case 1:
-			ret_val = asm_arg_register(token, asm_token, k, i);
+		case 1: ret_val = asm_arg_register(token, asm_token, k, i);
 			break;
-		case 2:
-			ret_val = asm_arg_direct(token, asm_token, k, i);
+		case 2: ret_val = asm_arg_direct(token, asm_token, k, i);
 			break;
 		case 3: ret_val = asm_arg_indirect(token, asm_token, k, i);
 			break;

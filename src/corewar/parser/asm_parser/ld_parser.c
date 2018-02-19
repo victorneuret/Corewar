@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** Corewar
 ** File description:
-** ls parser
+** ld parser
 */
 
 #include "corewar/parser/asm_parser.h"
