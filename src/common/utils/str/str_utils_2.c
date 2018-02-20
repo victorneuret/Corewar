@@ -48,13 +48,13 @@ bool ends_with(char const *str, char const *suffix)
 	return (my_strncmp(str + src_len - suf_len, suffix, suf_len)) == 0;
 }
 
-char *substring(char const *src, int begin, int end)
+char *substring(char const *src, size_t begin, size_t end)
 {
 	char *result = malloc(end - begin + 2);
 
 	if (!result)
 		return 0;
-	for (int i = 0; i < end - begin + 1; i++)
+	for (size_t i = 0; i < end - begin + 1; i++)
 		result[i] = src[begin + i];
 	result[end - begin + 1] = 0;
 	return result;

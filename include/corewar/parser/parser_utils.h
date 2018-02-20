@@ -21,3 +21,5 @@ bool asm_arg_parser(token_t *token, char *asm_token, int *i);
 bool asm_arg_register(token_t *token, char *asm_token, int k, int *i);
 bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i);
 bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i);
+
+void init_token(token_t *token);

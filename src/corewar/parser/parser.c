@@ -35,6 +35,7 @@ static token_t *init_list_pars(token_t *token)
 		token = malloc(sizeof(token_t));
 		if (!token)
 			return NULL;
+		init_token(token);
 		token->next = NULL;
 		token->prev = NULL;
 		token->nb_bytes = 0;
@@ -43,6 +44,7 @@ static token_t *init_list_pars(token_t *token)
 		tmp->next = malloc(sizeof(token_t));
 		if (!tmp->next)
 			return NULL;
+		init_token(tmp->next);
 		tmp->next->prev = tmp;
 		tmp->next->next = NULL;
 		tmp->nb_bytes = 0;
