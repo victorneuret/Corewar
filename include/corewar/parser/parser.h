@@ -20,3 +20,5 @@ typedef struct {
 } asm_parser_t;
 
 bool parser(champion_t *champ);
+void print_token(token_t *token);
+void print_token_list(token_t *head);

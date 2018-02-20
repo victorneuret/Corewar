@@ -59,6 +59,7 @@ static bool corewar(int ac, char **av)
 	champ_list = init_champions(args, champ_list);
 	if (!champ_list)
 		return false;
+	print_token_list(champ_list->token_list);
 	free_args(args);
 	free_champion_list(champ_list);
 	return true;
