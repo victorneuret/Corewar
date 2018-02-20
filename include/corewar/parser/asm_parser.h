@@ -24,5 +24,4 @@ bool sti_parser(token_t *token, char *asm_token, int *i);
 bool fork_parser(token_t *token, char *asm_token, int *i);
 bool lld_parser(token_t *token, char *asm_token, int *i);
 bool lldi_parser(token_t *token, char *asm_token, int *i);
-bool lfork_parser(token_t *token, char *asm_token, int *i);
 bool aff_parser(token_t *token, char *asm_token, int *i);
