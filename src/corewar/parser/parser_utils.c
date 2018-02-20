@@ -33,6 +33,7 @@ bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 	}
 	token->nb_bytes += 4;
 	*i += 4;
+	free(dir);
 	return true;
 }
 
@@ -52,6 +53,7 @@ bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
 	}
 	token->nb_bytes += 2;
 	*i += 2;
+	free(dir);
 	return true;
 }
 
@@ -68,6 +70,7 @@ bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
 	}
 	token->nb_bytes += 1;
 	*i += 1;
+	free(reg);
 	return true;
 }
 
@@ -86,6 +89,9 @@ bool asm_arg_parser(token_t *token, char *asm_token, int *i)
 			break;
 		case 3: ret_val = asm_arg_indirect(token, asm_token, k, i);
 			break;
+		case 0: break;
+		default:
+			return false;
 		}
 		if (!ret_val)
 			return false;
