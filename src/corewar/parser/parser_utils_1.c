@@ -90,8 +90,7 @@ bool asm_arg_parser(token_t *token, char *asm_token, int *i)
 		case 3: ret_val = asm_arg_indirect(token, asm_token, k, i);
 			break;
 		case 0: break;
-		default:
-			return false;
+		default: return false;
 		}
 		if (!ret_val)
 			return false;
