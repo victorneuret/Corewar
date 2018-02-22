@@ -8,19 +8,19 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
 #include "common/op.h"
-#include "common/bool.h"
 #include "common/str_split.h"
 #include "common/utils/nbr/nbr_base.h"
 #include "common/utils/str/str_utils.h"
 #include "common/utils/char/char_utils.h"
 #include "common/utils/io/io_utils.h"
-#include "common/bool.h"
+#include <stdbool.h>
 #include "common/my_printf.h"
 
 #define SIZE_EXT 5

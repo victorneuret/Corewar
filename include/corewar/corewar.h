@@ -7,7 +7,8 @@
 
 #pragma once
 
-#include "common/bool.h"
+#include <stdbool.h>
+
 #include "common/my_printf.h"
 
 #include "common/utils/io/io_utils.h"

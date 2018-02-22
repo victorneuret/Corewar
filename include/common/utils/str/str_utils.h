@@ -8,8 +8,7 @@
 #pragma once
 
 #include <unistd.h>
-
-#include "common/bool.h"
+#include <stdbool.h>
 
 /* str_utils_1.c */
 char *my_revstr(char *str);

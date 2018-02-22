@@ -7,8 +7,8 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-#include "common/bool.h"
 
 #include "common/utils/str/str_utils.h"
 

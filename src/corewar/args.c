@@ -6,9 +6,9 @@
 */
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "common/op.h"
-#include "common/bool.h"
 #include "common/utils/nbr/getnbr.h"
 #include "common/utils/str/str_utils.h"
 #include "common/utils/array/array_utils.h"
