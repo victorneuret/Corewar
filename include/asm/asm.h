@@ -20,7 +20,6 @@
 #include "common/utils/str/str_utils.h"
 #include "common/utils/char/char_utils.h"
 #include "common/utils/io/io_utils.h"
-#include <stdbool.h>
 #include "common/my_printf.h"
 
 #define SIZE_EXT 5
