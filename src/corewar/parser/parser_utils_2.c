@@ -18,3 +18,10 @@ void init_token(token_t *token)
 	token->next = 0;
 	token->prev = 0;
 }
+
+bool is_index_needed(token_t *token)
+{
+	return (token->command == 0x09 || token->command == 0x0a
+		|| token->command == 0x0b || token->command == 0x0c
+		|| token->command == 0x0e || token->command == 0x0f);
+}

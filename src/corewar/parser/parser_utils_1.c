@@ -19,7 +19,7 @@ static int bytes_sum(char a, char b, char c, char d)
 
 bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 {
-	char *dir = substring(asm_token, *i, *i + 4);
+	char *dir = substring(asm_token, *i, *i + DIR_SIZE);
 
 	if (!dir)
 		return false;
@@ -31,15 +31,15 @@ bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 	case 3: token->arg_three = bytes_sum(dir[0], dir[1], dir[2], dir[3]);
 		break;
 	}
-	token->nb_bytes += 4;
-	*i += 4;
+	token->nb_bytes += is_index_needed(token) ? 2 : DIR_SIZE;
+	*i += is_index_needed(token) ? 2 : DIR_SIZE;
 	free(dir);
 	return true;
 }
 
 bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
 {
-	char *dir = substring(asm_token, *i, *i + 4);
+	char *dir = substring(asm_token, *i, *i + IND_SIZE);
 
 	if (!dir)
 		return false;
@@ -51,8 +51,8 @@ bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
 	case 3: token->arg_three = bytes_sum(0, 0, dir[0], dir[1]);
 		break;
 	}
-	token->nb_bytes += 2;
-	*i += 2;
+	token->nb_bytes += IND_SIZE;
+	*i += IND_SIZE;
 	free(dir);
 	return true;
 }
@@ -68,8 +68,8 @@ bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
 	case 2: token->arg_two = reg[0]; break;
 	case 3: token->arg_three = reg[0]; break;
 	}
-	token->nb_bytes += 1;
-	*i += 1;
+	token->nb_bytes += REG_SIZE;
+	*i += REG_SIZE;
 	free(reg);
 	return true;
 }

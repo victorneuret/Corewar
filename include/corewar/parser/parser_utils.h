@@ -23,3 +23,4 @@ bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i);
 bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i);
 
 void init_token(token_t *token);
+bool is_index_needed(token_t *token);
