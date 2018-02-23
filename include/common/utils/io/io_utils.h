@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "common/bool.h"
+#include <stdbool.h>
 
 #define HELP_READ_SIZE 16384
 

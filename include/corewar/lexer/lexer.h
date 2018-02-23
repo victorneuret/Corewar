@@ -12,9 +12,9 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #include "common/op.h"
-#include "common/bool.h"
 #include "common/utils/str/str_utils.h"
 #include "common/utils/nbr/nbr_base.h"
 

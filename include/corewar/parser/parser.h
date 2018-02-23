@@ -8,8 +8,8 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdbool.h>
 
-#include "common/bool.h"
 #include "common/op.h"
 #include "corewar/champion_struct.h"
 #include "corewar/parser/asm_parser.h"

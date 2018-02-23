@@ -8,9 +8,9 @@
 #pragma once
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "common/utils/str/str_utils.h"
-#include "common/bool.h"
 #include "corewar/lexer/lexer.h"
 
 char *check_letter_add(char c, char *str);

@@ -7,7 +7,8 @@
 
 #pragma once
 
-#include "common/bool.h"
+#include <stdbool.h>
+
 #include "common/op.h"
 #include "common/my_printf.h"
 #include "corewar/champion_struct.h"
