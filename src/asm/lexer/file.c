@@ -81,7 +81,6 @@ static void fill_struct(asm_t *asm_struct)
 bool compile(char *file, asm_t *asm_struct)
 {
 	char *str = NULL;
-	char *hex = NULL;
 	char *file_name = NULL;
 
 	asm_struct->array = NULL;
@@ -94,11 +93,9 @@ bool compile(char *file, asm_t *asm_struct)
 	if (!asm_struct->array)
 		return false;
 	file_name = conv_filename(file);
-	hex = conv_hex(COREWAR_EXEC_MAGIC);
 	fill_struct(asm_struct);
-	write_bytes(file_name, asm_struct, hex);
+	write_bytes(file_name, asm_struct);
 	free(file_name);
-	free(hex);
 	free(str);
 	return true;
 }

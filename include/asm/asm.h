@@ -37,4 +37,4 @@ char *conv_hex(int nb);
 char **conv_file(char *buff);
 bool check_syntax(asm_t *asm_s);
 bool compile(char *file, asm_t *asm_struct);
-bool write_bytes(char *file, asm_t *asm_struct, char *hex);
+bool write_bytes(char *file, asm_t *asm_struct);
