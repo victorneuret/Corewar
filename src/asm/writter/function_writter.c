@@ -7,7 +7,7 @@
 
 #include "asm/asm.h"
 
-bool write_function(int fd, char const *line)
+bool write_function(__attribute__((unused)) int fd, char const *line)
 {
 	if (!line)
 		return (false);

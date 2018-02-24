@@ -11,7 +11,7 @@ static bool write_magic(int fd, char *str)
 {
 	for (size_t i = my_strlen(str); i < 4; i++)
 		write(fd, "\0", 1);
-	for (int i = 0; str[i] != '\0'; i++)
+	for (uint8_t i = 0; str[i] != '\0'; i++)
 		write(fd, &str[i], 1);
 	return true;
 }
