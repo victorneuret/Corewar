@@ -41,7 +41,7 @@ static bool compare_line(char *line, char *string, int i)
 
 static bool line_syntax(char *line, int i)
 {
-	static int nb = 0;
+	static uint8_t nb = 0;
 
 	if (nb == 0)
 		compare_line(line, NAME_CMD_STRING, i);
@@ -49,7 +49,8 @@ static bool line_syntax(char *line, int i)
 		compare_line(line, COMMENT_CMD_STRING, i);
 	else
 		my_printf("Line: %d function\n", i);
-	nb++;
+	if (nb < 2)
+		nb++;
 	return (true);
 }
 

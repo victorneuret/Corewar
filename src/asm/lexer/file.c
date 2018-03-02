@@ -9,15 +9,15 @@
 
 static char *get_file_name(char *str)
 {
-	int path = 0;
-	int len = 0;
+	uint8_t path = 0;
+	uint8_t len = 0;
 
-	for (int i = 0; str[i] != '\0'; i++)
+	for (uint8_t i = 0; str[i] != '\0'; i++)
 		if (str[i] == '/')
 			path = i + 1;
-	for (int j = path; str[j] != '.' && str[j] != '\0'; j++)
+	for (uint8_t j = path; str[j] != '.' && str[j] != '\0'; j++)
 		len += 1;
-	for (int k = 0; k < len; k++)
+	for (uint8_t k = 0; k < len; k++)
 		str[k] = str[path++];
 
 	str[len] = '\0';
@@ -50,7 +50,7 @@ static char *open_file(char *file)
 		free(str);
 		return (NULL);
 	}
-	for (int i = 1; (size = read(fd, buff, 1)) != 0; i++) {
+	for (uint8_t i = 1; (size = read(fd, buff, 1)) != 0; i++) {
 		if (size == -1)
 			return (NULL);
 		str = realloc(str, i + 1);
@@ -81,7 +81,6 @@ static void fill_struct(asm_t *asm_struct)
 bool compile(char *file, asm_t *asm_struct)
 {
 	char *str = NULL;
-	char *hex = NULL;
 	char *file_name = NULL;
 
 	asm_struct->array = NULL;
@@ -94,11 +93,9 @@ bool compile(char *file, asm_t *asm_struct)
 	if (!asm_struct->array)
 		return false;
 	file_name = conv_filename(file);
-	hex = conv_hex(COREWAR_EXEC_MAGIC);
 	fill_struct(asm_struct);
-	write_bytes(file_name, asm_struct, hex);
+	write_bytes(file_name, asm_struct);
 	free(file_name);
-	free(hex);
 	free(str);
 	return true;
 }
