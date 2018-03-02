@@ -15,7 +15,7 @@
 
 #include "corewar/args.h"
 
-static inline void init_prog(prog_t *prog)
+static void init_prog(prog_t *prog)
 {
 	prog->prog_nb = 0;
 	prog->prog_path = 0;
