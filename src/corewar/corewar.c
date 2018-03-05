@@ -9,14 +9,16 @@
 
 #include "corewar/corewar.h"
 
-#include "common/bit_manipulations.h"
-
-static bool run_vm(__attribute__ ((unused)) champion_t *champ_list,
-	vm_core_t *vm_core)
+static bool run_vm(champion_t *champ_list, vm_core_t *vm_core)
 {
-	for (uint64_t cycle = 0; true; cycle++) {
+	for (vm_core->cycle = 0; vm_core->cycle < CYCLE_TO_DIE
+		- vm_core->cycle_to_die_sub; vm_core->cycle++) {
+		if (!exec_champ(champ_list, vm_core))
+			return false;
+		if (vm_core->alive == false)
+			return true;
 		if (vm_core->alive && vm_core->nb_live >= NBR_LIVE)
-			vm_core->cycle_to_die -= CYCLE_DELTA;
+			vm_core->cycle_to_die_sub += CYCLE_DELTA;
 	}
 	return true;
 }
@@ -45,7 +47,7 @@ static bool start_vm(args_t *args)
 		return false;
 	if (!is_valid_exec_magic(champ_list))
 		return false;
-	print_token_list(champ_list->token_list);
+	//print_token_list(champ_list->token_list);
 	if (!run_vm(champ_list, vm_core))
 		return false;
 	free_champion_list(champ_list);

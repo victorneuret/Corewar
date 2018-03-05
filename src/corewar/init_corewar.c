@@ -13,8 +13,8 @@ vm_core_t *init_vm_core(void)
 
 	if (!vm_core)
 		return NULL;
-	vm_core->alive = false;
-	vm_core->cycle_to_die = CYCLE_TO_DIE;
+	vm_core->alive = true;
+	vm_core->cycle_to_die_sub = 0;
 	vm_core->nb_live = 0;
 	return vm_core;
 }
@@ -55,6 +55,7 @@ champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 	new->asm_token_len = 0;
 	new->header = read_header(programs->prog_path);
 	new->pc = init_pc();
+	new->cycle_cmd = 0;
 	new = lexer(programs->prog_path, new);
 	if (!new || !new->pc)
 		return NULL;

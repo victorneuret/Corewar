@@ -37,5 +37,6 @@ typedef struct champion_list {
 	uint32_t reg[REG_NUMBER];
 	pc_t *pc;
 	bool carry;
+	uint16_t cycle_cmd;
 	struct champion_list *next;
 } champion_t;
