@@ -32,6 +32,17 @@ static header_t read_header(char const *path)
 	return header;
 }
 
+static pc_t *init_pc(void)
+{
+	pc_t *pc = malloc(sizeof(pc_t));
+
+	if (!pc)
+		return NULL;
+	pc->next = NULL;
+	pc->pc = 0;
+	return pc;
+}
+
 champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 {
 	champion_t *new = malloc(sizeof(champion_t));
@@ -43,16 +54,16 @@ champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 	new->token_list = NULL;
 	new->asm_token_len = 0;
 	new->header = read_header(programs->prog_path);
+	new->pc = init_pc();
 	new = lexer(programs->prog_path, new);
-	if (!new)
+	if (!new || !new->pc)
 		return NULL;
+	new->carry = true;
 	new->next = NULL;
-	if (!champ_list) {
+	if (!champ_list)
 		return new;
-	} else {
-		for (; tmp->next; tmp = tmp->next);
-		tmp->next = new;
-	}
+	for (; tmp->next; tmp = tmp->next);
+	tmp->next = new;
 	return tmp;
 }
 
