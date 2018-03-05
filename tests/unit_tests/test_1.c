@@ -12,6 +12,7 @@
 
 #include "common/my_printf.h"
 
+#include "common/utils/nbr/getnbr.h"
 #include "common/utils/nbr/nbr_base.h"
 #include "common/utils/io/io_utils.h"
 #include "common/utils/str/str_utils.h"
@@ -57,6 +58,19 @@ Test(str_utils, ends_with)
 	cr_assert_eq(ends_with("corewar.c", "_corewar.c"), false);
 	cr_assert_eq(ends_with("corewar.c", NULL), true);
 	cr_assert_eq(ends_with(NULL, ".c"), false);
+}
+
+Test(getnbr, getnbr)
+{
+	cr_assert_eq(getnbr("42"), 42);
+	cr_assert_eq(getnbr("-42"), -42);
+	cr_assert_eq(getnbr("4"), 4);
+	cr_assert_eq(getnbr("-1"), -1);
+	cr_assert_eq(getnbr("8765422"), 8765422);
+	cr_assert_eq(getnbr("hello40"), 0);
+	cr_assert_eq(getnbr("40hello"), 40);
+	cr_assert_eq(getnbr(""), 0);
+	cr_assert_eq(getnbr(NULL), 0);
 }
 
 // int main(void)
