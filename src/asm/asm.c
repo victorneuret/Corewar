@@ -6,7 +6,6 @@
 */
 
 #include "asm/asm.h"
-#include "common/error.h"
 
 int main(int ac, char **av)
 {
