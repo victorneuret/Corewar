@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** Corewar
+** CPE_corewar_2017
 ** File description:
 ** Input/Output utils header
 */
@@ -8,8 +8,6 @@
 #pragma once
 
 #include <stdbool.h>
-
-#define HELP_READ_SIZE 16384
 
 void putstr(char const *str);
 void puterr(char const *str);

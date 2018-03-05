@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2017
-** Corewar
+** EPITECH PROJECT, 2018
+** CPE_corewar_2017
 ** File description:
 ** String utils
 */

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** Corewar
+** CPE_corewar_2017
 ** File description:
-** Corewar Main file
+** CPE_corewar_2017 Main file
 */
 
 #include <stdio.h>

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** Corewar
+** CPE_corewar_2017
 ** File description:
-** corewar.h
+** CPE_corewar_2017.h
 */
 
 #pragma once

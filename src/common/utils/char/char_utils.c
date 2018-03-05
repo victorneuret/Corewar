@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** Corewar
+** CPE_corewar_2017
 ** File description:
 ** Char utils
 */
