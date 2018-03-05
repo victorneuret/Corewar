@@ -5,6 +5,8 @@
 ** String to nbr
 */
 
+#include <stdlib.h>
+
 #include "common/utils/str/str_utils.h"
 
 static int is_neg_number(char const *str)
@@ -21,9 +23,9 @@ static int is_neg_number(char const *str)
 static int is_overflow(unsigned int nbr, int is_neg)
 {
 	if ((!is_neg && nbr > 2147483647) || (is_neg && nbr > 2147483648))
-		return 1;
+		return EXIT_FAILURE;
 	else
-		return 0;
+		return EXIT_SUCCESS;
 }
 
 static int ret_nbr(int start, int end, unsigned long nbr, char const *str)
@@ -33,9 +35,9 @@ static int ret_nbr(int start, int end, unsigned long nbr, char const *str)
 
 	if (end - start >= 9)
 		if (str[start] >= '4')
-			return 0;
+			return EXIT_SUCCESS;
 	if (end - start > 9)
-		return 0;
+		return EXIT_SUCCESS;
 	for (int i = start; i <= end; i++) {
 		nbr *= 10;
 		nbr += (str[i] - '0');
@@ -43,7 +45,7 @@ static int ret_nbr(int start, int end, unsigned long nbr, char const *str)
 	nbr_return = nbr;
 	is_neg = is_neg_number(str);
 	if (is_overflow(nbr_return, is_neg))
-		return 0;
+		return EXIT_SUCCESS;
 	if (is_neg)
 		nbr_return = -nbr;
 	return nbr_return;
@@ -65,7 +67,7 @@ int getnbr(char const *str)
 		}
 	}
 	if (start < 0)
-		return 0;
+		return EXIT_SUCCESS;
 	if (end < 0)
 		end = length - 1;
 	return ret_nbr(start, end, nbr, str);

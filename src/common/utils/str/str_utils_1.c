@@ -6,13 +6,14 @@
 */
 
 #include <unistd.h>
+#include <stdlib.h>
 
 size_t my_strlen(char const *str)
 {
 	size_t i = 0;
 
 	if (!str)
-		return 0;
+		return EXIT_SUCCESS;
 	while (str[i] != '\0')
 		i++;
 	return i;
@@ -24,10 +25,10 @@ int str_eq(char const *str1, char const *str2)
 	int len2 = my_strlen(str2);
 
 	if (len1 != len2)
-		return 0;
+		return EXIT_SUCCESS;
 	for (int i = 0; i < len1; i++)
 		if (str1[i] != str2[i])
-			return 0;
+			return EXIT_SUCCESS;
 	return 1;
 }
 
@@ -42,7 +43,7 @@ int my_strncmp(char const *s1, char const *s2, size_t n)
 		if (c1 == '\0' || c2 == '\0' || c1 != c2)
 			return c1 - c2;
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 char *my_revstr(char *str)
@@ -52,7 +53,7 @@ char *my_revstr(char *str)
 	size_t index2 = my_strlen(str) - 1;
 
 	if (!str)
-		return 0;
+		return NULL;
 	while (index1 < index2) {
 		temp = str[index1];
 		str[index1] = str[index2];

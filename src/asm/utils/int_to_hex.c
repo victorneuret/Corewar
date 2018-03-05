@@ -12,7 +12,7 @@ static char *zero_hex(void)
 	char *str = malloc(2);
 
 	if (!str)
-		return 0;
+		return NULL;
 	str[0] = 0;
 	str[1] = 0;
 	return str;

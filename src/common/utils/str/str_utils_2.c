@@ -19,7 +19,7 @@ char *my_strdup(char const *src)
 
 	dest = malloc(sizeof(char) * (length + 1));
 	if (!dest)
-		return 0;
+		return NULL;
 	for (size_t i = 0; src && i <= length; i++)
 		dest[i] = src[i];
 	return dest;
@@ -53,7 +53,7 @@ char *substring(char const *src, size_t begin, size_t end)
 	char *result = malloc(end - begin + 2);
 
 	if (!result)
-		return 0;
+		return NULL;
 	for (size_t i = 0; i < end - begin + 1; i++)
 		result[i] = src[begin + i];
 	result[end - begin + 1] = 0;

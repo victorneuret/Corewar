@@ -45,7 +45,7 @@ char **str_split(char const *str, char separator)
 	char **array = malloc((word_count + 1) * (sizeof(char*)));
 
 	if (!array)
-		return 0;
+		return NULL;
 	if (word_count == 1)
 		array[0] = my_strdup(str);
 	else
