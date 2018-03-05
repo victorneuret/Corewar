@@ -24,17 +24,17 @@ CFLAGS	+=	-Wall -Wextra
 CFLAGS	+=	-I include
 CFLAGS	+=	-L lib -lprintf
 
-all:		$(ASM) $(CRW)
+all:		lib $(ASM) $(CRW)
 
 %.o:		%.c
 		@echo -e "[\e[34mcore\e[39m]\t : Compiling \e[94m$<\e[39m -> \e[92m$@\e[39m"
 		@$(CC) -c $(CFLAGS) -o $@ $<
 
-$(ASM):		lib $(OBJ_COM) $(OBJ_ASM)
+$(ASM):		$(OBJ_COM) $(OBJ_ASM)
 		@$(CC) $(OBJ_ASM) $(OBJ_COM) $(CFLAGS) -o $(ASM)
 		@echo -e "[\e[36masm\e[39m]\t : Compiled $(ASM)"
 
-$(CRW):		lib $(OBJ_COM) $(OBJ_CRW)
+$(CRW):		$(OBJ_COM) $(OBJ_CRW)
 		@$(CC) $(OBJ_CRW) $(OBJ_COM) $(CFLAGS) -o $(CRW)
 		@echo -e "[\e[31mvm\e[39m]\t : Compiled $(CRW)"
 

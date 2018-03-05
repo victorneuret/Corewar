@@ -11,9 +11,12 @@ bool fork_parser(token_t *token, char *asm_token, int *i)
 {
 	token_t *tmp = token;
 
-	my_printf("%s\n", "fork");
 	for (; tmp->next; tmp = tmp->next);
 	tmp->command = asm_token[*i];
+	switch (tmp->command) {
+	case 12: my_printf("fork\n"); break;
+	case 15: my_printf("lfork\n"); break;
+	}
 	tmp->args_type = 0;
 	tmp->nb_bytes = 1;
 	*i += 1;

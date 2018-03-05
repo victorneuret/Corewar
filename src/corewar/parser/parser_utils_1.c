@@ -68,8 +68,8 @@ bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
 	case 2: token->arg_two = reg[0]; break;
 	case 3: token->arg_three = reg[0]; break;
 	}
-	token->nb_bytes += REG_SIZE;
-	*i += REG_SIZE;
+	token->nb_bytes += 1;
+	*i += 1;
 	free(reg);
 	return true;
 }
