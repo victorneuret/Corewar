@@ -18,10 +18,6 @@ bool and_parser(token_t *token, char *asm_token, int *i)
 	case 7: my_printf("or\n"); break;
 	case 8: my_printf("xor\n"); break;
 	}
-	if (tmp->command == 4)
-		my_printf("%s\n", "add");
-	else if (tmp->command == 5)
-		my_printf("%s\n", "sub");
 	tmp->args_type = asm_token[*i + 1];
 	tmp->nb_bytes = 2;
 	if (!asm_arg_parser(tmp, asm_token, i))
