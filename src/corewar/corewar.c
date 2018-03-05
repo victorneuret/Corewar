@@ -69,6 +69,6 @@ static bool corewar(int ac, char **av)
 int main(int ac, char **av)
 {
 	if (!corewar(ac, av))
-		return EXIT_ERROR;
-	return EXIT_SUCCESS;
+		return 84;
+	return 0;
 }
