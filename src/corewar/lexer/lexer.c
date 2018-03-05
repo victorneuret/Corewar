@@ -59,23 +59,24 @@ static bool champion_name(champion_t *new, int const fd)
 	return true;
 }
 
-static bool exec_magic(champion_t *new, int const fd)
+static bool exec_magic(int const fd)
 {
 	char buffer[4];
-	new->exec_magic = malloc(sizeof(char) * 5);
+	char *exec_magic = malloc(sizeof(char) * 5);
 	int j = 0;
 
-	if (fd == -1 || !new->exec_magic)
+	if (fd == -1 || !exec_magic)
 		return false;
 	for (int i = 0; i < 5; i++)
-		new->exec_magic[i] = '\0';
+		exec_magic[i] = '\0';
 	if (read(fd, buffer, 4) == -1)
 		return false;
 	for (int i = 0; i < 4; i++)
 		if (buffer[i] != '\0') {
-			new->exec_magic[j] = buffer[i];
+			exec_magic[j] = buffer[i];
 			j++;
 		}
+	free(exec_magic);
 	return true;
 }
 
@@ -87,7 +88,7 @@ champion_t *lexer(char *champion_path, champion_t *new)
 		free(new);
 		return NULL;
 	}
-	if (!exec_magic(new, fd) || !champion_name(new, fd)
+	if (!exec_magic(fd) || !champion_name(new, fd)
 		|| !champion_size(new, fd) || !champion_comment(new, fd))
 		return NULL;
 	champion_lexer(new, fd);

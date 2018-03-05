@@ -22,5 +22,6 @@
 #include "corewar/lexer/lexer_utils.h"
 #include "corewar/lexer/lexer_asm.h"
 #include "corewar/champion_struct.h"
+#include "corewar/parser/parser_utils.h"
 
 champion_t *lexer(char *champion_path, champion_t *new);

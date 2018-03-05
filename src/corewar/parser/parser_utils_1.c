@@ -7,7 +7,7 @@
 
 #include "corewar/parser/parser_utils.h"
 
-static int bytes_sum(char a, char b, char c, char d)
+int bytes_sum(char a, char b, char c, char d)
 {
 	int int_a = ABS_CHAR(a);
 	int int_b = ABS_CHAR(b);

@@ -24,3 +24,4 @@ bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i);
 
 void init_token(token_t *token);
 bool is_index_needed(token_t *token);
+int bytes_sum(char a, char b, char c, char d);

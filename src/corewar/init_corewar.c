@@ -7,6 +7,18 @@
 
 #include "corewar/corewar.h"
 
+vm_core_t *init_vm_core(void)
+{
+	vm_core_t* vm_core = malloc(sizeof(vm_core_t));
+
+	if (!vm_core)
+		return NULL;
+	vm_core->alive = false;
+	vm_core->cycle_to_die = CYCLE_TO_DIE;
+	vm_core->nb_live = 0;
+	return vm_core;
+}
+
 champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 {
 	champion_t *new = malloc(sizeof(champion_t));
