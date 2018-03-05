@@ -15,16 +15,15 @@
 
 bool print_file_bytes(char const *path)
 {
-	char buffer[HELP_READ_SIZE];
+	char buffer[2];
 	int fd = open(path, O_RDONLY);
 
-	for (size_t i = 0; i < 16384; i++)
-		buffer[i] = 0;
 	if (fd == -1)
 		return false;
-	if (read(fd, buffer, 16384) == -1)
-		return false;
-	putstr(buffer);
+	while (read(fd, buffer, 1) > 0) {
+		buffer[1] = '\0';
+		putstr(buffer);
+	}
 	close(fd);
 	return true;
 }
