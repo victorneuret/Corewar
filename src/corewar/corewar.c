@@ -8,7 +8,6 @@
 #include <stdio.h>
 
 #include "corewar/corewar.h"
-#include "common/error.h"
 
 static champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 {
