@@ -61,8 +61,8 @@ fclean:		fclean_asm fclean_crw
 		@make -C lib/printf --no-print-directory fclean
 
 re:		fclean_lib fclean all
-re_asm:		fclean_asm $(ASM)
-re_crw:		fclean_crw $(CRW)
+re_asm:		fclean_asm lib $(ASM)
+re_crw:		fclean_crw lib $(CRW)
 
 lib:
 		@make -C lib/printf --no-print-directory

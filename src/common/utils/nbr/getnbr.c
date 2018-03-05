@@ -1,74 +1,28 @@
 /*
 ** EPITECH PROJECT, 2017
-** Corewar
+** my_getnbr
 ** File description:
-** String to nbr
+** send string return number
 */
-
-#include <stdlib.h>
-
-#include "common/utils/str/str_utils.h"
-
-static int is_neg_number(char const *str)
-{
-	int count = 0;
-
-	for (size_t i = 0; i < my_strlen(str); i++) {
-		if (str[i] == '-')
-			count++;
-	}
-	return count % 2 == 1;
-}
-
-static int is_overflow(unsigned int nbr, int is_neg)
-{
-	if ((!is_neg && nbr > 2147483647) || (is_neg && nbr > 2147483648))
-		return EXIT_FAILURE;
-	else
-		return EXIT_SUCCESS;
-}
-
-static int ret_nbr(int start, int end, unsigned long nbr, char const *str)
-{
-	int nbr_return;
-	int is_neg;
-
-	if (end - start >= 9)
-		if (str[start] >= '4')
-			return EXIT_SUCCESS;
-	if (end - start > 9)
-		return EXIT_SUCCESS;
-	for (int i = start; i <= end; i++) {
-		nbr *= 10;
-		nbr += (str[i] - '0');
-	}
-	nbr_return = nbr;
-	is_neg = is_neg_number(str);
-	if (is_overflow(nbr_return, is_neg))
-		return EXIT_SUCCESS;
-	if (is_neg)
-		nbr_return = -nbr;
-	return nbr_return;
-}
 
 int getnbr(char const *str)
 {
-	unsigned long nbr = 0;
-	int length = my_strlen(str);
-	int start = -1;
-	int end = -1;
+	int nb = 0;
+	int j = 0;
 
-	for (int i = 0; i < length; i++) {
-		if (str[i] >= '0' && str[i] <= '9' && start < 0)
-			start = i;
-		if ((str[i] < '0' || str[i] > '9') && start >= 0) {
-			end = i - 1;
-			break;
+	if (!str)
+		return 0;
+	for (int i = 0; str[i] != '\0'; i++) {
+		for (j = j; str[i] == '+' || str[i] == '-'; i++)
+			(str[i] == '-') ? j++ : 0;
+		if (str[i] >= '0' && str[i] <= '9')
+			nb = nb * 10 + (str[i] - '0');
+		if (str[i] < '0' || str[i] > '9') {
+			(j % 2 == 1) ? nb = nb * -1 : 0;
+			return nb;
 		}
 	}
-	if (start < 0)
-		return EXIT_SUCCESS;
-	if (end < 0)
-		end = length - 1;
-	return ret_nbr(start, end, nbr, str);
+	if (j % 2 == 1)
+		nb *= -1;
+	return nb;
 }

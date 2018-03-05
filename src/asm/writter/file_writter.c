@@ -5,13 +5,13 @@
 ** File writter
 */
 
-#include "common/bit_manipulations.h"
-
 #include "asm/asm.h"
+
+#include "common/bit_manipulations.h"
 
 static bool write_header(int fd, asm_t *asm_s)
 {
-	header_t header;
+	header_t header = {0};
 
 	for (size_t i = 0; i <= PROG_NAME_LENGTH; i++)
 		header.prog_name[i] = '\0';
