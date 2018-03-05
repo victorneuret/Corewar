@@ -5,7 +5,7 @@
 ** file.c
 */
 
-#include "asm/asm.h"
+#include "asm/lexer/file.h"
 
 static char *get_file_name(char *str)
 {

@@ -5,7 +5,7 @@
 ** syntax.c
 */
 
-#include "asm/asm.h"
+#include "asm/lexer/syntax.h"
 
 static int count_word_array(char **str)
 {

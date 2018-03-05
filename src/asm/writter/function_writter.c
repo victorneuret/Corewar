@@ -5,7 +5,7 @@
 ** File writter
 */
 
-#include "asm/asm.h"
+#include "asm/writter/function_writter.h"
 
 bool write_function(__attribute__((unused)) int fd, char const *line)
 {

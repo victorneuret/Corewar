@@ -5,9 +5,9 @@
 ** str_to_array.c
 */
 
-#include "asm/asm.h"
+#include "asm/utils/str_to_array.h"
 
-int count_lines(char *buff)
+static int count_lines(char *buff)
 {
 	int lines = 0;
 
@@ -19,7 +19,7 @@ int count_lines(char *buff)
 	return (lines + 1);
 }
 
-int next_line(char *buff, int nb)
+static int next_line(char *buff, int nb)
 {
 	for (; buff[nb] != '\n' && buff[nb] != '\0'; nb++);
 	return (nb);
