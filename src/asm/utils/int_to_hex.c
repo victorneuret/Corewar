@@ -5,7 +5,7 @@
 ** Conv
 */
 
-#include "asm/asm.h"
+#include "asm/utils/int_to_hex.h"
 
 static char *zero_hex(void)
 {

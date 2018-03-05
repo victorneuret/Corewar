@@ -5,9 +5,7 @@
 ** File writter
 */
 
-#include "asm/asm.h"
-
-#include "common/bit_manipulations.h"
+#include "asm/writter/file_writter.h"
 
 static bool write_header(int fd, asm_t *asm_s)
 {
