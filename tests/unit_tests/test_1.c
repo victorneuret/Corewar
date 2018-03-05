@@ -72,25 +72,3 @@ Test(getnbr, getnbr)
 	cr_assert_eq(getnbr(""), 0);
 	cr_assert_eq(getnbr(NULL), 0);
 }
-
-// int main(void)
-// {
-// 	char *ptr;
-
-// 	ptr = conv_nb_base(42, BASE_DEC);
-// 	my_printf("%s\n", ptr);
-// 	free(ptr);
-// 	ptr = conv_nb_base(42, BASE_BIN);
-// 	my_printf("%s\n", ptr);
-// 	free(ptr);
-// 	ptr = conv_nb_base(42, BASE_OCT);
-// 	my_printf("%s\n", ptr);
-// 	free(ptr);
-// 	ptr = conv_nb_base(3940219, BASE_HEX);
-// 	my_printf("%s\n", ptr);
-// 	free(ptr);
-// 	ptr = conv_nb_base(3940219, BASE_HEX_CAPS);
-// 	my_printf("%s\n", ptr);
-// 	free(ptr);
-// 	return 0;
-// }
