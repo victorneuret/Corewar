@@ -18,3 +18,6 @@
 #include "corewar/lexer/lexer.h"
 #include "corewar/lexer/free_lexer.h"
 #include "corewar/parser/parser.h"
+
+champion_t *init_champ_list(prog_t *programs, champion_t *champ_list);
+champion_t *init_champions(args_t *args, champion_t *champ_list);
