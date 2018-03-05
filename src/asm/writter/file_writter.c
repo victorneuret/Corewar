@@ -29,9 +29,7 @@ bool write_bytes(char *file, asm_t *asm_s)
 {
 	int fd = open(file, O_RDWR | O_CREAT, 0666);
 
-	if (file == NULL)
-		return false;
-	else if (fd == -1)
+	if (file == NULL || fd == -1)
 		return false;
 	if (write_header(fd, asm_s)) {
 		close(fd);
