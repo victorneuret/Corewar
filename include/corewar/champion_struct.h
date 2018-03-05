@@ -20,12 +20,12 @@ typedef struct token_list {
 
 typedef struct champion_list {
 	int nb_champion;
+	int asm_token_len;
 	char *exec_magic;
 	char *champion_name;
 	char *size;
 	char *comment;
 	char *asm_token;
-	int asm_token_len;
 	token_t *token_list;
 	struct champion_list *next;
 } champion_t;
