@@ -19,6 +19,17 @@ vm_core_t *init_vm_core(void)
 	return vm_core;
 }
 
+static pc_t *init_pc(void)
+{
+	pc_t *pc = malloc(sizeof(pc_t));
+
+	if (!pc)
+		return NULL;
+	pc->next = NULL;
+	pc->pc = 0;
+	return pc;
+}
+
 champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 {
 	champion_t *new = malloc(sizeof(champion_t));
@@ -29,9 +40,11 @@ champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 	new->nb_champion = programs->prog_nb;
 	new->token_list = NULL;
 	new->asm_token_len = 0;
+	new->pc = init_pc();
 	new = lexer(programs->prog_path, new);
-	if (!new)
+	if (!new || !new->pc)
 		return NULL;
+	new->carry = true;
 	new->next = NULL;
 	if (!champ_list) {
 		return new;

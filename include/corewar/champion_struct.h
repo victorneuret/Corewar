@@ -8,6 +8,8 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
+
 #include "common/op.h"
 
 typedef struct token_list {
@@ -36,5 +38,6 @@ typedef struct champion_list {
 	token_t *token_list;
 	uint32_t reg[REG_NUMBER];
 	pc_t *pc;
+	bool carry;
 	struct champion_list *next;
 } champion_t;
