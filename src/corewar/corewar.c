@@ -9,6 +9,8 @@
 
 #include "corewar/corewar.h"
 
+#include "common/bit_manipulations.h"
+
 static bool run_vm(__attribute__ ((unused)) champion_t *champ_list,
 	vm_core_t *vm_core)
 {
@@ -19,6 +21,20 @@ static bool run_vm(__attribute__ ((unused)) champion_t *champ_list,
 	return true;
 }
 
+static bool is_valid_exec_magic(champion_t *champ_list)
+{
+	int exec_magic = reverse_bits(COREWAR_EXEC_MAGIC);
+	champion_t *current = champ_list;
+
+	for (; current; current = current->next)
+		if (current->header.magic != exec_magic) {
+			puterr(current->header.prog_name);
+			puterr(": Invalid executable.\n");
+			return false;
+		}
+	return true;
+}
+
 static bool start_vm(args_t *args)
 {
 	champion_t *champ_list = NULL;
@@ -26,6 +42,8 @@ static bool start_vm(args_t *args)
 
 	champ_list = init_champions(args, champ_list);
 	if (!champ_list || !vm_core)
+		return false;
+	if (!is_valid_exec_magic(champ_list))
 		return false;
 	print_token_list(champ_list->token_list);
 	if (!run_vm(champ_list, vm_core))

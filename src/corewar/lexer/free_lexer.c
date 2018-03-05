@@ -14,9 +14,6 @@ void free_champion_list(champion_t *champion_list)
 
 	while (champion_list) {
 		tmp = champion_list->next;
-		free(champion_list->champion_name);
-		free(champion_list->size);
-		free(champion_list->comment);
 		free(champion_list->asm_token);
 		while (champion_list->token_list) {
 			temp = champion_list->token_list->next;
