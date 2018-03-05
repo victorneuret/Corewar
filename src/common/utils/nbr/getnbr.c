@@ -5,9 +5,6 @@
 ** send string return number
 */
 
-#include <stdio.h>
-#include <unistd.h>
-
 int getnbr(char const *str)
 {
 	int nb = 0;

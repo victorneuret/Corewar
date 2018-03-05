@@ -8,7 +8,6 @@
 #include <stdio.h>
 
 #include "corewar/corewar.h"
-#include "common/error.h"
 
 static champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 {
@@ -69,6 +68,6 @@ static bool corewar(int ac, char **av)
 int main(int ac, char **av)
 {
 	if (!corewar(ac, av))
-		return EXIT_ERROR;
-	return EXIT_SUCCESS;
+		return 84;
+	return 0;
 }

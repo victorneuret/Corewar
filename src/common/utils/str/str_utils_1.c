@@ -13,7 +13,7 @@ size_t my_strlen(char const *str)
 	size_t i = 0;
 
 	if (!str)
-		return EXIT_SUCCESS;
+		return 0;
 	while (str[i] != '\0')
 		i++;
 	return i;
@@ -25,10 +25,10 @@ int str_eq(char const *str1, char const *str2)
 	int len2 = my_strlen(str2);
 
 	if (len1 != len2)
-		return EXIT_SUCCESS;
+		return 0;
 	for (int i = 0; i < len1; i++)
 		if (str1[i] != str2[i])
-			return EXIT_SUCCESS;
+			return 0;
 	return 1;
 }
 
@@ -43,7 +43,7 @@ int my_strncmp(char const *s1, char const *s2, size_t n)
 		if (c1 == '\0' || c2 == '\0' || c1 != c2)
 			return c1 - c2;
 	}
-	return EXIT_SUCCESS;
+	return 0;
 }
 
 char *my_revstr(char *str)

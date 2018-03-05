@@ -42,7 +42,7 @@ char *conv_nb_base(size_t nb, char const *base)
 	size_t index = 0;
 
 	if (!result)
-		return EXIT_SUCCESS;
+		return 0;
 	for (size_t i = 0; i <= result_len; i++)
 		result[i] = 0;
 	recursive_append_nb(nb, base, result, &index);
