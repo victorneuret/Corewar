@@ -34,9 +34,19 @@ OUT=${OUT/".s"/".cor"}
 mkdir -p $TMP
 
 $ASM $1 1> /dev/null
+if [ ! -f $OUT ]
+then
+	echo -e "\nError: output file not found.\nScript aborted."
+	exit 1
+fi
 mv $OUT $TMP/asm.cor
 
 $REF $1 1> /dev/null
+if [ ! -f $OUT ]
+then
+	echo -e "\nError: output file not found.\nScript aborted."
+	exit 1
+fi
 mv $OUT $TMP/ref.cor
 
 DUMP="hexdump -C"
