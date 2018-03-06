@@ -9,6 +9,7 @@
 
 #include "common/bit_manipulations.h"
 
+#include "common/utils/str/str_utils.h"
 #include "common/utils/char/char_utils.h"
 
 Test(reverse_bits, reverse_bits)
@@ -42,4 +43,22 @@ Test(char_utils, last_index_of)
 	cr_assert_eq(last_index_of("aaaa000000", '0'), 9);
 	cr_assert_eq(last_index_of("", '0'), -1);
 	cr_assert_eq(last_index_of(NULL, '0'), -1);
+}
+
+Test(str_utils, int_to_str)
+{
+	char *str;
+
+	str = int_to_str(42);
+	cr_assert_str_eq(str, "42");
+	free(str);
+	str = int_to_str(-42);
+	cr_assert_str_eq(str, "-42");
+	free(str);
+	str = int_to_str(87654);
+	cr_assert_str_eq(str, "87654");
+	free(str);
+	str = int_to_str(0);
+	cr_assert_str_eq(str, "0");
+	free(str);
 }

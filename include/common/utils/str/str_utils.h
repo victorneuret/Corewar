@@ -22,3 +22,6 @@ char *my_strdup(char const *src);
 char *my_strncpy(char *dest, const char *src, size_t n);
 bool ends_with(char const *str, char const *suffix);
 char *substring(char const *src, size_t begin, size_t end);
+
+/* int_to_str */
+char *int_to_str(int nb);

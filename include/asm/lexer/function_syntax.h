@@ -14,7 +14,6 @@
 #include "asm/asm_struct.h"
 #include "asm/parser/parser.h"
 #include "asm/lexer/syntax.h"
-#include "asm/utils/int_to_char.h"
 #include "common/utils/io/io_utils.h"
 #include "common/utils/str/str_utils.h"
 #include "common/utils/char/char_utils.h"

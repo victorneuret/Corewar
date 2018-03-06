@@ -34,7 +34,7 @@ void syntax_error(asm_t *asm_s, const char *message)
 	puterr(", ");
 	puterr(asm_s->filename);
 	puterr(", line ");
-	puterr(int_to_char(asm_s->line));
+	puterr(int_to_str(asm_s->line));
 	puterr(": ");
 	puterr(message);
 	puterr(NC "\n");
