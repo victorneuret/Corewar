@@ -39,14 +39,9 @@ static void syntax_error(asm_t *asm_s, const char *message)
 	free_str_array(array);
 }
 
-static bool check_comments(char *line, const char *string,
+static bool error_type(char **str, char const *string,
 			const int nb, asm_t *asm_s)
 {
-	char **str = NULL;
-
-	str = parse_comment(line);
-	if (!line || !str || !string)
-		return false;
 	if (my_strncmp(str[0], string, my_strlen(str[0])) == 0) {
 		if (!str[1]) {
 			syntax_error(asm_s, error_message[nb]);
@@ -57,9 +52,24 @@ static bool check_comments(char *line, const char *string,
 			return false;
 		}
 	} else {
-		syntax_error(asm_s, error_message[nb]);
+		if (nb == 0 && my_strncmp(str[0], COMMENT_CMD_STRING,
+		my_strlen(str[0])) == 0)
+			syntax_error(asm_s, error_message[2]);
+		else
+			syntax_error(asm_s, error_message[nb]);
 		return false;
 	}
+	return true;
+}
+
+static bool check_comments(char *line, const char *string,
+			const int nb, asm_t *asm_s)
+{
+	char **str = NULL;
+
+	str = parse_comment(line);
+	if (!line || !str || !string || !error_type(str, string, nb, asm_s))
+		return false;
 	free_str_array(str);
 	return true;
 }
