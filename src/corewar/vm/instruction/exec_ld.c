@@ -17,4 +17,8 @@ void exec_ld(token_t *token, champion_t *champ)
 	case 3: champ->reg[token->arg_two] = indirect(token->arg_one, champ);
 		break;
 	}
+	if (champ->reg[token->arg_two] == 0)
+		champ->carry = true;
+	else
+		champ->carry = false;
 }

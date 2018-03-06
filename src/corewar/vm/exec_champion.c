@@ -8,7 +8,7 @@
 #include "corewar/vm/exec_champion.h"
 
 static exec_instruction_t instru[] = {
-	{1, &nope},
+	{1, &exec_live},
 	{2, &exec_ld},
 	{3, &nope},
 	{4, &nope},
