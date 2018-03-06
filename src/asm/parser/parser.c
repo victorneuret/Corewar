@@ -27,6 +27,8 @@ char **parse_line(char *line)
 	size_t sep = find_separator(line, ' ') - 1;
 	int i = 0;
 
+	if (!array)
+		return NULL;
 	array[i++] = substring(line, 0, sep);
 	if (my_strlen(line) != (sep + 1))
 		array[i++] = substring(line, sep + 2, my_strlen(line));
