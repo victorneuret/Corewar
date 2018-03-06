@@ -28,13 +28,16 @@ then
 	exit 1
 fi
 
+OUT=${1##*/}
+OUT=${OUT/".s"/".cor"}
+
 mkdir -p $TMP
 
 $ASM $1 1> /dev/null
-mv *.cor $TMP/asm.cor
+mv $OUT $TMP/asm.cor
 
 $REF $1 1> /dev/null
-mv *.cor $TMP/ref.cor
+mv $OUT $TMP/ref.cor
 
 DUMP="hexdump -C"
 
