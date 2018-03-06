@@ -21,7 +21,7 @@ static size_t find_separator(char *line, char separator)
 
 }
 
-char **parse_comment(char *line)
+char **parse_line(char *line)
 {
 	char **array = malloc(3 * (sizeof(char*)));
 	size_t sep = find_separator(line, ' ') - 1;
@@ -32,9 +32,4 @@ char **parse_comment(char *line)
 		array[i++] = substring(line, sep + 2, my_strlen(line));
 	array[i] = 0;
 	return array;
-}
-
-bool parse_function(__attribute__((unused)) asm_t *asm_struct)
-{
-	return true;
 }

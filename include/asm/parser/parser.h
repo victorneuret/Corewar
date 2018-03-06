@@ -14,5 +14,4 @@
 #include "common/utils/str/str_utils.h"
 #include "common/utils/char/char_utils.h"
 
-bool parse_function(asm_t *asm_struct);
-char **parse_comment(char *line);
+char **parse_line(char *line);

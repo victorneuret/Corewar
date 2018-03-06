@@ -19,10 +19,12 @@ const char *error_message[] = {
 	BLUE "The comment must be just after the name.",
 	BLUE "Syntax error.",
 	BLUE "Invalid instruction.",
+	BLUE "The argument given to the instruction is invalid.",
+	BLUE "Too many arguments given to the instruction.",
 	0
 };
 
-static void syntax_error(asm_t *asm_s, const char *message)
+void syntax_error(asm_t *asm_s, const char *message)
 {
 	char **array = 0;
 
@@ -67,7 +69,7 @@ static bool check_comments(char *line, const char *string,
 {
 	char **str = NULL;
 
-	str = parse_comment(line);
+	str = parse_line(line);
 	if (!line || !str || !string || !error_type(str, string, nb, asm_s))
 		return false;
 	free_str_array(str);
@@ -82,7 +84,8 @@ static bool line_syntax(char *line, asm_t *asm_s)
 		if (!check_comments(line, opt_strings[nb], nb, asm_s))
 			return false;
 		nb++;
-	}
+	} else
+		check_function(line, asm_s);
 	return (true);
 }
 
