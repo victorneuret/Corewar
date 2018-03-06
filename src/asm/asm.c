@@ -18,6 +18,8 @@ int main(int ac, char **av)
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_file_bytes("src/asm/README.txt") ? 0 : 84;
+	asm_struct.executable = av[0];
+	asm_struct.filename = av[1];
 	if (!compile(av[1], &asm_struct)) {
 		puterr("Compilation failed.\n");
 		return 84;

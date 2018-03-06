@@ -9,6 +9,9 @@
 
 typedef struct {
 	char **array;
+	char *filename;
+	char *executable;
 	char *name;
 	char *comment;
+	int line;
 } asm_t;

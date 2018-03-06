@@ -8,5 +8,11 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdlib.h>
 
-bool parse_function(char *str);
+#include "asm/asm_struct.h"
+#include "common/utils/str/str_utils.h"
+#include "common/utils/char/char_utils.h"
+
+bool parse_function(asm_t *asm_struct);
+char **parse_comment(char *line);

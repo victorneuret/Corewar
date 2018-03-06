@@ -93,6 +93,8 @@ bool compile(char *file, asm_t *asm_struct)
 	if (!asm_struct->array)
 		return false;
 	file_name = conv_filename(file);
+	if (!check_syntax(asm_struct))
+		return false;
 	fill_struct(asm_struct);
 	write_bytes(file_name, asm_struct);
 	free(file_name);

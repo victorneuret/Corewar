@@ -17,6 +17,8 @@
 
 #include "asm/writter/file_writter.h"
 #include "asm/utils/str_to_array.h"
+#include "asm/lexer/syntax.h"
+#include "asm/parser/parser.h"
 #include "common/op.h"
 #include "common/utils/char/char_utils.h"
 #include "common/utils/io/io_utils.h"
