@@ -7,9 +7,9 @@
 
 #include "asm/lexer/function_syntax.h"
 
-static uint8_t function_exists(char *function)
+static int function_exists(char *function)
 {
-	for (uint8_t i = 0; op_tab[i].mnemonique; i++) {
+	for (int i = 0; op_tab[i].mnemonique; i++) {
 		if (my_strncmp(function, op_tab[i].mnemonique,
 			my_strlen(function)) == 0)
 				return i;
