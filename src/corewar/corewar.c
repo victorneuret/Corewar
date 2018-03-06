@@ -45,8 +45,7 @@ static bool start_vm(args_t *args)
 		return false;
 	if (!is_valid_exec_magic(champ_list))
 		return false;
-	//for (champion_t *tmp = champ_list; tmp; tmp = tmp->next)
-	// print_token_list(champ_list->token_list);
+	print_token_list(champ_list->token_list);
 	if (!run_vm(champ_list, vm_core))
 		return false;
 	free_champion_list(champ_list);

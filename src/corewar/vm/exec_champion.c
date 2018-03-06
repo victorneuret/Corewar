@@ -58,7 +58,8 @@ static bool wait_cycle(champion_t *champ)
 	return true;
 }
 
-bool exec_champ(champion_t *champ_list, vm_core_t *vm_core)
+bool exec_champ(champion_t *champ_list,
+	__attribute__((unused)) vm_core_t *vm_core)
 {
 	for (champion_t *champ = champ_list; champ; champ = champ->next) {
 		if (!wait_cycle(champ))

@@ -15,8 +15,11 @@ void free_champion_list(champion_t *champion_list)
 	while (champion_list) {
 		tmp = champion_list->next;
 		free(champion_list->asm_token);
-		for (pc_t *t_pc = champion_list->pc; t_pc; t_pc = t_pc->next)
-			free(t_pc);
+		for (pc_t *pc = champion_list->pc; champion_list->pc;
+			champion_list->pc = pc) {
+			pc = champion_list->pc->next;
+			free(champion_list->pc);
+		}
 		while (champion_list->token_list) {
 			temp = champion_list->token_list->next;
 			free(champion_list->token_list);
