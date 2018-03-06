@@ -26,27 +26,45 @@ static char *add_null_string_char(char const c, char *str, int size)
 	return ptr;
 }
 
-bool champion_lexer(champion_t *new, int fd)
+static bool read_header_pass(int fd)
 {
-	char buffer[1];
-	int read_size = 0;
-	char *str = malloc(sizeof(char) * 2);
+	header_t header = {0};
 
-	str[0] = '\0';
+	if (read(fd, &header, sizeof(header)) <= 0)
+		return false;
+	return true;
+}
+
+static char *read_asm(int fd, char *str, champion_t *new)
+{
+	char buffer;
+	int read_size = 0;
+
 	do {
-		read_size = read(fd, buffer, 1);
+		read_size = read(fd, &buffer, 1);
 		if (read_size == -1)
-			return false;
-	} while (buffer[0] == '\0');
+			return NULL;
+	} while (buffer == '\0');
 	while (read_size != 0) {
-		str = add_null_string_char(buffer[0], str, new->asm_token_len);
+		str = add_null_string_char(buffer, str, new->asm_token_len);
 		if (!str)
-			return false;
-		read_size = read(fd, buffer, 1);
+			return NULL;
+		read_size = read(fd, &buffer, 1);
 		if (read_size == -1)
-			return false;
+			return NULL;
 		new->asm_token_len++;
 	}
+	return str;
+}
+
+bool champion_lexer(champion_t *new, int fd)
+{
+	char *str = malloc(sizeof(char) * 2);
+
+	if (!str || !read_header_pass(fd))
+		return false;
+	str[0] = '\0';
+	read_asm(fd, str, new);
 	new->asm_token = str;
 	return true;
 }

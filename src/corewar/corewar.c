@@ -15,8 +15,6 @@ static bool run_vm(champion_t *champ_list, vm_core_t *vm_core)
 		- vm_core->cycle_to_die_sub; vm_core->cycle++) {
 		if (!exec_champ(champ_list, vm_core))
 			return false;
-		if (vm_core->alive == false)
-			return true;
 		if (vm_core->alive && vm_core->nb_live >= NBR_LIVE)
 			vm_core->cycle_to_die_sub += CYCLE_DELTA;
 	}
@@ -47,7 +45,8 @@ static bool start_vm(args_t *args)
 		return false;
 	if (!is_valid_exec_magic(champ_list))
 		return false;
-	//print_token_list(champ_list->token_list);
+	//for (champion_t *tmp = champ_list; tmp; tmp = tmp->next)
+	// print_token_list(champ_list->token_list);
 	if (!run_vm(champ_list, vm_core))
 		return false;
 	free_champion_list(champ_list);

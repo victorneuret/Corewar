@@ -78,7 +78,7 @@ bool asm_arg_parser(token_t *token, char *asm_token, int *i)
 {
 	int div = token->args_type;
 	bool ret_val = true;
-	int bit_shift = 6;
+	uint8_t bit_shift = 6;
 
 	*i += 2;
 	for (int k = 0; k < MAX_ARGS_NUMBER; k++) {

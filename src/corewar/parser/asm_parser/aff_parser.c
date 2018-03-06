@@ -19,5 +19,6 @@ bool aff_parser(token_t *token, char *asm_token, int *i)
 	*i += 2;
 	if (!asm_arg_register(tmp, asm_token, 0, i))
 		return false;
+	*i -= 1;
 	return true;
 }
