@@ -25,8 +25,10 @@
 
 typedef struct vm {
 	uint64_t cycle;
-	uint64_t cycle_to_die_sub;
+	uint64_t cycle_to_die;
 	uint64_t nb_live;
+	uint8_t last_alive;
+	char *champ_name;
 	bool alive;
 } vm_core_t;
 
