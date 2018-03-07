@@ -64,7 +64,15 @@ static bool corewar(int ac, char **av)
 	args = parse_arguments(av);
 	if (!args)
 		return false;
-	start_vm(args);
+	// for (size_t i = 0; i < args->prog_ct; i++)
+	// 	printf("path:\t%s\nid:\t%d\n\n", args->programs[i].prog_path,
+	// 					args->programs[i].prog_nb);
+	if (attribute_ids(args))
+		start_vm(args);
+	else {
+		free_args(args);
+		return false;
+	}
 	free_args(args);
 	return true;
 }

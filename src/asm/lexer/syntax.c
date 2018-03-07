@@ -84,9 +84,9 @@ static bool line_syntax(char *line, asm_t *asm_s)
 		if (!check_comments(line, opt_strings[nb], nb, asm_s))
 			return false;
 		nb++;
-	} else
-		check_function(line, asm_s);
-	return (true);
+	} else if (!check_function(line, asm_s))
+		return false;
+	return true;
 }
 
 bool check_syntax(asm_t *asm_s)
