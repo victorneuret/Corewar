@@ -16,6 +16,7 @@
 #include <fcntl.h>
 
 #include "asm/writter/file_writter.h"
+#include "asm/lexer/file_error.h"
 #include "asm/utils/str_to_array.h"
 #include "asm/lexer/syntax.h"
 #include "asm/parser/parser.h"
@@ -27,3 +28,6 @@
 #define SIZE_EXT 5
 
 bool compile(char *file, asm_t *asm_struct);
+char *open_file(char *file);
+char *conv_filename(char *str);
+void fill_struct(asm_t *asm_struct);
