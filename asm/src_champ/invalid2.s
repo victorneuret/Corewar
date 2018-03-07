@@ -5,13 +5,12 @@
 #
 # Sat Nov 10 03:24;30 2081
 #
-.name "zork"
-.comment "just a basic living prog"
+.name "zork" #the name
+.comment "just a basic living prog" #the comment
 
-0 l2:            # 2 bytes
-2 ld %3, r4      # 3 bytes
-5 sa:            # 2 bytes
-7 ld %400, r5    # 3 bytes
-10 live %:l2     # 4 bytes
-14 ld %:sa, r2   # 3 bytes
-17
+l2:            # 2 bytes 0
+ld %3, r4      # 3 bytes 2
+qq:            # 2 bytes 5
+ld %400, r5    # 3 bytes 7
+live %:l2     # 4 bytes 10
+ld %:sa, r2   # 3 bytes 14

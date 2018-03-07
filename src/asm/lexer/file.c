@@ -50,7 +50,7 @@ static char *open_file(char *file)
 		free(str);
 		return (NULL);
 	}
-	for (uint8_t i = 1; (size = read(fd, buff, 1)) != 0; i++) {
+	for (size_t i = 1; (size = read(fd, buff, 1)) != 0; i++) {
 		if (size == -1)
 			return (NULL);
 		str = realloc(str, i + 1);
