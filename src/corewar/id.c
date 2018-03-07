@@ -32,13 +32,24 @@ static bool contains_duplicates(int *array, size_t array_size)
 bool attribute_ids(args_t *args)
 {
 	int ids[args->prog_ct];
-	// int attribute_id = 1;
+	int attribute_id = 1;
 
 	for (size_t i = 0; i < args->prog_ct; i++)
 		ids[i] = args->programs[i].prog_nb;
 	if (contains_duplicates(ids, args->prog_ct)) {
 		puterr("Duplicate IDs.\n");
 		return false;
+	}
+	for (size_t i = 0; i < args->prog_ct; i++) {
+		if (ids[i] != 0)
+			continue;
+		if (array_contains(ids, attribute_id, args->prog_ct)) {
+			i--;
+			attribute_id++;
+			continue;
+		}
+		ids[i] = attribute_id;
+		args->programs[i].prog_nb = attribute_id;
 	}
 	return true;
 }
