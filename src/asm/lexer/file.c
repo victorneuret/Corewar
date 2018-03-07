@@ -24,7 +24,7 @@ static char *get_file_name(char *str)
 	return (str);
 }
 
-static char *conv_filename(char *str)
+char *conv_filename(char *str)
 {
 	char *result = malloc(sizeof(char) * (my_strlen(str) + SIZE_EXT));
 
@@ -37,7 +37,7 @@ static char *conv_filename(char *str)
 	return (result);
 }
 
-static char *open_file(char *file)
+char *open_file(char *file)
 {
 	int fd = open(file, O_RDONLY);
 	char buff[1];
@@ -50,7 +50,7 @@ static char *open_file(char *file)
 		free(str);
 		return (NULL);
 	}
-	for (uint8_t i = 1; (size = read(fd, buff, 1)) != 0; i++) {
+	for (size_t i = 1; (size = read(fd, buff, 1)) != 0; i++) {
 		if (size == -1)
 			return (NULL);
 		str = realloc(str, i + 1);
@@ -62,7 +62,7 @@ static char *open_file(char *file)
 	return (str);
 }
 
-static void fill_struct(asm_t *asm_struct)
+void fill_struct(asm_t *asm_struct)
 {
 	for (size_t i = 0; asm_struct->array[i]; i++) {
 		if (my_strncmp(asm_struct->array[i], NAME_CMD_STRING,
@@ -84,20 +84,7 @@ bool compile(char *file, asm_t *asm_struct)
 	char *file_name = NULL;
 
 	asm_struct->array = NULL;
-	str = open_file(file);
-	if (!str) {
-		puterr("Error: Can't open file\n");
+	if (!compile_error_handling(str, asm_struct, file_name, file))
 		return false;
-	}
-	asm_struct->array = conv_file(str);
-	if (!asm_struct->array)
-		return false;
-	file_name = conv_filename(file);
-	if (!check_syntax(asm_struct))
-		return false;
-	fill_struct(asm_struct);
-	write_bytes(file_name, asm_struct);
-	free(file_name);
-	free(str);
 	return true;
 }

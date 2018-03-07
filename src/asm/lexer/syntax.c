@@ -27,17 +27,20 @@ const char *error_message[] = {
 void syntax_error(asm_t *asm_s, const char *message)
 {
 	char **array = 0;
+	char *str = NULL;
 
 	array = str_split(asm_s->executable, '/');
+	str = int_to_str(asm_s->line);
 	puterr(WHITE);
 	puterr(array[2]);
 	puterr(", ");
 	puterr(asm_s->filename);
 	puterr(", line ");
-	puterr(int_to_str(asm_s->line));
+	puterr(str);
 	puterr(": ");
 	puterr(message);
 	puterr(NC "\n");
+	free(str);
 	free_str_array(array);
 }
 
