@@ -21,6 +21,8 @@ int main(int ac, char **av)
 	asm_struct.executable = av[0];
 	asm_struct.filename = av[1];
 	if (!compile(av[1], &asm_struct)) {
+		if (asm_struct.array)
+			free_str_array(asm_struct.array);
 		puterr("Compilation failed.\n");
 		return 84;
 	}

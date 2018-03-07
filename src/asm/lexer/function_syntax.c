@@ -33,13 +33,17 @@ bool check_function(char *line, asm_t *asm_s)
 	if (!str)
 		return false;
 	if (function_exists(str[0]) == -1) {
-		if (str[0][my_strlen(str[0]) - 1] == ':' && !str[1])
+		if (str[0][my_strlen(str[0]) - 1] == ':' && !str[1]) {
+			free_str_array(str);
 			return true;
+		}
 		syntax_error(asm_s, error_message[4]);
 		free_str_array(str);
 		return false;
 	}
-	if (!function_arguments(str, asm_s))
+	if (!function_arguments(str, asm_s)) {
+		free_str_array(str);
 		return false;
+	}
 	return true;
 }
