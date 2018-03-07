@@ -16,6 +16,7 @@
 #include "common/utils/str/str_utils.h"
 #include "common/bit_manipulations.h"
 
+#include "corewar/id.h"
 #include "corewar/args.h"
 #include "corewar/champion_struct.h"
 #include "corewar/lexer/lexer.h"

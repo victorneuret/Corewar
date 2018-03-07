@@ -9,7 +9,6 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-
 #include "common/utils/str/str_utils.h"
 
 char *my_strdup(char const *src)
