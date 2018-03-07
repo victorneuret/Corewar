@@ -36,8 +36,10 @@ void nope(__attribute__((unused)) token_t *token,
 static bool exec_instruction(token_t *cmd, champion_t *champ)
 {
 	for (int i = 0; instru[i].id; i++) {
-		if (cmd->command == instru[i].id)
+		if (cmd->command == instru[i].id) {
 			instru[i].func(cmd, champ);
+			break;
+		}
 	}
 	return true;
 }
@@ -58,12 +60,21 @@ static bool wait_cycle(champion_t *champ)
 	return true;
 }
 
-bool exec_champ(champion_t *champ_list,
-	__attribute__((unused)) vm_core_t *vm_core)
+bool exec_champ(champion_t *champ_list, vm_core_t *vm_core)
 {
+	if (vm_core->cycle >= vm_core->cycle_to_die)
+		vm_core->alive = false;
 	for (champion_t *champ = champ_list; champ; champ = champ->next) {
-		if (!wait_cycle(champ))
+		if (!champ->alive || !wait_cycle(champ))
 			return false;
+		if (champ->live) {
+			vm_core->last_alive = champ->nb_champion;
+			vm_core->champ_name = champ->header.prog_name;
+			vm_core->alive = true;
+			champ->live = false;
+			champ->alive = true;
+			vm_core->nb_live++;
+		}
 	}
 	return true;
 }

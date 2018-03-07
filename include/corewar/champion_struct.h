@@ -38,5 +38,7 @@ typedef struct champion_list {
 	pc_t *pc;
 	bool carry;
 	uint16_t cycle_cmd;
+	bool live;
+	bool alive;
 	struct champion_list *next;
 } champion_t;

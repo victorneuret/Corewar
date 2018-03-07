@@ -14,7 +14,8 @@ vm_core_t *init_vm_core(void)
 	if (!vm_core)
 		return NULL;
 	vm_core->alive = true;
-	vm_core->cycle_to_die_sub = 0;
+	vm_core->cycle_to_die = CYCLE_TO_DIE;
+	vm_core->last_alive = 0;
 	vm_core->nb_live = 0;
 	return vm_core;
 }
@@ -41,6 +42,8 @@ static bool init_pc_reg(champion_t *new)
 	new->pc->pc = 0;
 	for (uint8_t i = 0; i < REG_NUMBER; i++)
 		new->reg[i] = 0;
+	new->alive = true;
+	new->live = false;
 	return true;
 }
 
