@@ -7,7 +7,7 @@
 
 #include "corewar/parser/parser.h"
 
-static asm_parser_t pars_asm[] = {
+static const asm_parser_t pars_asm[] = {
 	{1, &live_parser},
 	{2, &ld_parser},
 	{3, &st_parser},

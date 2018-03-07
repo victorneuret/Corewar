@@ -13,11 +13,12 @@ void exec_ld(token_t *token, champion_t *champ)
 	uint8_t mask = 3;
 
 	switch ((token->args_type >> bit_shift) & mask) {
-	case 2: champ->reg[token->arg_two] = token->arg_one; break;
-	case 3: champ->reg[token->arg_two] = indirect(token->arg_one, champ);
+	case 2: champ->reg[token->arg_two - 1] = token->arg_one; break;
+	case 3: champ->reg[token->arg_two - 1] = indirect(token->arg_one,
+							champ);
 		break;
 	}
-	if (champ->reg[token->arg_two] == 0)
+	if (champ->reg[token->arg_two - 1] == 0)
 		champ->carry = true;
 	else
 		champ->carry = false;

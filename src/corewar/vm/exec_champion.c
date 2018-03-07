@@ -7,7 +7,7 @@
 
 #include "corewar/vm/exec_champion.h"
 
-static exec_instruction_t instru[] = {
+static const exec_instruction_t instru[] = {
 	{1, &exec_live},
 	{2, &exec_ld},
 	{3, &nope},
@@ -18,7 +18,7 @@ static exec_instruction_t instru[] = {
 	{8, &nope},
 	{9, &nope},
 	{10, &nope},
-	{11, &nope},
+	{11, &exec_sti},
 	{12, &nope},
 	{13, &nope},
 	{14, &nope},

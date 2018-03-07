@@ -15,7 +15,7 @@ bool aff_parser(token_t *token, char *asm_token, int *i)
 	for (; tmp->next; tmp = tmp->next);
 	tmp->command = asm_token[*i];
 	tmp->args_type = asm_token[*i + 1];
-	tmp->nb_bytes = 1;
+	tmp->nb_bytes = 2;
 	*i += 2;
 	if (!asm_arg_register(tmp, asm_token, 0, i))
 		return false;

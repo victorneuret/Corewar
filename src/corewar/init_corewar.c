@@ -42,6 +42,7 @@ static bool init_pc_reg(champion_t *new)
 	new->pc->pc = 0;
 	for (uint8_t i = 0; i < REG_NUMBER; i++)
 		new->reg[i] = 0;
+	new->reg[0] = new->nb_champion;
 	new->alive = true;
 	new->live = false;
 	return true;

@@ -23,6 +23,10 @@ bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 
 	if (!dir)
 		return false;
+	if (is_index_needed(token)) {
+		free(dir);
+		return (asm_arg_indirect(token, asm_token, k, i));
+	}
 	switch (k + 1) {
 	case 1: token->arg_one = bytes_sum(dir[0], dir[1], dir[2], dir[3]);
 		break;

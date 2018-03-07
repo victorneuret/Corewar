@@ -9,7 +9,7 @@
 
 void exec_aff(token_t *token, champion_t *champ)
 {
-	char c = champ->reg[token->arg_one] % 256;
+	char c = champ->reg[token->arg_one - 1] % 256;
 
 	if (c == 0)
 		return;
