@@ -11,7 +11,7 @@
 #include "corewar/champion_struct.h"
 
 typedef struct {
-	unsigned int id;
+	uint32_t id;
 	void (*func)(token_t *token, champion_t *champ);
 } exec_instruction_t;
 
@@ -22,4 +22,7 @@ void exec_live(token_t *token, champion_t *champ);
 void exec_ld(token_t *token, champion_t *champ);
 void exec_sti(token_t *token, champion_t *champ);
 void exec_aff(token_t *token, champion_t *champ);
+void exec_add(token_t *token, champion_t *champ);
+void exec_sub(token_t *token, champion_t *champ);
+
 void nope(token_t *token, champion_t *champ);

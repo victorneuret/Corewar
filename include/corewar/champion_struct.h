@@ -29,8 +29,8 @@ typedef struct pc {
 } pc_t;
 
 typedef struct champion_list {
-	int nb_champion;
-	int asm_token_len;
+	int32_t nb_champion;
+	int32_t asm_token_len;
 	char *asm_token;
 	header_t header;
 	token_t *token_list;
