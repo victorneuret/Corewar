@@ -19,7 +19,7 @@ static char *open_file_error_handling(char *str, char *file)
 {
 	str = open_file(file);
 	if (!str) {
-		puterr("Error: Can't open file\n");
+		puterr(OPEN_FILE_ERROR);
 		return NULL;
 	}
 	return str;

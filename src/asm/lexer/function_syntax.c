@@ -33,7 +33,7 @@ bool check_function(char *line, asm_t *asm_s)
 	if (!str)
 		return false;
 	if (function_exists(str[0]) == -1) {
-		if (str[0][my_strlen(str[0]) - 1] == ':' && !str[1]) {
+		if (str[0][my_strlen(str[0]) - 1] == LABEL_CHAR && !str[1]) {
 			free_str_array(str);
 			return true;
 		}
