@@ -28,6 +28,7 @@ typedef struct vm {
 	uint64_t cycle_to_die;
 	uint64_t nb_live;
 	uint8_t last_alive;
+	uint8_t memory[MEM_SIZE];
 	char *champ_name;
 	bool alive;
 } vm_core_t;
@@ -37,3 +38,4 @@ typedef struct vm {
 champion_t *init_champ_list(prog_t *programs, champion_t *champ_list);
 champion_t *init_champions(args_t *args, champion_t *champ_list);
 vm_core_t *init_vm_core(void);
+bool init_memory(champion_t *champ_list, vm_core_t *vm_core, args_t *arg);

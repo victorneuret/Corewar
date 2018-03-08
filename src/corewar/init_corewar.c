@@ -17,6 +17,8 @@ vm_core_t *init_vm_core(void)
 	vm_core->cycle_to_die = CYCLE_TO_DIE;
 	vm_core->last_alive = 0;
 	vm_core->nb_live = 0;
+	for (size_t i = 0; i < MEM_SIZE; i++)
+		vm_core->memory[i] = 0;
 	return vm_core;
 }
 
@@ -69,7 +71,7 @@ champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
 		return new;
 	for (; tmp->next; tmp = tmp->next);
 	tmp->next = new;
-	return tmp;
+	return champ_list;
 }
 
 champion_t *init_champions(args_t *args, champion_t *champ_list)
