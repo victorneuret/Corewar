@@ -33,7 +33,7 @@ char *conv_filename(char *str)
 	str = get_file_name(str);
 	result[0] = '\0';
 	my_strncpy(result, str, my_strlen(str) + 1);
-	my_strncat(result, ".cor", 4);
+	my_strncat(result, BINARY_EXTENSION, 4);
 	return (result);
 }
 

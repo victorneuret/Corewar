@@ -12,18 +12,18 @@ int main(int ac, char **av)
 	asm_t asm_struct;
 
 	if (ac != 2) {
-		puterr("Usage: ./asm champion.cor\n");
+		puterr(USAGE_MESSAGE);
 		return 84;
 	}
 	for (int i = 1; i < ac; i++)
-		if (str_eq(av[i], "-h"))
-			return print_file_bytes("src/asm/README.txt") ? 0 : 84;
+		if (str_eq(av[i], HELP_ARGUMENT))
+			return print_file_bytes(README_PATH) ? 0 : 84;
 	asm_struct.executable = av[0];
 	asm_struct.filename = av[1];
 	if (!compile(av[1], &asm_struct)) {
 		if (asm_struct.array)
 			free_str_array(asm_struct.array);
-		puterr("Compilation failed.\n");
+		puterr(COMPILATION_FAILED_MESSAGE);
 		return 84;
 	}
 	free(asm_struct.name);
