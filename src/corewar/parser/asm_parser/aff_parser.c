@@ -7,7 +7,7 @@
 
 #include "corewar/parser/asm_parser.h"
 
-bool aff_parser(token_t *token, char *asm_token, int *i)
+bool aff_parser(token_t *token, uint8_t *asm_token, int *i)
 {
 	token_t *tmp = token;
 

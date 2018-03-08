@@ -17,9 +17,9 @@ int bytes_sum(char a, char b, char c, char d)
 	return (int_a * 1048576 + int_b * 4096 + int_c * 256 + int_d);
 }
 
-bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
+bool asm_arg_direct(token_t *token, uint8_t *asm_token, int k, int *i)
 {
-	char *dir = substring(asm_token, *i, *i + DIR_SIZE);
+	char *dir = substring((char*) asm_token, *i, *i + DIR_SIZE);
 
 	if (!dir)
 		return false;
@@ -41,9 +41,9 @@ bool asm_arg_direct(token_t *token, char *asm_token, int k, int *i)
 	return true;
 }
 
-bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
+bool asm_arg_indirect(token_t *token, uint8_t *asm_token, int k, int *i)
 {
-	char *dir = substring(asm_token, *i, *i + IND_SIZE);
+	char *dir = substring((char*) asm_token, *i, *i + IND_SIZE);
 
 	if (!dir)
 		return false;
@@ -61,9 +61,9 @@ bool asm_arg_indirect(token_t *token, char *asm_token, int k, int *i)
 	return true;
 }
 
-bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
+bool asm_arg_register(token_t *token, uint8_t *asm_token, int k, int *i)
 {
-	char *reg = substring(asm_token, *i, *i + 1);
+	char *reg = substring((char*) asm_token, *i, *i + 1);
 
 	if (!reg)
 		return false;
@@ -78,7 +78,7 @@ bool asm_arg_register(token_t *token, char *asm_token, int k, int *i)
 	return true;
 }
 
-bool asm_arg_parser(token_t *token, char *asm_token, int *i)
+bool asm_arg_parser(token_t *token, uint8_t *asm_token, int *i)
 {
 	int div = token->args_type;
 	bool ret_val = true;

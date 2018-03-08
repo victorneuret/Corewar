@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -15,8 +16,8 @@
 #include "corewar/parser/asm_parser.h"
 
 typedef struct {
-	int id;
-	bool (*func)(token_t *token, char *asm_token, int *i);
+	int32_t id;
+	bool (*func)(token_t *token, uint8_t *asm_token, int *i);
 } asm_parser_t;
 
 bool parser(champion_t *champ);

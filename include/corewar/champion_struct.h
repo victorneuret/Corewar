@@ -13,12 +13,12 @@
 #include "common/op.h"
 
 typedef struct token_list {
-	unsigned int command;
-	unsigned char args_type;
+	uint32_t command;
+	uint8_t args_type;
 	int arg_one;
 	int arg_two;
 	int arg_three;
-	unsigned int nb_bytes;
+	uint32_t nb_bytes;
 	struct token_list *next;
 	struct token_list *prev;
 } token_t;
@@ -31,7 +31,7 @@ typedef struct pc {
 typedef struct champion_list {
 	int32_t nb_champion;
 	int32_t asm_token_len;
-	char *asm_token;
+	uint8_t *asm_token;
 	header_t header;
 	token_t *token_list;
 	uint32_t reg[REG_NUMBER];
