@@ -50,7 +50,8 @@ void copy_in_pc(const uint16_t pc, token_t *token, champion_t *champ,
 	}
 }
 
-void exec_sti(token_t *token, champion_t *champ)
+void exec_sti(token_t *token, champion_t *champ,
+	__attribute__((unused)) vm_core_t *vm)
 {
 	uint8_t bit_shift = 6;
 	uint8_t mask = 3;

@@ -28,24 +28,25 @@ static const exec_instruction_t instru[] = {
 };
 
 void nope(__attribute__((unused)) token_t *token,
-	__attribute__((unused)) champion_t *champ)
+	__attribute__((unused)) champion_t *champ,
+	__attribute__((unused)) vm_core_t *vm)
 {
 	my_printf("nope\n");
 	return;
 }
 
-static bool exec_instruction(token_t *cmd, champion_t *champ)
+static bool exec_instruction(token_t *cmd, champion_t *champ, vm_core_t *vm)
 {
 	for (int i = 0; instru[i].id; i++) {
 		if (cmd->command == instru[i].id) {
-			instru[i].func(cmd, champ);
+			instru[i].func(cmd, champ, vm);
 			break;
 		}
 	}
 	return true;
 }
 
-static bool wait_cycle(champion_t *champ)
+static bool wait_cycle(champion_t *champ, vm_core_t *vm_core)
 {
 	token_t *cmd = champ->token_list;
 
@@ -56,7 +57,7 @@ static bool wait_cycle(champion_t *champ)
 	if (++champ->cycle_cmd >= op_tab[cmd->command - 1].nbr_cycles) {
 		champ->cycle_cmd = 0;
 		champ->pc->pc += cmd->nb_bytes;
-		exec_instruction(cmd, champ);
+		exec_instruction(cmd, champ, vm_core);
 	}
 	return true;
 }
@@ -66,7 +67,7 @@ bool exec_champ(champion_t *champ_list, vm_core_t *vm_core)
 	if (vm_core->cycle >= vm_core->cycle_to_die)
 		vm_core->alive = false;
 	for (champion_t *champ = champ_list; champ; champ = champ->next) {
-		if (!champ->alive || !wait_cycle(champ))
+		if (!champ->alive || !wait_cycle(champ, vm_core))
 			return false;
 		if (champ->live) {
 			vm_core->last_alive = champ->nb_champion;

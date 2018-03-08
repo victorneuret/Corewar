@@ -10,7 +10,10 @@
 static bool set_token_to_mem(size_t pos, champion_t *champ, vm_core_t *vm_core)
 {
 	for (size_t i = 0; i < (size_t) champ->asm_token_len; i++)
-		vm_core->memory[pos + i] = champ->asm_token[i];
+		if (vm_core->memory[pos + i] != 0)
+			return false;
+		else
+			vm_core->memory[pos + i] = champ->asm_token[i];
 	champ->pc->pc = pos;
 	return true;
 }
