@@ -7,6 +7,11 @@
 
 #include "asm/parser/parser.h"
 
+bool check_good_parameters(int code, int nb)
+{
+	return (nb == (code & nb)) ? true : false;
+}
+
 static size_t find_separator(char *line, char separator)
 {
 	size_t len = 0;
