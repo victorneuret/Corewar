@@ -7,7 +7,7 @@
 
 #include "corewar/parser/asm_parser.h"
 
-bool ld_parser(token_t *token, char *asm_token, int *i)
+bool ld_parser(token_t *token, uint8_t *asm_token, int *i)
 {
 	token_t *tmp = token;
 

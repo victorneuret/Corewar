@@ -11,11 +11,11 @@ static const exec_instruction_t instru[] = {
 	{1, &exec_live},
 	{2, &exec_ld},
 	{3, &exec_st},
-	{4, &nope},
-	{5, &nope},
-	{6, &nope},
-	{7, &nope},
-	{8, &nope},
+	{4, &exec_add},
+	{5, &exec_sub},
+	{6, &exec_and},
+	{7, &exec_or},
+	{8, &exec_xor},
 	{9, &nope},
 	{10, &nope},
 	{11, &exec_sti},
@@ -30,6 +30,7 @@ static const exec_instruction_t instru[] = {
 void nope(__attribute__((unused)) token_t *token,
 	__attribute__((unused)) champion_t *champ)
 {
+	my_printf("nope\n");
 	return;
 }
 

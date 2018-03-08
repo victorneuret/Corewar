@@ -54,7 +54,7 @@ static bool read_asm(int fd, char *str, champion_t *new)
 			return false;
 		new->asm_token_len++;
 	}
-	new->asm_token = str;
+	new->asm_token = (uint8_t*) str;
 	return true;
 }
 

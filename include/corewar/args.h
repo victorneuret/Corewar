@@ -7,14 +7,16 @@
 
 #pragma once
 
+#include <stdint.h>
+
 typedef struct {
 	char *prog_path;
-	int prog_nb;
-	unsigned long load_addr;
+	int32_t prog_nb;
+	uint64_t load_addr;
 } prog_t;
 
 typedef struct {
-	int nbr_cycle;
+	int8_t nbr_cycle;
 	size_t prog_ct;
 	prog_t *programs;
 } args_t;
