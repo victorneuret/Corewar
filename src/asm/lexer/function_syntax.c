@@ -45,5 +45,6 @@ bool check_function(char *line, asm_t *asm_s)
 		free_str_array(str);
 		return false;
 	}
+	free_str_array(str);
 	return true;
 }

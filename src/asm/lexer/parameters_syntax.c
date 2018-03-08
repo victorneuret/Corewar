@@ -7,15 +7,37 @@
 
 #include "asm/lexer/parameters_syntax.h"
 
-static bool check_function_parameters(char **args, asm_t *asm_s)
+static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 {
+	uint8_t nb = 0;
+
 	for (uint8_t i = 0; args[i]; i++) {
-		if (args[i][0] == 'r' || args[i][0] == DIRECT_CHAR ||
-		args[i][0] == LABEL_CHAR)
-			return true;
+		switch (args[i][0]) {
+		case 'r': nb = T_REG; break;
+		case DIRECT_CHAR: nb = T_DIR; break;
+		default: nb = 0; break;
+		}
+		if (!check_good_parameters(op_tab[func].type[i], nb)) {
+			syntax_error(asm_s, error_message[5]);
+			return false;
+		}
 	}
-	syntax_error(asm_s, error_message[5]);
-	return false;
+	return true;
+}
+
+static bool check_function_arguments_error(size_t nb_args, asm_t *asm_s,
+size_t params, char **args)
+{
+	nb_args = count_args(args);
+	if (nb_args > params) {
+		syntax_error(asm_s, error_message[6]);
+		return false;
+	}
+	else if (nb_args != params) {
+		syntax_error(asm_s, error_message[5]);
+		return false;
+	}
+	return true;
 }
 
 static bool check_function_arguments(char **str, asm_t *asm_s)
@@ -26,34 +48,28 @@ static bool check_function_arguments(char **str, asm_t *asm_s)
 
 	if (!args)
 		return false;
-	nb_args = count_args(args);
-	if (nb_args > params) {
-		syntax_error(asm_s, error_message[6]);
+	if (!check_function_arguments_error(nb_args, asm_s, params, args)) {
 		free_str_array(args);
 		return false;
 	}
-	else if (nb_args != params) {
-		syntax_error(asm_s, error_message[5]);
+	if (!check_function_parameters(args, function_exists(str[0]), asm_s)) {
 		free_str_array(args);
 		return false;
 	}
-	if (!check_function_parameters(args, asm_s))
-		return false;
 	free_str_array(args);
 	return true;
 }
 
 bool function_arguments(char **str, asm_t *asm_s)
 {
+	if (!str)
+		return false;
 	if (!str[1]) {
 		syntax_error(asm_s, error_message[5]);
-		free_str_array(str);
 		return false;
 	}
 	if (!check_function_arguments(str, asm_s)) {
-		free_str_array(str);
 		return false;
 	}
-	free_str_array(str);
 	return true;
 }

@@ -31,6 +31,8 @@ void syntax_error(asm_t *asm_s, const char *message)
 
 	array = str_split(asm_s->executable, '/');
 	str = int_to_str(asm_s->line);
+	if (!str || !array)
+		return;
 	puterr(WHITE);
 	puterr(array[2]);
 	puterr(", ");
@@ -40,8 +42,8 @@ void syntax_error(asm_t *asm_s, const char *message)
 	puterr(": ");
 	puterr(message);
 	puterr(NC "\n");
-	free(str);
 	free_str_array(array);
+	free(str);
 }
 
 static bool error_type(char **str, char const *string,
@@ -68,7 +70,7 @@ static bool error_type(char **str, char const *string,
 }
 
 static bool check_comments(char *line, const char *string,
-			const int nb, asm_t *asm_s)
+const int nb, asm_t *asm_s)
 {
 	char **str = NULL;
 
