@@ -11,5 +11,4 @@ void exec_or(token_t *token, champion_t *champ)
 {
 	champ->reg[token->arg_three - 1] = champ->reg[token->arg_one - 1]
 					| token->arg_two;
-	champ->carry = champ->reg[token->arg_three] == 0;
 }
