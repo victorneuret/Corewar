@@ -7,6 +7,11 @@
 
 #include "asm/parser/parser.h"
 
+bool check_good_parameters(int code, int nb)
+{
+	return (nb == (code & nb)) ? true : false;
+}
+
 static size_t find_separator(char *line, char separator)
 {
 	size_t len = 0;
@@ -37,7 +42,7 @@ char **parse_line(char *line)
 	size_t i = 0;
 	ssize_t commentary = 0;
 
-	commentary = first_index_of(line, '#');
+	commentary = first_index_of(line, COMMENT_CHAR);
 	array = malloc(3 * (sizeof(char*)));
 	if (!array)
 		return NULL;
