@@ -10,7 +10,7 @@
 static const exec_instruction_t instru[] = {
 	{1, &exec_live},
 	{2, &exec_ld},
-	{3, &nope},
+	{3, &exec_st},
 	{4, &nope},
 	{5, &nope},
 	{6, &nope},

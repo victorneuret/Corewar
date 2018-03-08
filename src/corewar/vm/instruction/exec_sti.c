@@ -25,7 +25,7 @@ static uint8_t get_param_sti(token_t *token, uint8_t index)
 
 }
 
-static void copy_in_pc(const uint16_t pc, token_t *token, champion_t *champ,
+void copy_in_pc(const uint16_t pc, token_t *token, champion_t *champ,
 	const uint8_t reg)
 {
 	uint16_t index = 0;
