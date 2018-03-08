@@ -41,11 +41,15 @@ static void fill_array(char **array, size_t word_count,
 
 char **str_split(char const *str, char separator)
 {
-	size_t word_count = count_words(str, separator);
-	char **array = malloc((word_count + 1) * (sizeof(char*)));
+	size_t word_count = str ? count_words(str, separator) : 0;
+	char **array = str ? malloc((word_count + 1) * (sizeof(char*))) : NULL;
 
 	if (!array)
 		return NULL;
+	if (my_strlen(str) == 0) {
+		free(array);
+		return NULL;
+	}
 	if (word_count == 1)
 		array[0] = my_strdup(str);
 	else
