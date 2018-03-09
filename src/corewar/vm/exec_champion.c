@@ -17,7 +17,7 @@ static const exec_instruction_t instru[] = {
 	{7, &exec_or},
 	{8, &exec_xor},
 	{9, &exec_zjmp},
-	{10, &nope},
+	{10, &exec_ldi},
 	{11, &exec_sti},
 	{12, &nope},
 	{13, &nope},

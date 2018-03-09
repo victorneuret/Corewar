@@ -14,7 +14,6 @@ bool zjmp_parser(token_t *token, uint8_t *asm_token, int i)
 
 	for (; tmp->next; tmp = tmp->next);
 	tmp->command = asm_token[i];
-	my_printf("zjmp\n");
 	tmp->args_type = 0;
 	tmp->nb_bytes = 1;
 	pc += 1;

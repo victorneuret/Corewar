@@ -28,12 +28,13 @@ bool init_memory(champion_t *champ_list, vm_core_t *vm_core, args_t *arg)
 			return false;
 		pos++;
 	}
-	for (size_t i = 0; i < MEM_SIZE; i++) {
-		my_printf("%x ", vm_core->memory[i]);
-		if ((i + 1) % 8 == 0 && i != 0)
-			my_printf(" ");
-		if ((i + 1) % 32 == 0 && i != 0)
-			my_printf("\n");
-	}
 	return true;
 }
+
+// for (size_t i = 0; i < MEM_SIZE; i++) {
+// 	my_printf("%x ", vm_core->memory[i]);
+// 	if ((i + 1) % 8 == 0 && i != 0)
+// 		my_printf(" ");
+// 	if ((i + 1) % 32 == 0 && i != 0)
+// 		my_printf("\n");
+// }

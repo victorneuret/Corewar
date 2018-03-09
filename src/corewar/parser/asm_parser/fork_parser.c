@@ -13,10 +13,6 @@ bool fork_parser(token_t *token, uint8_t *asm_token, int i)
 
 	for (; tmp->next; tmp = tmp->next);
 	tmp->command = asm_token[i];
-	switch (tmp->command) {
-	case 12: my_printf("fork\n"); break;
-	case 15: my_printf("lfork\n"); break;
-	}
 	tmp->args_type = 0;
 	tmp->nb_bytes = 1;
 	if (!asm_arg_indirect(tmp, asm_token, 0, &i))

@@ -17,8 +17,9 @@ static bool run_vm(champion_t *champ_list, vm_core_t *vm_core)
 		if (vm_core->alive && vm_core->nb_live >= NBR_LIVE)
 			vm_core->cycle_to_die -= CYCLE_DELTA;
 	}
-	my_printf("The player %d(%s) has won.\n",
-		vm_core->last_alive, vm_core->champ_name);
+	if (vm_core->champ_name)
+		my_printf("The player %d(%s) has won.\n",
+			vm_core->last_alive, vm_core->champ_name);
 	return true;
 }
 
@@ -46,7 +47,6 @@ static bool start_vm(args_t *args)
 		return false;
 	if (!is_valid_exec_magic(champ_list))
 		return false;
-	print_token_list(champ_list->token_list);
 	if (!init_memory(champ_list, vm_core, args)
 		|| !run_vm(champ_list, vm_core))
 		return false;

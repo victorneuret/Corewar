@@ -30,6 +30,7 @@ void exec_and(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_xor(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_or(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_zjmp(token_t *token, champion_t *champ, vm_core_t *vm);
+void exec_ldi(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_sti(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_aff(token_t *token, champion_t *champ,vm_core_t *vm);
 
