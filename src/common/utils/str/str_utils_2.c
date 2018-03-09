@@ -42,7 +42,7 @@ bool ends_with(char const *str, char const *suffix)
 
 	if (suf_len > src_len)
 		return false;
-	if (!str)
+	if (!str || !suffix)
 		return false;
 	return (my_strncmp(str + src_len - suf_len, suffix, suf_len)) == 0;
 }
