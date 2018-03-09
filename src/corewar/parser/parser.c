@@ -47,7 +47,7 @@ static token_t *init_list_pars(token_t *token)
 	return token;
 }
 
-static bool call_function_parser(champion_t *champ, int *i, int j)
+static bool call_function_parser(champion_t *champ, int i, int j)
 {
 	champ->token_list = init_list_pars(champ->token_list);
 	if (!champ->token_list)
@@ -55,10 +55,10 @@ static bool call_function_parser(champion_t *champ, int *i, int j)
 	return (pars_asm[j].func(champ->token_list, champ->asm_token, i));
 }
 
-static bool parser_op_tab(champion_t *champ, int *i)
+static bool parser_op_tab(champion_t *champ, int i)
 {
 	for (int j = 0; op_tab[j].mnemonique; j++)
-		if (champ->asm_token[*i] == op_tab[j].code) {
+		if (champ->asm_token[i] == op_tab[j].code) {
 			return call_function_parser(champ, i, j);
 		}
 	return true;
@@ -67,7 +67,16 @@ static bool parser_op_tab(champion_t *champ, int *i)
 bool parser(champion_t *champ)
 {
 	for (int i = 0; i < champ->asm_token_len; i++)
-		if (!parser_op_tab(champ, &i))
+		if (!parser_op_tab(champ, i))
 			return false;
+	return true;
+}
+
+bool parser_next_instruction(champion_t *champ, vm_core_t *vm)
+{
+	for (int i = 0; op_tab[i].mnemonique; i++)
+		if (vm->memory[champ->pc->pc % MEM_SIZE] == op_tab[i].code)
+			return pars_asm[i].func(champ->token_list, vm->memory,
+						champ->pc->pc % MEM_SIZE);
 	return true;
 }

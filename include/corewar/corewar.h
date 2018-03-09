@@ -21,7 +21,6 @@
 #include "corewar/champion_struct.h"
 #include "corewar/lexer/lexer.h"
 #include "corewar/lexer/free_lexer.h"
-#include "corewar/parser/parser.h"
 
 typedef struct vm {
 	uint64_t cycle;
@@ -33,9 +32,9 @@ typedef struct vm {
 	bool alive;
 } vm_core_t;
 
+#include "corewar/parser/parser.h"
 #include "corewar/vm/exec_champion.h"
 
-champion_t *init_champ_list(prog_t *programs, champion_t *champ_list);
 champion_t *init_champions(args_t *args, champion_t *champ_list);
 vm_core_t *init_vm_core(void);
 bool init_memory(champion_t *champ_list, vm_core_t *vm_core, args_t *arg);

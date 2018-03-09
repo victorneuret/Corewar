@@ -9,6 +9,7 @@
 
 #include "corewar/corewar.h"
 #include "corewar/champion_struct.h"
+#include "corewar/parser/parser.h"
 
 typedef struct {
 	uint32_t id;

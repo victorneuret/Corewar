@@ -9,7 +9,8 @@
 
 uint32_t indirect(int ind, champion_t *champ)
 {
-	uint32_t value = champ->asm_token[champ->pc->pc + ind + 1 % IDX_MOD];
+	uint32_t value = champ->asm_token[(champ->pc->pc + ind + 1 % IDX_MOD)
+								% MEM_SIZE];
 
 	return value;
 }

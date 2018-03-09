@@ -48,17 +48,19 @@ static bool exec_instruction(token_t *cmd, champion_t *champ, vm_core_t *vm)
 
 static bool wait_cycle(champion_t *champ, vm_core_t *vm_core)
 {
-	token_t *cmd = champ->token_list;
-
-	for (uint64_t pc = 0; pc < champ->pc->pc && cmd; cmd = cmd->next)
-		pc += cmd->nb_bytes;
-	if (!cmd)
-		return true;
-	if (++champ->cycle_cmd >= op_tab[cmd->command - 1].nbr_cycles) {
+	if (vm_core->memory[champ->pc->pc % MEM_SIZE] >= 1
+		&& vm_core->memory[champ->pc->pc % MEM_SIZE] <= 16
+		&& ++champ->cycle_cmd >=
+		op_tab[vm_core->memory[champ->pc->pc % MEM_SIZE]].nbr_cycles) {
+		exec_instruction(champ->token_list, champ, vm_core);
+		champ->pc->pc += champ->token_list->nb_bytes;
+		if (!parser_next_instruction(champ, vm_core))
+			return false;
 		champ->cycle_cmd = 0;
-		champ->pc->pc += cmd->nb_bytes;
-		exec_instruction(cmd, champ, vm_core);
 	}
+	if (vm_core->cycle == 0)
+		if (!parser_next_instruction(champ, vm_core))
+			return false;
 	return true;
 }
 

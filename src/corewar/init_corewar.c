@@ -50,28 +50,29 @@ static bool init_pc_reg(champion_t *new)
 	return true;
 }
 
-champion_t *init_champ_list(prog_t *programs, champion_t *champ_list)
+static champion_t *init_champ_list(prog_t *programs, champion_t *champ)
 {
 	champion_t *new = malloc(sizeof(champion_t));
-	champion_t *tmp = champ_list;
+	champion_t *tmp = champ;
 
 	if (!new)
 		return NULL;
 	new->nb_champion = programs->prog_nb;
-	new->token_list = NULL;
 	new->asm_token_len = 0;
 	new->header = read_header(programs->prog_path);
+	new->token_list = malloc(sizeof(token_t));
 	new->cycle_cmd = 0;
 	new = lexer(programs->prog_path, new);
-	if (!new || !init_pc_reg(new))
+	if (!new || !init_pc_reg(new) || !new->token_list)
 		return NULL;
+	init_token(new->token_list);
 	new->carry = false;
 	new->next = NULL;
-	if (!champ_list)
+	if (!champ)
 		return new;
 	for (; tmp->next; tmp = tmp->next);
 	tmp->next = new;
-	return champ_list;
+	return champ;
 }
 
 champion_t *init_champions(args_t *args, champion_t *champ_list)
@@ -82,7 +83,5 @@ champion_t *init_champions(args_t *args, champion_t *champ_list)
 		free_args(args);
 		return NULL;
 	}
-	for (champion_t *tmp = champ_list; tmp; tmp = tmp->next)
-		parser(tmp);
 	return champ_list;
 }
