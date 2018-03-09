@@ -51,5 +51,5 @@ bool attribute_ids(args_t *args)
 		ids[i] = attribute_id;
 		args->programs[i].prog_nb = attribute_id;
 	}
-	return true;
+	return sort_programs(args);
 }
