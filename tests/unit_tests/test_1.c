@@ -56,8 +56,8 @@ Test(str_utils, ends_with)
 	cr_assert_eq(ends_with("", ""), true);
 	cr_assert_eq(ends_with("corewar.c", "corewar.c"), true);
 	cr_assert_eq(ends_with("corewar.c", "_corewar.c"), false);
-	cr_assert_eq(ends_with("corewar.c", NULL), true);
 	cr_assert_eq(ends_with(NULL, ".c"), false);
+	cr_assert_eq(ends_with("Hello", NULL), false);
 }
 
 Test(getnbr, getnbr)

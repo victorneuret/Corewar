@@ -30,6 +30,7 @@ bool write_bytes(char *file, asm_t *asm_s)
 	if (file == NULL || fd == -1)
 		return false;
 	if (write_header(fd, asm_s)) {
+		write_function(fd, asm_s);
 		close(fd);
 		return true;
 	}

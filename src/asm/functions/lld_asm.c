@@ -7,7 +7,10 @@
 
 #include "asm/functions/functions_array.h"
 
-bool lld_asm(void)
+bool lld_asm(int fd, __attribute__((unused)) char const *args)
 {
+	uint8_t i = 13;
+
+	write(fd, &i, sizeof(uint8_t));
 	return true;
 }
