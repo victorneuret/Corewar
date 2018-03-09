@@ -7,9 +7,9 @@
 
 #include "asm/functions/functions_array.h"
 
-bool sti_asm(__attribute__((unused)) int fd)
+bool or_asm(__attribute__((unused)) int fd)
 {
-	uint8_t i = 11;
+	uint8_t i = 7;
 
 	write(fd, &i, sizeof(uint8_t));
 	return true;

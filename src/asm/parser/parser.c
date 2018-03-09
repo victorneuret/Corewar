@@ -9,6 +9,8 @@
 
 bool check_good_parameters(int code, int nb)
 {
+	if (code <= 0 || nb <= 0)
+		return false;
 	return (nb == (code & nb)) ? true : false;
 }
 
