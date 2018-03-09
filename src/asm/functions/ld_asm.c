@@ -7,10 +7,12 @@
 
 #include "asm/functions/functions_array.h"
 
-bool ld_asm(__attribute__((unused)) int fd)
+bool ld_asm(int fd, char const *args)
 {
-	uint8_t i = 2;
+	uint8_t registery = 2;
+	uint16_t direct = 0;
+	uint32_t indirect = 0;
 
-	write(fd, &i, sizeof(uint8_t));
+	write(fd, &registery, sizeof(uint8_t));
 	return true;
 }

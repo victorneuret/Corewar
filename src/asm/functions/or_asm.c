@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool or_asm(__attribute__((unused)) int fd)
+bool or_asm(int fd, char const *args)
 {
 	uint8_t i = 7;
 

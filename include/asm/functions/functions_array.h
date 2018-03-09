@@ -10,25 +10,30 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+#include "asm/writter/function_writter.h"
+#include "common/utils/nbr/getnbr.h"
+#include "common/utils/str/str_utils.h"
+#include "common/bit_manipulations.h"
+
 typedef struct {
 	uint8_t id;
 	bool (*func)(int fd);
 } asm_func_t;
 
-bool add_asm(__attribute__((unused)) int fd);
-bool aff_asm(__attribute__((unused)) int fd);
-bool and_asm(__attribute__((unused)) int fd);
-bool fork_asm(__attribute__((unused)) int fd);
-bool ld_asm(__attribute__((unused)) int fd);
-bool ldi_asm(__attribute__((unused)) int fd);
-bool live_asm(__attribute__((unused)) int fd);
-bool lld_asm(__attribute__((unused)) int fd);
-bool lldi_asm(__attribute__((unused)) int fd);
-bool st_asm(__attribute__((unused)) int fd);
-bool sti_asm(__attribute__((unused)) int fd);
-bool zjmp_asm(__attribute__((unused)) int fd);
-bool sub_asm(__attribute__((unused)) int fd);
-bool or_asm(__attribute__((unused)) int fd);
-bool xor_asm(__attribute__((unused)) int fd);
-bool lfork_asm(__attribute__((unused)) int fd);
+bool add_asm(int fd, char const *args);
+bool aff_asm(int fd, char const *args);
+bool and_asm(int fd, char const *args);
+bool fork_asm(int fd, char const *args);
+bool ld_asm(int fd, char const *args);
+bool ldi_asm(int fd, char const *args);
+bool live_asm(int fd, char const *args);
+bool lld_asm(int fd, char const *args);
+bool lldi_asm(int fd, char const *args);
+bool st_asm(int fd, char const *args);
+bool sti_asm(int fd, char const *args);
+bool zjmp_asm(int fd, char const *args);
+bool sub_asm(int fd, char const *args);
+bool or_asm(int fd, char const *args);
+bool xor_asm(int fd, char const *args);
+bool lfork_asm(int fd, char const *args);
 bool call_asm_functions(void);

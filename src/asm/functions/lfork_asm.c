@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool lfork_asm(__attribute__((unused)) int fd)
+bool lfork_asm(int fd, char const *args)
 {
 	uint8_t i = 15;
 

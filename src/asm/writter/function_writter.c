@@ -7,10 +7,8 @@
 
 #include "asm/writter/function_writter.h"
 
-void write_zero(int fd)
+void write_byte(int fd, void *c)
 {
-	char c = 0;
-
 	write(fd, &c, 1);
 }
 
@@ -19,7 +17,7 @@ uint8_t bitwise(uint8_t b, uint8_t a)
 	return ((b + a) << 2);
 }
 
-bool write_function(__attribute__((unused)) int fd, char const *line)
+bool write_function(int fd, char const *line)
 {
 	if (!line)
 		return (false);

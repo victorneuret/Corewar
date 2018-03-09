@@ -7,10 +7,14 @@
 
 #include "asm/functions/functions_array.h"
 
-bool live_asm(__attribute__((unused)) int fd)
+bool live_asm(int fd, char const *args)
 {
-	uint8_t i = 1;
+	uint8_t registery = 1;
+	uint32_t indirect = 0;
 
-	write(fd, &i, sizeof(uint8_t));
+	write(fd, &registery, sizeof(uint8_t));
+	indirect = (uint32_t) getnbr(substring(args, 1, my_strlen(args)));
+	indirect = reverse_bits(indirect);
+	write(fd, &indirect, sizeof(uint32_t));
 	return true;
 }

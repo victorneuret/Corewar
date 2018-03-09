@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool aff_asm(__attribute__((unused)) int fd)
+bool aff_asm(int fd, char const *args)
 {
 	uint8_t i = 16;
 
