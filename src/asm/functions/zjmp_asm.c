@@ -11,6 +11,6 @@ bool zjmp_asm(__attribute__((unused)) int fd)
 {
 	uint8_t i = 9;
 
-	write(fd, &i, sizeof(int));
+	write(fd, &i, sizeof(uint8_t));
 	return true;
 }
