@@ -16,11 +16,11 @@
 #include "common/utils/str/str_utils.h"
 #include "common/bit_manipulations.h"
 
-#include "corewar/id.h"
 #include "corewar/args.h"
 #include "corewar/champion_struct.h"
 #include "corewar/lexer/lexer.h"
 #include "corewar/lexer/free_lexer.h"
+#include "corewar/id_manager/id.h"
 
 typedef struct vm {
 	uint64_t cycle;
