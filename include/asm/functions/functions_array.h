@@ -8,22 +8,27 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 typedef struct {
 	uint8_t id;
-	bool (*func)();
+	bool (*func)(int fd);
 } asm_func_t;
 
-bool add_asm(void);
-bool aff_asm(void);
-bool and_asm(void);
-bool fork_asm(void);
-bool ld_asm(void);
-bool ldi_asm(void);
-bool live_asm(void);
-bool lld_asm(void);
-bool lldi_asm(void);
-bool st_asm(void);
-bool sti_asm(void);
-bool zjmp_asm(void);
+bool add_asm(__attribute__((unused)) int fd);
+bool aff_asm(__attribute__((unused)) int fd);
+bool and_asm(__attribute__((unused)) int fd);
+bool fork_asm(__attribute__((unused)) int fd);
+bool ld_asm(__attribute__((unused)) int fd);
+bool ldi_asm(__attribute__((unused)) int fd);
+bool live_asm(__attribute__((unused)) int fd);
+bool lld_asm(__attribute__((unused)) int fd);
+bool lldi_asm(__attribute__((unused)) int fd);
+bool st_asm(__attribute__((unused)) int fd);
+bool sti_asm(__attribute__((unused)) int fd);
+bool zjmp_asm(__attribute__((unused)) int fd);
+bool sub_asm(__attribute__((unused)) int fd);
+bool or_asm(__attribute__((unused)) int fd);
+bool xor_asm(__attribute__((unused)) int fd);
+bool lfork_asm(__attribute__((unused)) int fd);
 bool call_asm_functions(void);

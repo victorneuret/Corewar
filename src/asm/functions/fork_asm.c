@@ -7,7 +7,10 @@
 
 #include "asm/functions/functions_array.h"
 
-bool fork_asm(void)
+bool fork_asm(__attribute__((unused)) int fd)
 {
+	uint8_t i = 12;
+
+	write(fd, &i, sizeof(int));
 	return true;
 }

@@ -7,7 +7,10 @@
 
 #include "asm/functions/functions_array.h"
 
-bool ld_asm(void)
+bool ld_asm(__attribute__((unused)) int fd)
 {
+	uint8_t i = 2;
+
+	write(fd, &i, sizeof(int));
 	return true;
 }

@@ -7,9 +7,9 @@
 
 #include "asm/functions/functions_array.h"
 
-bool and_asm(__attribute__((unused)) int fd)
+bool lfork_asm(__attribute__((unused)) int fd)
 {
-	uint8_t i = 6;
+	uint8_t i = 15;
 
 	write(fd, &i, sizeof(int));
 	return true;

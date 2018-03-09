@@ -7,7 +7,10 @@
 
 #include "asm/functions/functions_array.h"
 
-bool aff_asm(void)
+bool aff_asm(__attribute__((unused)) int fd)
 {
+	uint8_t i = 16;
+
+	write(fd, &i, sizeof(int));
 	return true;
 }
