@@ -9,10 +9,10 @@
 
 bool ld_asm(int fd, char const *args)
 {
-	uint8_t registery = 2;
-	uint16_t direct = 0;
-	uint32_t indirect = 0;
+	uint8_t i = 2;
 
-	write(fd, &registery, sizeof(uint8_t));
+	if (!args)
+		return false;
+	write(fd, &i, sizeof(uint8_t));
 	return true;
 }

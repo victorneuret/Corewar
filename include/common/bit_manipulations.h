@@ -8,3 +8,4 @@
 #pragma once
 
 int reverse_bits(int nb);
+int reverse16_bits(int nb);

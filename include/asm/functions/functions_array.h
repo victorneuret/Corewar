@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+#include "common/op.h"
 #include "common/utils/nbr/getnbr.h"
 #include "common/utils/str/str_utils.h"
 #include "common/bit_manipulations.h"
