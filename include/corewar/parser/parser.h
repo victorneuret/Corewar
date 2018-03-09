@@ -17,7 +17,7 @@
 #include "corewar/corewar.h"
 
 typedef struct {
-	int32_t id;
+	int8_t id;
 	bool (*func)(token_t *token, uint8_t *asm_token, int i);
 } asm_parser_t;
 
