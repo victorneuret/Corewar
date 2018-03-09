@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool add_asm(int fd, char const *args)
+bool add_asm(int fd, __attribute__((unused)) char const *args)
 {
 	uint8_t i = 4;
 

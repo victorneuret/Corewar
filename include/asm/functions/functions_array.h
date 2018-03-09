@@ -10,14 +10,13 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-#include "asm/writter/function_writter.h"
 #include "common/utils/nbr/getnbr.h"
 #include "common/utils/str/str_utils.h"
 #include "common/bit_manipulations.h"
 
 typedef struct {
 	uint8_t id;
-	bool (*func)(int fd);
+	bool (*func)(int fd, char const *args);
 } asm_func_t;
 
 bool add_asm(int fd, char const *args);

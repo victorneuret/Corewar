@@ -20,3 +20,4 @@
 #include "common/op.h"
 
 bool write_bytes(char *file, asm_t *asm_struct);
+bool write_function(int fd, asm_t *asm_s);
