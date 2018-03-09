@@ -7,6 +7,23 @@
 
 #include "asm/writter/function_writter.h"
 
+bool get_arguments(asm_t *asm_s)
+{
+	char **line = NULL;
+	int8_t code = 0;
+
+	for (int i = 0; asm_s->array[i] != NULL; i++) {
+		line = parse_line(asm_s->array[i]);
+		if (!line || line[1] == NULL)
+			return false;
+		code = function_exists(line[0]);
+		if (code != -1)
+			asm_func[code].func(line[1]);
+		free_str_array(line);
+	}
+	return true;
+}
+
 void write_zero(int fd)
 {
 	char c = 0;
