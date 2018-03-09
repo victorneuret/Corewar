@@ -11,7 +11,6 @@ bool st_parser(token_t *token, uint8_t *asm_token, int i)
 {
 	token_t *tmp = token;
 
-	my_printf("%s\n", "st");
 	init_token(tmp);
 	tmp->command = asm_token[i];
 	tmp->args_type = asm_token[i + 1];
