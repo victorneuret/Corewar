@@ -24,13 +24,14 @@ void copy_in_pc(const uint16_t pc, token_t *token, champion_t *champ,
 void exec_live(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_ld(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_st(token_t *token, champion_t *champ, vm_core_t *vm);
-void exec_sti(token_t *token, champion_t *champ, vm_core_t *vm);
-void exec_aff(token_t *token, champion_t *champ,vm_core_t *vm);
-
 void exec_add(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_sub(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_and(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_xor(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_or(token_t *token, champion_t *champ, vm_core_t *vm);
+void exec_zjmp(token_t *token, champion_t *champ, vm_core_t *vm);
+void exec_sti(token_t *token, champion_t *champ, vm_core_t *vm);
+void exec_aff(token_t *token, champion_t *champ,vm_core_t *vm);
+
 
 void nope(token_t *token, champion_t *champ, vm_core_t *vm);
