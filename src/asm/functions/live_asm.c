@@ -11,10 +11,12 @@ bool live_asm(int fd, char const *args)
 {
 	uint8_t registery = 1;
 	uint32_t indirect = 0;
+	char *str = substring(args, 1, my_strlen(args));
 
 	write(fd, &registery, sizeof(uint8_t));
-	indirect = (uint32_t) getnbr(substring(args, 1, my_strlen(args)));
+	indirect = (uint32_t) getnbr(str);
 	indirect = reverse_bits(indirect);
 	write(fd, &indirect, sizeof(uint32_t));
+	free (str);
 	return true;
 }

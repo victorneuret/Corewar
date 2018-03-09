@@ -31,7 +31,8 @@ static ssize_t comment_space(char *line, ssize_t comment)
 {
 	if (comment < 0)
 		return -1;
-	comment -= 1;
+	if (comment > 0)
+		comment -= 1;
 	for (; line[comment] != '\0' && (line[comment] == ' ' ||
 	line[comment] == '\t'); comment--);
 	return (comment);
