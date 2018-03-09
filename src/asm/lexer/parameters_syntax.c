@@ -10,9 +10,11 @@
 static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 {
 	uint8_t nb = 0;
+	size_t j = 0;
 
 	for (uint8_t i = 0; args[i]; i++) {
-		switch (args[i][0]) {
+		for (j = 0; args[i][j] == ' ' && args[i][j] != '\0'; j++);
+		switch (args[i][j]) {
 		case 'r': nb = T_REG; break;
 		case DIRECT_CHAR: nb = T_DIR; break;
 		default: nb = 0; break;
