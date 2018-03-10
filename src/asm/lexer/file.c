@@ -19,7 +19,6 @@ static char *get_file_name(char *str)
 		len += 1;
 	for (uint8_t k = 0; k < len; k++)
 		str[k] = str[path++];
-
 	str[len] = '\0';
 	return (str);
 }

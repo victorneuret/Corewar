@@ -11,6 +11,22 @@
 
 #include "common/utils/str/str_utils.h"
 
+bool is_number(char const *str)
+{
+	size_t i = 0;
+
+	if (!str || my_strlen(str) == 0)
+		return false;
+	if (str[i] == '-')
+		i++;
+	for (; i < my_strlen(str); i++) {
+		if (str[i] >= '0' && str[i] <= '9')
+			continue;
+		return false;
+	}
+	return true;
+}
+
 char *my_strdup(char const *src)
 {
 	char *dest;
