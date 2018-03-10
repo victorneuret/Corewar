@@ -26,11 +26,15 @@ static bool write_header(int fd, asm_t *asm_s)
 bool write_bytes(char *file, asm_t *asm_s)
 {
 	int fd = open(file, O_RDWR | O_CREAT, 0666);
+	const uint32_t size_offset = sizeof(int) + PROG_NAME_LENGTH + 4;
+	uint32_t new_len = 0xbbbbbbbb;
 
 	if (file == NULL || fd == -1)
 		return false;
 	if (write_header(fd, asm_s)) {
 		write_function(fd, asm_s);
+		lseek(fd, size_offset, SEEK_SET);
+		write(fd, &new_len, sizeof(uint32_t));
 		close(fd);
 		return true;
 	}
