@@ -6,40 +6,7 @@
 */
 
 #include "asm/lexer/parameters_syntax.h"
-#include "common/utils/nbr/getnbr.h"
-#include <stdio.h>
-
-static uint8_t check_arguments_type(char *arg, int j)
-{
-	char *nbr = NULL;
-	int nb = 0;
-
-	if (arg[j] == 'r') {
-		nbr = substring(arg, j + 1, my_strlen(arg));
-		nb = getnbr(nbr);
-		free(nbr);
-		if (nb >= 1 && nb <= REG_NUMBER)
-			return 1;
-		else
-			return 0;
-	}
-	else if (arg[j] == DIRECT_CHAR && arg[j + 1] == LABEL_CHAR) {
-		nbr = substring(arg, j + 2, my_strlen(arg));
-		free(nbr);
-		return 2;
-	}
-	else if (arg[j] == DIRECT_CHAR) {
-		nbr = substring(arg, j + 2, my_strlen(arg));
-		free(nbr);
-		return 4;
-	}
-	nbr = substring(arg, j, my_strlen(arg));
-	nb = getnbr(nbr);
-	free(nbr);
-	if (nb <= 65535)
-		return 2;
-	return 0;
-}
+#include "asm/lexer/parameters_types.h"
 
 static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 {

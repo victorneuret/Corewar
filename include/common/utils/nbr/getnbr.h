@@ -7,4 +7,6 @@
 
 #pragma once
 
-int getnbr(char const *str);
+#include <stdint.h>
+
+int64_t getnbr(char const *str);
