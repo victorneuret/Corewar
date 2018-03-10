@@ -6,6 +6,7 @@
 */
 
 #include "asm/lexer/parameters_syntax.h"
+#include "asm/lexer/parameters_types.h"
 
 static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 {
@@ -14,11 +15,7 @@ static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 
 	for (uint8_t i = 0; args[i]; i++) {
 		for (j = 0; args[i][j] == ' ' && args[i][j] != '\0'; j++);
-		switch (args[i][j]) {
-		case 'r': nb = T_REG; break;
-		case DIRECT_CHAR: nb = T_DIR; break;
-		default: nb = 0; break;
-		}
+		nb = check_arguments_type(args[i], j);
 		if (!check_good_parameters(op_tab[func].type[i], nb)) {
 			syntax_error(asm_s, error_message[5]);
 			return false;
@@ -70,8 +67,7 @@ bool function_arguments(char **str, asm_t *asm_s)
 		syntax_error(asm_s, error_message[5]);
 		return false;
 	}
-	if (!check_function_arguments(str, asm_s)) {
+	if (!check_function_arguments(str, asm_s))
 		return false;
-	}
 	return true;
 }

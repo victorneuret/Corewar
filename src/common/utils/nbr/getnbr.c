@@ -5,9 +5,11 @@
 ** send string return number
 */
 
-int getnbr(char const *str)
+#include "common/utils/nbr/getnbr.h"
+
+int64_t getnbr(char const *str)
 {
-	int nb = 0;
+	int64_t nb = 0;
 	int j = 0;
 
 	if (!str)

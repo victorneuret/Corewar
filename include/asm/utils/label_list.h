@@ -2,11 +2,9 @@
 ** EPITECH PROJECT, 2018
 ** CPE_corewar_2017
 ** File description:
-** getnbr header
+** label_list
 */
 
 #pragma once
 
-#include <stdint.h>
-
-int64_t getnbr(char const *str);
+char **get_label_list(char **lines);

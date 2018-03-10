@@ -23,8 +23,8 @@ bool init_memory(champion_t *champ_list, vm_core_t *vm_core, args_t *arg)
 	uint8_t pos = 0;
 
 	for (champion_t *champ = champ_list; champ; champ = champ->next) {
-		if (!set_token_to_mem(MEM_SIZE * (pos / (float) arg->prog_ct),
-			champ, vm_core))
+		if (!set_token_to_mem(MEM_SIZE *
+			(pos / (float) arg->champ_count), champ, vm_core))
 			return false;
 		pos++;
 	}

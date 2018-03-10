@@ -17,9 +17,10 @@ typedef struct {
 
 typedef struct {
 	int8_t nbr_cycle;
-	size_t prog_ct;
+	size_t champ_count;
 	prog_t *programs;
 } args_t;
 
+bool champions_exist(args_t *args);
 args_t *parse_arguments(char **av);
 void free_args(args_t *args);

@@ -7,6 +7,8 @@
 
 #include "asm/asm.h"
 
+#include "asm/utils/label_list.h"
+
 int main(int ac, char **av)
 {
 	asm_t asm_struct;

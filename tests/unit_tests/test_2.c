@@ -21,6 +21,15 @@ Test(reverse_bits, reverse_bits)
 	cr_assert_eq(reverse_bits((int) 0xffffffff), (int) 0xffffffff);
 }
 
+Test(reverse16_bits, reverse16_bits)
+{
+	cr_assert_eq(reverse16_bits(0), 0);
+	cr_assert_eq(reverse16_bits(0x0042), 0x4200);
+	cr_assert_eq(reverse16_bits(0xff00), 0xff);
+	cr_assert_eq(reverse16_bits((int) 0xabcd), 0xcdab);
+	cr_assert_eq(reverse16_bits((int) 0xffff), (int) 0xffff);
+}
+
 Test(char_utils, first_index_of)
 {
 	cr_assert_eq(first_index_of("0123456789", '4'), 4);
