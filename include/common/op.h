@@ -63,7 +63,6 @@ extern op_t op_tab[];
 # define DIR_SIZE	4
 # define REG_SIZE	DIR_SIZE
 
-
 /*
 ** header
 */

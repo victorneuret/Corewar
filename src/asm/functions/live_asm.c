@@ -13,6 +13,8 @@ bool live_asm(int fd, char const *args)
 	uint32_t indirect = 0;
 	char *str = substring(args, 1, my_strlen(args));
 
+	if (!str)
+		return false;
 	write(fd, &registery, sizeof(uint8_t));
 	indirect = (uint32_t) getnbr(str);
 	indirect = reverse_bits(indirect);

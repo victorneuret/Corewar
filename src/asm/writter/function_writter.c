@@ -32,11 +32,6 @@ bool get_arguments(int fd, asm_t *asm_s)
 	return true;
 }
 
-uint8_t bitwise(uint8_t b, uint8_t a)
-{
-	return ((b + a) << 2);
-}
-
 bool write_function(int fd, asm_t *asm_s)
 {
 	if (!get_arguments(fd, asm_s))
