@@ -21,5 +21,6 @@ typedef struct {
 	prog_t *programs;
 } args_t;
 
+bool champions_exist(args_t *args);
 args_t *parse_arguments(char **av);
 void free_args(args_t *args);

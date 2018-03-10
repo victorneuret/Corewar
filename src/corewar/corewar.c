@@ -65,7 +65,7 @@ static bool corewar(int ac, char **av)
 	args = parse_arguments(av);
 	if (!args)
 		return false;
-	if (attribute_ids(args)) {
+	if (champions_exist(args) && attribute_ids(args)) {
 		start_vm(args);
 	} else {
 		free_args(args);
