@@ -21,7 +21,7 @@ static const exec_instruction_t instru[] = {
 	{11, &exec_sti},
 	{12, &nope},
 	{13, &nope},
-	{14, &nope},
+	{14, &exec_lldi},
 	{15, &nope},
 	{16, &exec_aff},
 	{0, NULL}
