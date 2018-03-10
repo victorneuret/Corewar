@@ -15,7 +15,7 @@ static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 
 	for (uint8_t i = 0; args[i]; i++) {
 		for (j = 0; args[i][j] == ' ' && args[i][j] != '\0'; j++);
-		nb = check_arguments_type(args[i], j);
+		nb = check_arguments_types(args[i], j);
 		if (!check_good_parameters(op_tab[func].type[i], nb)) {
 			syntax_error(asm_s, error_message[5]);
 			return false;

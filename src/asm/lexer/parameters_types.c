@@ -45,7 +45,7 @@ static uint8_t direct_type(char *arg, int j)
 	return 0;
 }
 
-uint8_t check_arguments_type(char *arg, int j)
+uint8_t check_arguments_types(char *arg, int j)
 {
 	if (arg[j] == 'r')
 		return register_type(arg, j);

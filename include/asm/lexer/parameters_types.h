@@ -17,4 +17,4 @@
 #define TWO_BYTES_MAX_SIZE 0xffff
 #define FOUR_BYTES_MAX_SIZE 0xffffffff
 
-uint8_t check_arguments_type(char *arg, int j);
+uint8_t check_arguments_types(char *arg, int j);
