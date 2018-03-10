@@ -17,7 +17,7 @@ static void swap_progs(prog_t *p1, prog_t *p2)
 
 static bool is_prog_list_sorted(args_t *args)
 {
-	for (size_t i = 0; i + 1 < args->prog_ct; i++)
+	for (size_t i = 0; i + 1 < args->champ_count; i++)
 		if (args->programs[i].prog_nb >
 		args->programs[i + 1].prog_nb)
 			return false;
@@ -26,7 +26,7 @@ static bool is_prog_list_sorted(args_t *args)
 
 static void sort(args_t *args)
 {
-	for (size_t i = 0; i + 1 < args->prog_ct; i++) {
+	for (size_t i = 0; i + 1 < args->champ_count; i++) {
 		if (args->programs[i].prog_nb >
 		args->programs[i + 1].prog_nb) {
 			swap_progs(&args->programs[i], &args->programs[i + 1]);

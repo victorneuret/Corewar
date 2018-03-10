@@ -20,7 +20,7 @@ bool champions_exist(args_t *args)
 {
 	int fd;
 
-	for (size_t i = 0; i < args->prog_ct; i++) {
+	for (size_t i = 0; i < args->champ_count; i++) {
 		fd = open(args->programs[i].prog_path, O_RDONLY);
 		if (fd == -1) {
 			my_printf("Cannot load champion %s\n",

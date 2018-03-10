@@ -31,19 +31,19 @@ static bool contains_duplicates(int *array, size_t array_size)
 
 bool attribute_ids(args_t *args)
 {
-	int ids[args->prog_ct];
+	int ids[args->champ_count];
 	int attribute_id = 1;
 
-	for (size_t i = 0; i < args->prog_ct; i++)
+	for (size_t i = 0; i < args->champ_count; i++)
 		ids[i] = args->programs[i].prog_nb;
-	if (contains_duplicates(ids, args->prog_ct)) {
+	if (contains_duplicates(ids, args->champ_count)) {
 		puterr("Duplicate IDs.\n");
 		return false;
 	}
-	for (size_t i = 0; i < args->prog_ct; i++) {
+	for (size_t i = 0; i < args->champ_count; i++) {
 		if (ids[i] != 0)
 			continue;
-		if (array_contains(ids, attribute_id, args->prog_ct)) {
+		if (array_contains(ids, attribute_id, args->champ_count)) {
 			i--;
 			attribute_id++;
 			continue;

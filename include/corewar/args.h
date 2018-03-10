@@ -17,7 +17,7 @@ typedef struct {
 
 typedef struct {
 	int8_t nbr_cycle;
-	size_t prog_ct;
+	size_t champ_count;
 	prog_t *programs;
 } args_t;
 
