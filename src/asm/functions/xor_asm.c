@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool xor_asm(int fd, __attribute__((unused)) char const *args)
+bool xor_asm(int fd, char const *args)
 {
 	uint8_t i = 8;
 	uint32_t value = 0;
