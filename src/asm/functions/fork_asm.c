@@ -13,6 +13,8 @@ bool fork_asm(int fd, char const *args)
 	uint16_t indirect = 0;
 	char *str = substring(args, 1, my_strlen(args));
 
+	if (!str)
+		return false;
 	write(fd, &i, sizeof(uint8_t));
 	indirect = (uint16_t) getnbr(str);
 	indirect = reverse16_bits(indirect);
