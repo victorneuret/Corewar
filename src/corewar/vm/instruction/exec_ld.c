@@ -13,12 +13,10 @@ void exec_ld(token_t *token, champion_t *champ,
 	uint8_t bit_shift = 6;
 	uint8_t mask = 3;
 
-	switch ((token->args_type >> bit_shift) & mask) {
-	case 2: champ->reg[token->arg_two - 1] = token->arg_one; break;
-	case 3: champ->reg[token->arg_two - 1] = indirect(token->arg_one,
-							champ);
-		break;
-	}
+	if (((token->args_type >> bit_shift) & mask) == 3)
+		token->arg_one += 3;
+	champ->reg[token->arg_two - 1] =
+		vm->memory[champ->pc->pc + token->arg_one % IDX_MOD];
 	if (champ->reg[token->arg_two - 1] == 0)
 		champ->carry = true;
 	else
