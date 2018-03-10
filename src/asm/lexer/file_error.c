@@ -26,7 +26,7 @@ static char *open_file_error_handling(char *str, char *file)
 }
 
 bool compile_error_handling(char *str, asm_t *asm_struct,
-char *file_name, char *file)
+				char *file_name, char *file)
 {
 	str = open_file_error_handling(str, file);
 	if (!str)

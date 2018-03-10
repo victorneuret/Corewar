@@ -9,6 +9,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -20,4 +21,4 @@
 #include "common/op.h"
 
 bool write_bytes(char *file, asm_t *asm_struct);
-bool write_function(int fd, asm_t *asm_s);
+bool write_function(int fd, asm_t *asm_s, uint32_t *new_len);

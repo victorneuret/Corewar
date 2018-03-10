@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool zjmp_asm(int fd, char const *args)
+bool zjmp_asm(int fd, char const *args, uint32_t *new_len)
 {
 	uint8_t i = 9;
 	uint16_t indirect = 0;
@@ -18,6 +18,7 @@ bool zjmp_asm(int fd, char const *args)
 	write(fd, &i, sizeof(uint8_t));
 	indirect = (uint16_t) getnbr(str);
 	indirect = reverse16_bits(indirect);
+	*new_len += 3;
 	write(fd, &indirect, sizeof(uint16_t));
 	free(str);
 	return true;
