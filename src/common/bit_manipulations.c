@@ -13,5 +13,5 @@ int reverse_bits(int nb)
 
 int reverse16_bits(int nb)
 {
-	return ((nb >> 8) & 0xff00) | ((nb << 8) & 0xff00);
+	return ((nb >> 8) & 0xff) | ((nb << 8) & 0xff00);
 }
