@@ -17,6 +17,7 @@ vm_core_t *init_vm_core(void)
 	vm_core->cycle_to_die = CYCLE_TO_DIE;
 	vm_core->last_alive = 0;
 	vm_core->nb_live = 0;
+	vm_core->champ_name = NULL;
 	for (size_t i = 0; i < MEM_SIZE; i++)
 		vm_core->memory[i] = 0;
 	return vm_core;

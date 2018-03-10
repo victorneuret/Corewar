@@ -50,8 +50,8 @@ static bool wait_cycle(champion_t *champ, vm_core_t *vm_core)
 {
 	if (vm_core->memory[champ->pc->pc % MEM_SIZE] >= 1
 		&& vm_core->memory[champ->pc->pc % MEM_SIZE] <= 16
-		&& ++champ->cycle_cmd >=
-		op_tab[vm_core->memory[champ->pc->pc % MEM_SIZE]].nbr_cycles) {
+		&& ++champ->cycle_cmd >= op_tab[vm_core->memory
+			[champ->pc->pc % MEM_SIZE] - 1].nbr_cycles) {
 		exec_instruction(champ->token_list, champ, vm_core);
 		champ->pc->pc += champ->token_list->nb_bytes;
 		if (!parser_next_instruction(champ, vm_core))
