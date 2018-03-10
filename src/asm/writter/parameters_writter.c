@@ -36,15 +36,19 @@ uint8_t get_arg_size(char const *arg)
 	}
 }
 
-size_t get_arg_bytes(uint8_t code, uint32_t *value)
+size_t get_arg_bytes(uint8_t code, uint32_t *value, uint32_t *new_len)
 {
-	if (code == T_REG)
+	if (code == T_REG) {
+		*new_len += 1;
 		return sizeof(uint8_t);
+	}
 	else if (code == T_IND) {
 		*value = reverse16_bits(*value);
+		*new_len += 2;
 		return sizeof(uint16_t);
 	} else {
 		*value = reverse_bits(*value);
+		*new_len += 4;
 		return sizeof(uint32_t);
 	}
 }
