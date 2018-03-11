@@ -25,8 +25,10 @@ bool check_labels(asm_t *asm_s)
 	if (!asm_s->labels)
 		return false;
 	for (size_t i = 0; asm_s->labels[i] != NULL; i++) {
-		if (!is_valid_label_name(asm_s->labels[i]))
+		if (!is_valid_label_name(asm_s->labels[i])) {
+			syntax_error(asm_s, error_message[10]);
 			return false;
+		}
 		if (!compare_labels(asm_s, i))
 			return false;
 	}

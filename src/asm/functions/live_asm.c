@@ -10,7 +10,7 @@
 bool live_asm(int fd, char const *args, uint32_t *new_len)
 {
 	uint8_t registery = 1;
-	uint32_t indirect = 0;
+	int32_t indirect = 0;
 	char *str = substring(args, 1, my_strlen(args));
 
 	if (!str)
