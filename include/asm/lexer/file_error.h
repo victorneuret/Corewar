@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 #include "asm/writter/file_writter.h"
+#include "asm/lexer/labels.h"
 #include "asm/lexer/syntax.h"
 #include "asm/lexer/file.h"
 #include "common/utils/io/io_utils.h"

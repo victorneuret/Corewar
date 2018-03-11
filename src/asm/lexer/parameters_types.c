@@ -45,18 +45,22 @@ static uint8_t direct_type(char *arg, int j, asm_t *asm_s)
 	return 0;
 }
 
-static uint8_t label_type(char *arg, int j,
-__attribute__((unused)) asm_t *asm_s)
+static uint8_t label_type(char *arg, int j, asm_t *asm_s)
 {
 	char *nbr = NULL;
-	__attribute__((unused)) int64_t nb = 0;
+	uint8_t tmp = 0;
 
 	nbr = substring(arg, j + 2, my_strlen(arg));
-	if (nbr[0] == '-') {
-		free(nbr);
-		return 0;
+	for (size_t i = 0; asm_s->labels[i] != NULL; i++) {
+		if (str_eq(asm_s->labels[i], nbr) == 1) {
+			tmp++;
+			break;
+		}
 	}
 	free(nbr);
+	if (tmp == 1)
+		return T_DIR;
+	syntax_error(asm_s, error_message[9]);
 	return 0;
 }
 

@@ -31,7 +31,8 @@ bool compile_error_handling(char *str, asm_t *asm_struct,
 	str = open_file_error_handling(str, file);
 	if (!str)
 		return false;
-	if (!conv_file_error_handling(asm_struct, str)) {
+	if (!conv_file_error_handling(asm_struct, str) ||
+	!check_labels(asm_struct)) {
 		free(str);
 		return false;
 	}

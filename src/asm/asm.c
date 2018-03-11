@@ -9,6 +9,16 @@
 
 #include "asm/utils/label_list.h"
 
+static void free_struct(asm_t *asm_struct)
+{
+	if (asm_struct->name)
+		free(asm_struct->name);
+	if (asm_struct->comment)
+		free(asm_struct->comment);
+	if (asm_struct->array)
+		free_str_array(asm_struct->array);
+}
+
 int main(int ac, char **av)
 {
 	asm_t asm_struct;
@@ -28,8 +38,6 @@ int main(int ac, char **av)
 		puterr(COMPILATION_FAILED_MESSAGE);
 		return 84;
 	}
-	free(asm_struct.name);
-	free(asm_struct.comment);
-	free_str_array(asm_struct.array);
+	free_struct(&asm_struct);
 	return 0;
 }

@@ -23,6 +23,7 @@ const char *error_message[] = {
 	BLUE "Too many arguments given to the instruction.",
 	BLUE "Multiple definition of the same label.",
 	BLUE "Invalid register number.",
+	BLUE "Undefined label.",
 	0
 };
 
