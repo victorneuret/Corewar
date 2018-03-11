@@ -12,7 +12,6 @@ static bool compare_labels(asm_t *asm_s, int i)
 	for (size_t j = i + 1; asm_s->labels[j] != NULL; j++) {
 		if (str_eq(asm_s->labels[i], asm_s->labels[j]) == 1) {
 			syntax_error(asm_s, error_message[7]);
-			free_str_array(asm_s->labels);
 			return false;
 		}
 	}

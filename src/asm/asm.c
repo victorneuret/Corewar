@@ -17,6 +17,8 @@ static void free_struct(asm_t *asm_struct)
 		free(asm_struct->comment);
 	if (asm_struct->array)
 		free_str_array(asm_struct->array);
+	if (asm_struct->labels)
+		free_str_array(asm_struct->labels);
 }
 
 int main(int ac, char **av)

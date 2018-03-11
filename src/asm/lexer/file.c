@@ -83,11 +83,7 @@ bool compile(char *file, asm_t *asm_struct)
 	char *file_name = NULL;
 
 	asm_struct->labels = NULL;
-	if (!compile_error_handling(str, asm_struct, file_name, file)) {
-		if (asm_struct->labels)
-			free_str_array(asm_struct->labels);
+	if (!compile_error_handling(str, asm_struct, file_name, file))
 		return false;
-	}
-	free_str_array(asm_struct->labels);
 	return true;
 }
