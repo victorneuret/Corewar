@@ -25,6 +25,19 @@ size_t count_args(char **str)
 	return len;
 }
 
+char *clean_str(char *str)
+{
+	size_t i = 0;
+	char *line = NULL;
+
+	for (i = 0; str[i] != '\0' &&
+	(str[i] == ' ' || str[i] == '\t'); i++);
+	line = substring(str, i, my_strlen(str));
+	if (!line)
+		return NULL;
+	return line;
+}
+
 bool check_function(char *line, asm_t *asm_s)
 {
 	char **str = parse_line(line);

@@ -40,13 +40,19 @@ static bool check_label_line_function(char **array, asm_t *asm_s)
 	return true;
 }
 
-static bool label_line_error(char **str, char **array, asm_t *asm_s)
+static bool label_line_error(char **str, char ***array, asm_t *asm_s)
 {
+	char *line = NULL;
+
 	if (str[1] != NULL) {
-		array = parse_line(str[1]);
-		if (!array)
+		line = clean_str(str[1]);
+		if (!line)
 			return false;
-		if (!check_label_line_function(array, asm_s))
+		*array = parse_line(line);
+		free(line);
+		if (!*array)
+			return false;
+		if (!check_label_line_function(*array, asm_s))
 			return false;
 	}
 	return true;
@@ -57,7 +63,7 @@ bool check_label_line(char **str, asm_t *asm_s)
 	char **array = NULL;
 
 	if (str[0][my_strlen(str[0]) - 1] == LABEL_CHAR) {
-		if (!label_line_error(str, array, asm_s)) {
+		if (!label_line_error(str, &array, asm_s)) {
 			free_str_array(array);
 			return false;
 		}
