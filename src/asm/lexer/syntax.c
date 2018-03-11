@@ -88,12 +88,20 @@ static bool line_syntax(char *line, asm_t *asm_s)
 {
 	static uint8_t nb = 0;
 
-	if (nb < 2) {
-		if (!check_comments(line, opt_strings[nb], nb, asm_s))
-			return false;
-		nb++;
-	} else if (!check_function(line, asm_s))
+	line = clean_str(line);
+	if (!line)
 		return false;
+	if (nb < 2) {
+		if (!check_comments(line, opt_strings[nb], nb, asm_s)) {
+			free(line);
+			return false;
+		}
+		nb++;
+	} else if (!check_function(line, asm_s)) {
+		free(line);
+		return false;
+	}
+	free(line);
 	return true;
 }
 
