@@ -17,7 +17,6 @@
 
 #include "asm/writter/file_writter.h"
 #include "asm/lexer/file_error.h"
-#include "asm/utils/str_to_array.h"
 #include "asm/lexer/syntax.h"
 #include "asm/parser/parser.h"
 #include "common/op.h"

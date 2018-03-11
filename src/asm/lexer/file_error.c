@@ -9,7 +9,7 @@
 
 static bool conv_file_error_handling(asm_t *asm_struct, char *str)
 {
-	asm_struct->array = conv_file(str);
+	asm_struct->array = str_split(str, '\n');
 	if (!asm_struct->array)
 		return false;
 	return true;

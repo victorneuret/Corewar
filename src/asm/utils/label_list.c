@@ -13,7 +13,7 @@
 
 static void count_labels_in_line(char const *line, size_t *count)
 {
-	for (size_t j = 0; line[j]; j++) {
+	for (size_t j = 0; j < my_strlen(line); j++) {
 		if (line[j] == COMMENT_CHAR)
 			return;
 		if (line[j] == DIRECT_CHAR)
@@ -41,7 +41,7 @@ static size_t get_label_count(char **lines)
 
 static void fill_label(char **labels, char const *line, size_t *index)
 {
-	for (size_t j = 0; line[j]; j++) {
+	for (size_t j = 0; j < my_strlen(line); j++) {
 		if (line[j] == COMMENT_CHAR)
 			return;
 		if (line[j] == DIRECT_CHAR)
@@ -72,7 +72,8 @@ char **get_label_list(char **lines)
 
 	if (!labels)
 		return NULL;
+	for (size_t i = 0; i <= label_count; i++)
+		labels[i] = NULL;
 	fill_labels(lines, labels);
-	labels[label_count] = NULL;
 	return labels;
 }
