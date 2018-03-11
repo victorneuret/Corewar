@@ -30,11 +30,7 @@ static uint8_t direct_type(char *arg, int j)
 	int64_t nb = 0;
 
 	nbr = substring(arg, j + 1, my_strlen(arg));
-	if (nbr[0] == '-') {
-		free(nbr);
-		return 0;
-	}
-	if (!is_number(nbr)) {
+	if (nbr[0] == '-' || !is_number(nbr)) {
 		free(nbr);
 		return 0;
 	}
@@ -45,11 +41,47 @@ static uint8_t direct_type(char *arg, int j)
 	return 0;
 }
 
+static uint8_t label_type(char *arg, int j)
+{
+	char *nbr = NULL;
+	__attribute__((unused)) int64_t nb = 0;
+
+	nbr = substring(arg, j + 2, my_strlen(arg));
+	if (nbr[0] == '-') {
+		free(nbr);
+		return 0;
+	}
+	free(nbr);
+	return 0;
+}
+
+static uint8_t indirect_type(char *arg, int j)
+{
+	char *nbr = NULL;
+	int64_t nb = 0;
+
+	nbr = substring(arg, j, my_strlen(arg));
+	if (nbr[0] == '-' || !is_number(nbr)) {
+		free(nbr);
+		return 0;
+	}
+	nb = getnbr(nbr);
+	free(nbr);
+	if (nb <= FOUR_BYTES_MAX_SIZE)
+		return T_IND;
+	return 0;
+}
+
 uint8_t check_arguments_types(char *arg, int j)
 {
 	if (arg[j] == 'r')
 		return register_type(arg, j);
-	else if (arg[j] == DIRECT_CHAR)
-		return direct_type(arg, j);
+	else if (arg[j] == DIRECT_CHAR) {
+		if (arg[j + 1] == LABEL_CHAR)
+			return label_type(arg, j);
+		else
+			return direct_type(arg, j);
+	} else
+		return indirect_type(arg, j);
 	return 0;
 }
