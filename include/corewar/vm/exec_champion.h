@@ -16,11 +16,12 @@ typedef struct {
 	void (*func)(token_t *token, champion_t *champ, vm_core_t *vm);
 } exec_instruction_t;
 
-bool exec_champ(champion_t *champ_list, vm_core_t *vm_core);
+int8_t exec_champ(champion_t *champ_list, vm_core_t *vm_core);
 uint32_t indirect(int ind, champion_t *champ);
 void copy_in_pc(const uint16_t pc, token_t *token, champion_t *champ,
 	const uint8_t reg);
 bool is_reg(uint8_t nb, uint8_t arg);
+champion_t *add_champ_fork(champion_t *champ, uint16_t arg_one);
 
 void exec_live(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_ld(token_t *token, champion_t *champ, vm_core_t *vm);
@@ -37,4 +38,4 @@ void exec_fork(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_lld(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_lldi(token_t *token, champion_t *champ, vm_core_t *vm);
 void exec_aff(token_t *token, champion_t *champ, vm_core_t *vm);
-void nope(token_t *token, champion_t *champ, vm_core_t *vm);
+void exec_lfork(token_t *token, champion_t *champ, vm_core_t *vm);

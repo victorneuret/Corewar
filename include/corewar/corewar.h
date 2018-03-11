@@ -25,6 +25,7 @@
 typedef struct vm {
 	uint64_t cycle;
 	uint64_t cycle_to_die;
+	uint64_t cycle_before_die;
 	uint64_t nb_live;
 	uint8_t last_alive;
 	uint8_t memory[MEM_SIZE];

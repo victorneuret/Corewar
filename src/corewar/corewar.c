@@ -12,10 +12,17 @@
 static bool run_vm(champion_t *champ_list, vm_core_t *vm_core)
 {
 	for (vm_core->cycle = 0; vm_core->alive; vm_core->cycle++) {
-		if (!exec_champ(champ_list, vm_core))
-			return false;
-		if (vm_core->alive && vm_core->nb_live >= NBR_LIVE)
+		if (vm_core->cycle_to_die <= 0)
+			break;
+		switch (exec_champ(champ_list, vm_core)) {
+		case -1: return false;
+		case 1: continue;
+		}
+		if (vm_core->nb_live >= NBR_LIVE) {
 			vm_core->cycle_to_die -= CYCLE_DELTA;
+			vm_core->nb_live = 0;
+		}
+		vm_core->cycle_before_die++;
 	}
 	if (vm_core->champ_name)
 		my_printf("The player %d(%s) has won.\n",

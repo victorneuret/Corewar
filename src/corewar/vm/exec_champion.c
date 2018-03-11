@@ -22,18 +22,10 @@ static const exec_instruction_t instru[] = {
 	{12, &exec_fork},
 	{13, &exec_lld},
 	{14, &exec_lldi},
-	{15, &nope},
+	{15, &exec_lfork},
 	{16, &exec_aff},
 	{0, NULL}
 };
-
-void nope(__attribute__((unused)) token_t *token,
-	__attribute__((unused)) champion_t *champ,
-	__attribute__((unused)) vm_core_t *vm)
-{
-	my_printf("nope\n");
-	return;
-}
 
 static bool exec_instruction(token_t *cmd, champion_t *champ, vm_core_t *vm)
 {
@@ -64,13 +56,33 @@ static bool wait_cycle(champion_t *champ, vm_core_t *vm_core)
 	return true;
 }
 
-bool exec_champ(champion_t *champ_list, vm_core_t *vm_core)
+bool check_all_alive(champion_t *champ_list)
 {
-	if (vm_core->cycle >= vm_core->cycle_to_die)
-		vm_core->alive = false;
+	uint8_t nb_champ = 0;
+	uint8_t nb_alive = 0;
+
+	for (champion_t *tmp = champ_list; tmp; tmp = tmp->next) {
+		if (tmp->alive) {
+			nb_alive++;
+			tmp->alive = false;
+		}
+		nb_champ++;
+	}
+	if (nb_alive == 0)
+		return false;
+	return true;
+}
+
+int8_t exec_champ(champion_t *champ_list, vm_core_t *vm_core)
+{
+	if (vm_core->cycle_before_die >= vm_core->cycle_to_die)
+		if (!check_all_alive(champ_list)) {
+			vm_core->cycle_before_die = 0;
+			return 1;
+		}
 	for (champion_t *champ = champ_list; champ; champ = champ->next) {
-		if (!champ->alive || !wait_cycle(champ, vm_core))
-			return false;
+		if (!wait_cycle(champ, vm_core))
+			return -1;
 		if (champ->live) {
 			vm_core->last_alive = champ->nb_champion;
 			vm_core->champ_name = champ->header.prog_name;
@@ -80,5 +92,5 @@ bool exec_champ(champion_t *champ_list, vm_core_t *vm_core)
 			vm_core->nb_live++;
 		}
 	}
-	return true;
+	return 0;
 }
