@@ -16,6 +16,5 @@
 #include "common/str_split.h"
 
 #define USAGE_MESSAGE "Usage: ./asm champion.cor\n"
-#define COMPILATION_FAILED_MESSAGE "Compilation failed.\n"
 #define README_PATH "src/asm/README.txt"
 #define HELP_ARGUMENT "-h"
