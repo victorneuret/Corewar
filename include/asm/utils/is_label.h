@@ -5,6 +5,8 @@
 ** is_label.c
 */
 
+#pragma once
+
 #include <stdint.h>
 #include <stdbool.h>
 
