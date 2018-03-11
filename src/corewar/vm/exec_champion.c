@@ -19,7 +19,7 @@ static const exec_instruction_t instru[] = {
 	{9, &exec_zjmp},
 	{10, &exec_ldi},
 	{11, &exec_sti},
-	{12, &nope},
+	{12, &exec_fork},
 	{13, &exec_lld},
 	{14, &exec_lldi},
 	{15, &nope},

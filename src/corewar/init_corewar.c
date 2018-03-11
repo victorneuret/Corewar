@@ -36,7 +36,7 @@ static header_t read_header(char const *path)
 	return header;
 }
 
-static bool init_pc_reg(champion_t *new)
+bool init_pc_reg(champion_t *new)
 {
 	new->pc = malloc(sizeof(pc_t));
 	if (!new->pc)
