@@ -29,6 +29,6 @@
 bool compile(char *file, asm_t *asm_struct);
 char *open_file(char *file);
 char *conv_filename(char *str);
-void fill_struct(asm_t *asm_struct);
+bool fill_struct(asm_t *asm_struct);
 
 #define BINARY_EXTENSION ".cor"
