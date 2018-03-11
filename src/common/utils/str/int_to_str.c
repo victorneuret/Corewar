@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2017
-** mysh
+** EPITECH PROJECT, 2018
+** CPE_corewar_2017
 ** File description:
 ** Int to string
 */
