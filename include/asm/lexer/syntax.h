@@ -29,4 +29,4 @@
 bool check_syntax(asm_t *asm_s);
 void syntax_error(asm_t *asm_s, const char *message);
 
-const char *error_message[8];
+const char *error_message[10];

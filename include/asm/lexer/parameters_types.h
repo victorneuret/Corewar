@@ -10,6 +10,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#include "asm/asm_struct.h"
+#include "asm/lexer/syntax.h"
 #include "common/utils/nbr/getnbr.h"
 #include "common/utils/str/str_utils.h"
 #include "common/op.h"
@@ -17,4 +19,4 @@
 #define TWO_BYTES_MAX_SIZE 0xffff
 #define FOUR_BYTES_MAX_SIZE 0xffffffff
 
-uint8_t check_arguments_types(char *arg, int j);
+uint8_t check_arguments_types(char *arg, int j, asm_t *asm_s);

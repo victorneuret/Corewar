@@ -13,6 +13,7 @@
 
 #include "asm/asm_struct.h"
 #include "asm/parser/parser.h"
+#include "asm/lexer/parameters_types.h"
 #include "asm/lexer/syntax.h"
 #include "common/utils/io/io_utils.h"
 #include "common/utils/str/str_utils.h"

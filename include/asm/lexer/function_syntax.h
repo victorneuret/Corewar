@@ -12,6 +12,7 @@
 #include <stdint.h>
 
 #include "asm/asm_struct.h"
+#include "asm/utils/label_list.h"
 #include "asm/parser/parser.h"
 #include "asm/lexer/syntax.h"
 #include "asm/lexer/parameters_syntax.h"

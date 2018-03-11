@@ -21,6 +21,8 @@ const char *error_message[] = {
 	BLUE "Invalid instruction.",
 	BLUE "The argument given to the instruction is invalid.",
 	BLUE "Too many arguments given to the instruction.",
+	BLUE "Multiple definition of the same label.",
+	BLUE "Invalid register number.",
 	0
 };
 

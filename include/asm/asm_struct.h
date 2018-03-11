@@ -9,6 +9,7 @@
 
 typedef struct {
 	char **array;
+	char **labels;
 	char *filename;
 	char *executable;
 	char *name;
