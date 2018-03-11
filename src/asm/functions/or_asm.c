@@ -7,7 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool or_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s)
+bool or_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 {
 	uint8_t i = 7;
 	int32_t value = 0;

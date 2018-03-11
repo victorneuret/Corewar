@@ -29,7 +29,7 @@ void insert_label_define(uint32_t *new_len, label_t *label_s)
 	label_s[i++].label_define = *new_len;
 }
 
-void insert_label_call(bool byte, const char *label, uint32_t call,
+void insert_label_call(bool byte, char *label, uint32_t call,
 label_t *label_s)
 {
 	label = substring(label, 2, my_strlen(label));
@@ -46,6 +46,7 @@ label_t *label_s)
 			label_s[i].bytes = byte;
 		}
 	}
+	free(label);
 }
 
 void free_struct(label_t *label_s, size_t label_count)
