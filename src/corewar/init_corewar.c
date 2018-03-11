@@ -7,14 +7,14 @@
 
 #include "corewar/corewar.h"
 
-vm_core_t *init_vm_core(void)
+vm_core_t *init_vm_core(args_t *args)
 {
 	vm_core_t* vm_core = malloc(sizeof(vm_core_t));
 
 	if (!vm_core)
 		return NULL;
 	vm_core->alive = true;
-	vm_core->cycle_to_die = CYCLE_TO_DIE;
+	vm_core->cycle_to_die = args->nbr_cycle;
 	vm_core->last_alive = 0;
 	vm_core->nb_live = 0;
 	vm_core->champ_name = NULL;
