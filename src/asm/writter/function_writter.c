@@ -19,7 +19,7 @@ __attribute__((unused)) label_t *label_s)
 
 	code = function_exists(line[0]);
 	if (code != -1 && line[1] != NULL) {
-		asm_func[code].func(fd, line[1], new_len);
+		asm_func[code].func(fd, line[1], new_len, label_s);
 		if (line)
 			free_str_array(line);
 		return true;
