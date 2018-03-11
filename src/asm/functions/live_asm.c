@@ -22,6 +22,6 @@ bool live_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s)
 	indirect = reverse_bits(indirect);
 	*new_len += 5;
 	write(fd, &indirect, sizeof(uint32_t));
-	free (str);
+	free(str);
 	return true;
 }
