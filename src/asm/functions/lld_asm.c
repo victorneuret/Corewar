@@ -10,7 +10,7 @@
 bool lld_asm(int fd, char const *args, uint32_t *new_len)
 {
 	uint8_t i = 13;
-	uint32_t value = 0;
+	int32_t value = 0;
 	size_t size = 0;
 	char **array = str_split(args, ',');
 

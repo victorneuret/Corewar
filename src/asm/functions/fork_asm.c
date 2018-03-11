@@ -10,7 +10,7 @@
 bool fork_asm(int fd, char const *args, uint32_t *new_len)
 {
 	uint8_t i = 12;
-	uint16_t indirect = 0;
+	int16_t indirect = 0;
 	char *str = substring(args, 1, my_strlen(args));
 
 	if (!str)
