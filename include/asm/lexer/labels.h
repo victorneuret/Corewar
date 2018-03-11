@@ -14,3 +14,4 @@
 
 bool check_labels(asm_t *asm_s);
 bool check_label_line(char **str, asm_t *asm_s);
+bool is_valid_label_name(char const *line);

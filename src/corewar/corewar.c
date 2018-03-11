@@ -58,6 +58,7 @@ static bool start_vm(args_t *args)
 static bool corewar(int ac, char **av)
 {
 	args_t *args;
+	bool vm_exit = false;
 
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
@@ -66,13 +67,13 @@ static bool corewar(int ac, char **av)
 	if (!args)
 		return false;
 	if (champions_exist(args) && attribute_ids(args)) {
-		start_vm(args);
+		vm_exit = start_vm(args);
 	} else {
 		free_args(args);
 		return false;
 	}
 	free_args(args);
-	return true;
+	return vm_exit;
 }
 
 int main(int ac, char **av)
