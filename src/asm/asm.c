@@ -21,7 +21,7 @@ static void free_struct(asm_t *asm_struct)
 
 int main(int ac, char **av)
 {
-	asm_t asm_struct;
+	asm_t asm_struct = {0};
 
 	if (ac != 2) {
 		puterr(USAGE_MESSAGE);
@@ -35,7 +35,6 @@ int main(int ac, char **av)
 	if (!compile(av[1], &asm_struct)) {
 		if (asm_struct.array)
 			free_str_array(asm_struct.array);
-		puterr(COMPILATION_FAILED_MESSAGE);
 		return 84;
 	}
 	free_struct(&asm_struct);
