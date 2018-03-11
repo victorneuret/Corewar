@@ -28,7 +28,7 @@ uint8_t get_arg_size(char const *arg)
 {
 	uint8_t i = 0;
 
-	for (;arg[i] != '\0' && (arg[i] == ' ' || arg[i] == '\t'); i++);
+	for (; arg[i] != '\0' && (arg[i] == ' ' || arg[i] == '\t'); i++);
 	switch (arg[i]) {
 	case 'r': return T_REG;
 	case DIRECT_CHAR: return T_DIR;
