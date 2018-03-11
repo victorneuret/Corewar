@@ -12,3 +12,4 @@
 #include "asm/lexer/syntax.h"
 
 bool check_labels(asm_t *asm_s);
+bool check_label_line(char **str, asm_t *asm_s);
