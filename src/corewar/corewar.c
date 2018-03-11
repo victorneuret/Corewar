@@ -67,6 +67,8 @@ static bool corewar(int ac, char **av)
 	args_t *args;
 	bool vm_exit = false;
 
+	if (ac == 1)
+		return false;
 	for (int i = 1; i < ac; i++)
 		if (str_eq(av[i], "-h"))
 			return print_file_bytes("src/corewar/README.txt");
