@@ -40,7 +40,7 @@ static bool is_valid_exec_magic(champion_t *champ_list)
 static bool start_vm(args_t *args)
 {
 	champion_t *champ_list = NULL;
-	vm_core_t *vm_core = init_vm_core();
+	vm_core_t *vm_core = init_vm_core(args);
 
 	champ_list = init_champions(args, champ_list);
 	if (!champ_list || !vm_core)
