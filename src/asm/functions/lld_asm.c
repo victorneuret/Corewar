@@ -7,8 +7,7 @@
 
 #include "asm/functions/functions_array.h"
 
-bool lld_asm(int fd, char const *args, uint32_t *new_len,
-__attribute__((unused)) label_t *label_s)
+bool lld_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s)
 {
 	uint8_t i = 13;
 	int32_t value = 0;
@@ -21,6 +20,8 @@ __attribute__((unused)) label_t *label_s)
 	write_function_value(fd, i, array);
 	*new_len += 2;
 	for (uint8_t j = 0; j < op_tab[i - 1].nbr_args; j++) {
+		if (is_label(array[j]))
+			insert_label_call(false, array[j], *new_len, label_s);
 		value = get_arg_value(array[j], get_arg_size(array[j]));
 		size = get_arg_bytes(get_arg_size(array[j]), &value,
 		new_len, i);

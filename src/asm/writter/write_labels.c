@@ -9,8 +9,17 @@
 
 void init_labels(label_t *label_s, asm_t *asm_s)
 {
-	for (size_t i = 0; asm_s->labels[i]; i++)
+	size_t i = 0;
+
+	for (; asm_s->labels[i] != NULL; i++) {
 		label_s[i].label = asm_s->labels[i];
+		label_s[i].label_call = malloc(sizeof(uint16_t));
+		label_s[i].label_call[0] = 0;
+		label_s[i].label_define = 0;
+		label_s[i].offset = 0;
+		label_s[i].calls = 0;
+	}
+	label_s[i].label = NULL;
 }
 
 void insert_label_define(uint32_t *new_len, label_t *label_s)
@@ -20,12 +29,22 @@ void insert_label_define(uint32_t *new_len, label_t *label_s)
 	label_s[i++].label_define = *new_len;
 }
 
-void insert_label_call(char *label, uint32_t call,label_t *label_s)
+void insert_label_call(bool byte, const char *label, uint32_t call,
+label_t *label_s)
 {
+	label = substring(label, 2, my_strlen(label));
+	if (!label)
+		return;
 	for (size_t i = 0; label_s[i].label; i++) {
 		if (my_strncmp(label, label_s[i].label,
-		my_strlen(label_s[i].label)) == 0)
-			label_s[i].label_call = call;
+		my_strlen(label)) == 0) {
+			label_s[i].label_call = realloc(label_s[i].label_call,
+			label_s[i].calls + 1);
+			label_s[i].label_call[label_s[i].calls] = call;
+			label_s[i].calls += 1;
+			label_s[i].offset = 0;
+			label_s[i].bytes = byte;
+		}
 	}
 }
 

@@ -9,6 +9,7 @@
 
 #include <sys/types.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef struct {
 	char **array;
@@ -23,6 +24,8 @@ typedef struct {
 typedef struct {
 	char *label;
 	off_t offset;
-	uint16_t label_call;
+	uint16_t *label_call;
 	uint16_t label_define;
+	size_t calls;
+	bool bytes;
 } label_t;

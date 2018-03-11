@@ -19,6 +19,8 @@
 #include "common/utils/str/str_utils.h"
 #include "common/utils/nbr/getnbr.h"
 #include "common/bit_manipulations.h"
+#include "asm/writter/labels_writter.h"
+#include "asm/utils/is_label.h"
 
 typedef struct {
 	uint8_t id;
