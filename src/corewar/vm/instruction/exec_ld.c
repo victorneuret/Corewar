@@ -14,6 +14,8 @@ void exec_ld(token_t *token, champion_t *champ, vm_core_t *vm)
 
 	if (((token->args_type >> bit_shift) & mask) == 3)
 		token->arg_one += 3;
+	else
+		token->arg_one += 2;
 	champ->reg[token->arg_two - 1] =
 		vm->memory[champ->pc->pc + token->arg_one % IDX_MOD];
 	if (champ->reg[token->arg_two - 1] == 0)
