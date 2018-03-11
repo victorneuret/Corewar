@@ -47,8 +47,7 @@ static void fill_label(char **labels, char const *line, size_t *index)
 		if (line[j] == DIRECT_CHAR)
 			j += 2;
 		if (line[j] == LABEL_CHAR) {
-			labels[*index] = substring(line, 0,
-					last_index_of(line, LABEL_CHAR) - 1);
+			labels[*index] = substring(line, 0, j - 1);
 			*index += 1;
 			return;
 		}
