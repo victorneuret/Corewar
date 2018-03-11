@@ -12,30 +12,7 @@ void write_byte(int fd, void *c)
 	write(fd, &c, 1);
 }
 
-static void init_labels(label_t *label_s, asm_t *asm_s)
-{
-	for (size_t i = 0; asm_s->labels[i]; i++)
-		label_s[i].label = asm_s->labels[i];
-}
-
-static void insert_label_define(uint32_t *new_len, label_t *label_s)
-{
-	static size_t i = 0;
-
-	label_s[i++].label_define = *new_len;
-}
-
-__attribute__((unused)) static void insert_label_call(char *label,
-uint32_t call,label_t *label_s)
-{
-	for (size_t i = 0; label_s[i].label; i++) {
-		if (my_strncmp(label, label_s[i].label,
-		my_strlen(label_s[i].label)) == 0)
-			label_s[i].label_call = call;
-	}
-}
-
-static bool call_function(int fd, char **line, uint32_t *new_len,
+bool call_function(int fd, char **line, uint32_t *new_len,
 __attribute__((unused)) label_t *label_s)
 {
 	int8_t code = 0;
@@ -50,7 +27,7 @@ __attribute__((unused)) label_t *label_s)
 	return false;
 }
 
-static bool check_function_label(int fd, char **line, uint32_t *new_len,
+bool check_function_label(int fd, char **line, uint32_t *new_len,
 label_t *label_s)
 {
 	if (is_label(line[0])) {
@@ -64,14 +41,6 @@ label_t *label_s)
 			return false;
 	}
 	return true;
-}
-
-static void free_struct(label_t *label_s, size_t label_count)
-{
-	for (size_t i = 0; i < label_count; i++) {
-		free(&label_s[i]);
-	}
-	free(label_s);
 }
 
 
