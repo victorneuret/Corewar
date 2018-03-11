@@ -8,7 +8,7 @@
 .name "zork"
 .comment "just a basic living prog"
 
-l2:
+live %1
 ld %3,r4
 ld %400,r5
 live %6
