@@ -23,4 +23,3 @@
 #include "common/op.h"
 
 bool function_arguments(char **str, asm_t *asm_s);
-char *clean_str(char *str);

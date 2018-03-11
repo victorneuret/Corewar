@@ -10,6 +10,7 @@
 
 #include "asm/asm_struct.h"
 #include "asm/lexer/syntax.h"
+#include "asm/utils/clean_str.h"
 
 bool check_labels(asm_t *asm_s);
 bool check_label_line(char **str, asm_t *asm_s);
