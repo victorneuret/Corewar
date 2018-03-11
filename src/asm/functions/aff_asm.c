@@ -21,7 +21,8 @@ bool aff_asm(int fd, char const *args, uint32_t *new_len)
 	*new_len += 2;
 	for (uint8_t j = 0; j < op_tab[i - 1].nbr_args; j++) {
 		value = get_arg_value(array[j], get_arg_size(array[j]));
-		size = get_arg_bytes(get_arg_size(array[j]), &value, new_len);
+		size = get_arg_bytes(get_arg_size(array[j]), &value,
+		new_len, i);
 		write(fd, &value, size);
 	}
 	free_str_array(array);
