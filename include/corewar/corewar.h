@@ -38,3 +38,4 @@ typedef struct vm {
 champion_t *init_champions(args_t *args, champion_t *champ_list);
 vm_core_t *init_vm_core(args_t *args);
 bool init_memory(champion_t *champ_list, vm_core_t *vm_core, args_t *arg);
+bool init_pc_reg(champion_t *new);
