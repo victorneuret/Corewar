@@ -27,19 +27,17 @@ size_t count_args(char **str)
 
 bool check_function(char *line, asm_t *asm_s)
 {
-	char **str = NULL;
+	char **str = parse_line(line);
 
-	str = parse_line(line);
 	if (!str)
 		return false;
 	if (function_exists(str[0]) == -1) {
-		if (str[0][my_strlen(str[0]) - 1] == LABEL_CHAR && !str[1]) {
+		if (!check_label_line(str, asm_s)) {
 			free_str_array(str);
-			return true;
+			return false;
 		}
-		syntax_error(asm_s, error_message[4]);
 		free_str_array(str);
-		return false;
+		return true;
 	}
 	if (!function_arguments(str, asm_s)) {
 		free_str_array(str);

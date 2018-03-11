@@ -32,6 +32,7 @@ static header_t read_header(char const *path)
 		return header;
 	if (read(fd, &header, sizeof(header)) <= 0)
 		return header;
+	header.prog_size = reverse_bits(header.prog_size);
 	close(fd);
 	return header;
 }

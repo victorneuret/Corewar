@@ -28,7 +28,7 @@ uint8_t get_arg_size(char const *arg)
 {
 	uint8_t i = 0;
 
-	for (;arg[i] != '\0' && (arg[i] == ' ' || arg[i] == '\t'); i++);
+	for (; arg[i] != '\0' && (arg[i] == ' ' || arg[i] == '\t'); i++);
 	switch (arg[i]) {
 	case 'r': return T_REG;
 	case DIRECT_CHAR: return T_DIR;
@@ -36,7 +36,8 @@ uint8_t get_arg_size(char const *arg)
 	}
 }
 
-size_t get_arg_bytes(uint8_t code, uint32_t *value, uint32_t *new_len)
+size_t get_arg_bytes(uint8_t code, uint32_t *value, uint32_t *new_len,
+uint8_t function)
 {
 	if (code == T_REG) {
 		*new_len += 1;
@@ -47,6 +48,11 @@ size_t get_arg_bytes(uint8_t code, uint32_t *value, uint32_t *new_len)
 		*new_len += 2;
 		return sizeof(uint16_t);
 	} else {
+		if (function == 10 || function == 11) {
+			*value = reverse16_bits(*value);
+			*new_len += 2;
+			return sizeof(uint16_t);
+		}
 		*value = reverse_bits(*value);
 		*new_len += 4;
 		return sizeof(uint32_t);

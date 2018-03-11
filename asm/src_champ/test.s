@@ -11,3 +11,4 @@ aff r7
 ld %12,r5
 xor r5,%76,r7
 aff r7
+ldi %1, %2, r3

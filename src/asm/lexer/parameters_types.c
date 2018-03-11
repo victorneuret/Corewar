@@ -32,14 +32,14 @@ static uint8_t direct_type(char *arg, int j, asm_t *asm_s)
 	int64_t nb = 0;
 
 	nbr = substring(arg, j + 1, my_strlen(arg));
-	if (nbr[0] == '-' || !is_number(nbr)) {
+	if (!is_number(nbr)) {
 		syntax_error(asm_s, error_message[5]);
 		free(nbr);
 		return 0;
 	}
 	nb = getnbr(nbr);
 	free(nbr);
-	if (nb <= TWO_BYTES_MAX_SIZE)
+	if (nb <= FOUR_BYTES_MAX_SIZE)
 		return T_DIR;
 	syntax_error(asm_s, error_message[5]);
 	return 0;
@@ -70,14 +70,14 @@ static uint8_t indirect_type(char *arg, int j, asm_t *asm_s)
 	int64_t nb = 0;
 
 	nbr = substring(arg, j, my_strlen(arg));
-	if (nbr[0] == '-' || !is_number(nbr)) {
+	if (!is_number(nbr)) {
 		syntax_error(asm_s, error_message[5]);
 		free(nbr);
 		return 0;
 	}
 	nb = getnbr(nbr);
 	free(nbr);
-	if (nb <= FOUR_BYTES_MAX_SIZE)
+	if (nb <= TWO_BYTES_MAX_SIZE)
 		return T_IND;
 	syntax_error(asm_s, error_message[5]);
 	return 0;
