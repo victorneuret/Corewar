@@ -12,6 +12,8 @@
 #include <stdint.h>
 
 #include "asm/functions/functions_array.h"
+#include "asm/writter/labels_writter.h"
+#include "asm/utils/is_label.h"
 #include "asm/asm_struct.h"
 #include "asm/parser/parser.h"
 #include "asm/lexer/function_syntax.h"

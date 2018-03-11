@@ -7,7 +7,8 @@
 
 #include "asm/functions/functions_array.h"
 
-bool sti_asm(int fd, char const *args, uint32_t *new_len)
+bool sti_asm(int fd, char const *args, uint32_t *new_len,
+__attribute__((unused)) label_t *label_s)
 {
 	uint8_t i = 11;
 	int32_t value = 0;

@@ -7,7 +7,8 @@
 
 #include "asm/functions/functions_array.h"
 
-bool live_asm(int fd, char const *args, uint32_t *new_len)
+bool live_asm(int fd, char const *args, uint32_t *new_len,
+__attribute__((unused)) label_t *label_s)
 {
 	uint8_t registery = 1;
 	int32_t indirect = 0;

@@ -25,6 +25,41 @@ static char *open_file_error_handling(char *str, char *file)
 	return str;
 }
 
+bool set_name_comment(asm_t *asm_struct, char *str)
+{
+	size_t beg;
+	size_t end;
+
+	if (my_strncmp(str, NAME_CMD_STRING,
+	my_strlen(NAME_CMD_STRING)) == 0) {
+		beg = first_index_of(str, '\"') + 1;
+		end = last_index_of(str, '\"') - 1;
+		if (end - beg + 1 > PROG_NAME_LENGTH)
+			return false;
+		asm_struct->name = substring(str, beg, end);
+	} else if (my_strncmp(str, COMMENT_CMD_STRING,
+	my_strlen(COMMENT_CMD_STRING)) == 0) {
+		beg = first_index_of(str, '\"') + 1;
+		end = last_index_of(str, '\"') - 1;
+		if (end - beg + 1 > COMMENT_LENGTH)
+			return false;
+		asm_struct->comment = substring(str, beg, end);
+	}
+	return true;
+}
+
+static bool compile_struct(asm_t *asm_struct, char *str, char *file_name)
+{
+	bool valid_header;
+
+	valid_header = fill_struct(asm_struct);
+	if (valid_header)
+		write_bytes(file_name, asm_struct);
+	free(str);
+	free(file_name);
+	return valid_header;
+}
+
 bool compile_error_handling(char *str, asm_t *asm_struct,
 				char *file_name, char *file)
 {
@@ -43,9 +78,5 @@ bool compile_error_handling(char *str, asm_t *asm_struct,
 			free(file_name);
 		return false;
 	}
-	fill_struct(asm_struct);
-	write_bytes(file_name, asm_struct);
-	free(str);
-	free(file_name);
-	return true;
+	return compile_struct(asm_struct, str, file_name);
 }

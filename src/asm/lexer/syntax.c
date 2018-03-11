@@ -34,7 +34,7 @@ void syntax_error(asm_t *asm_s, const char *message)
 	char *str = NULL;
 
 	array = str_split(asm_s->executable, '/');
-	str = int_to_str(asm_s->line);
+	str = int_to_str(asm_s->line + 1);
 	if (!str || !array)
 		return;
 	puterr(WHITE);

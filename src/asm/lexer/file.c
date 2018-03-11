@@ -61,20 +61,15 @@ char *open_file(char *file)
 	return (str);
 }
 
-void fill_struct(asm_t *asm_struct)
+bool fill_struct(asm_t *asm_struct)
 {
 	for (size_t i = 0; asm_struct->array[i]; i++) {
-		if (my_strncmp(asm_struct->array[i], NAME_CMD_STRING,
-		my_strlen(NAME_CMD_STRING)) == 0)
-			asm_struct->name = substring(asm_struct->array[i],
-				first_index_of(asm_struct->array[i], '\"') + 1,
-				last_index_of(asm_struct->array[i], '\"') - 1);
-		else if (my_strncmp(asm_struct->array[i], COMMENT_CMD_STRING,
-		my_strlen(COMMENT_CMD_STRING)) == 0)
-			asm_struct->comment = substring(asm_struct->array[i],
-				first_index_of(asm_struct->array[i], '\"') + 1,
-				last_index_of(asm_struct->array[i], '\"') - 1);
+		if (!set_name_comment(asm_struct, asm_struct->array[i])) {
+			puterr("Name or comment too long.\n");
+			return false;
+		}
 	}
+	return true;
 }
 
 bool compile(char *file, asm_t *asm_struct)
@@ -83,11 +78,7 @@ bool compile(char *file, asm_t *asm_struct)
 	char *file_name = NULL;
 
 	asm_struct->labels = NULL;
-	if (!compile_error_handling(str, asm_struct, file_name, file)) {
-		if (asm_struct->labels)
-			free_str_array(asm_struct->labels);
+	if (!compile_error_handling(str, asm_struct, file_name, file))
 		return false;
-	}
-	free_str_array(asm_struct->labels);
 	return true;
 }

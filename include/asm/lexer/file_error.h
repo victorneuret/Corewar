@@ -20,5 +20,6 @@
 
 bool compile_error_handling(char *str, asm_t *asm_struct,
 char *file_name, char *file);
+bool set_name_comment(asm_t *asm_struct, char *str);
 
 #define OPEN_FILE_ERROR "Error: Can't open file\n"

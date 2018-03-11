@@ -5,12 +5,15 @@
 ** functions_array.h
 */
 
+#pragma once
+
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <unistd.h>
 
 #include "asm/writter/parameters_writter.h"
+#include "asm/asm_struct.h"
 #include "common/op.h"
 #include "common/str_split.h"
 #include "common/utils/str/str_utils.h"
@@ -19,25 +22,26 @@
 
 typedef struct {
 	uint8_t id;
-	bool (*func)(int fd, char const *args, uint32_t *new_len);
+	bool (*func)(int fd, char const *args, uint32_t *new_len,
+	label_t *label_s);
 } asm_func_t;
 
-bool add_asm(int fd, char const *args, uint32_t *new_len);
-bool aff_asm(int fd, char const *args, uint32_t *new_len);
-bool and_asm(int fd, char const *args, uint32_t *new_len);
-bool fork_asm(int fd, char const *args, uint32_t *new_len);
-bool ld_asm(int fd, char const *args, uint32_t *new_len);
-bool ldi_asm(int fd, char const *args, uint32_t *new_len);
-bool live_asm(int fd, char const *args, uint32_t *new_len);
-bool lld_asm(int fd, char const *args, uint32_t *new_len);
-bool lldi_asm(int fd, char const *args, uint32_t *new_len);
-bool st_asm(int fd, char const *args, uint32_t *new_len);
-bool sti_asm(int fd, char const *args, uint32_t *new_len);
-bool zjmp_asm(int fd, char const *args, uint32_t *new_len);
-bool sub_asm(int fd, char const *args, uint32_t *new_len);
-bool or_asm(int fd, char const *args, uint32_t *new_len);
-bool xor_asm(int fd, char const *args, uint32_t *new_len);
-bool lfork_asm(int fd, char const *args, uint32_t *new_len);
+bool add_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool aff_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool and_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool fork_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool ld_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool ldi_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool live_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool lld_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool lldi_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool st_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool sti_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool zjmp_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool sub_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool or_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool xor_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
+bool lfork_asm(int fd, char const *args, uint32_t *new_len, label_t *label_s);
 
 static const asm_func_t asm_func[] = {
 	{1, &live_asm},

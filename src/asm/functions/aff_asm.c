@@ -7,7 +7,8 @@
 
 #include "asm/functions/functions_array.h"
 
-bool aff_asm(int fd, char const *args, uint32_t *new_len)
+bool aff_asm(int fd, char const *args, uint32_t *new_len,
+__attribute__((unused)) label_t *label_s)
 {
 	uint8_t i = 16;
 	int32_t value = 0;
