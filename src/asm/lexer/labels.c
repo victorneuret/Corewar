@@ -30,3 +30,40 @@ bool check_labels(asm_t *asm_s)
 	}
 	return true;
 }
+
+static bool check_label_line_function(char **array, asm_t *asm_s)
+{
+	if (function_exists(array[0]) != -1) {
+		if (!function_arguments(array, asm_s))
+			return false;
+	}
+	return true;
+}
+
+static bool label_line_error(char **str, char **array, asm_t *asm_s)
+{
+	if (str[1] != NULL) {
+		array = parse_line(str[1]);
+		if (!array)
+			return false;
+		if (!check_label_line_function(array, asm_s))
+			return false;
+	}
+	return true;
+}
+
+bool check_label_line(char **str, asm_t *asm_s)
+{
+	char **array = NULL;
+
+	if (str[0][my_strlen(str[0]) - 1] == LABEL_CHAR) {
+		if (!label_line_error(str, array, asm_s)) {
+			free_str_array(array);
+			return false;
+		}
+		free_str_array(array);
+		return true;
+	}
+	syntax_error(asm_s, error_message[4]);
+	return false;
+}
