@@ -36,7 +36,7 @@ uint8_t get_arg_size(char const *arg)
 	}
 }
 
-size_t get_arg_bytes(uint8_t code, uint32_t *value, uint32_t *new_len,
+size_t get_arg_bytes(uint8_t code, int32_t *value, uint32_t *new_len,
 uint8_t function)
 {
 	if (code == T_REG) {

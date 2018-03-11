@@ -10,7 +10,7 @@
 bool lfork_asm(int fd, char const *args, uint32_t *new_len)
 {
 	uint8_t i = 15;
-	uint16_t value = 0;
+	int16_t value = 0;
 	char *str = substring(args, 1, my_strlen(args));
 
 	if (!str)
