@@ -48,7 +48,7 @@ uint8_t function)
 		*new_len += 2;
 		return sizeof(uint16_t);
 	} else {
-		if (function == 10 || function == 11) {
+		if (function == 10 || function == 11 || function == 14) {
 			*value = reverse16_bits(*value);
 			*new_len += 2;
 			return sizeof(uint16_t);

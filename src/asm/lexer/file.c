@@ -43,10 +43,9 @@ char *open_file(char *file)
 	char *str = malloc(sizeof(char));
 	int size = 0;
 
-	if (!str)
-		return (NULL);
-	if (fd == -1) {
-		free(str);
+	if (!str || fd == -1) {
+		if (str)
+			free(str);
 		return (NULL);
 	}
 	for (size_t i = 1; (size = read(fd, buff, 1)) != 0; i++) {
@@ -58,6 +57,7 @@ char *open_file(char *file)
 		str[i - 1] = buff[0];
 		str[i] = '\0';
 	}
+	str = clean_str(str);
 	return (str);
 }
 

@@ -53,9 +53,8 @@ void free_struct(label_t *label_s, size_t label_count)
 {
 	if (!label_s)
 		return;
-	for (size_t i = 0; i < label_count; i++) {
-		if (!&label_s[i])
-			free(&label_s[i]);
-	}
+	for (size_t i = 0; i < label_count; i++)
+		if (label_s[i].label_call)
+			free(label_s[i].label_call);
 	free(label_s);
 }

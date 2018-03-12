@@ -45,14 +45,8 @@ static bool check_label_line_function(char **array, asm_t *asm_s)
 
 static bool label_line_error(char **str, char ***array, asm_t *asm_s)
 {
-	char *line = NULL;
-
 	if (str[1] != NULL) {
-		line = clean_str(str[1]);
-		if (!line)
-			return false;
-		*array = parse_line(line);
-		free(line);
+		*array = parse_line(str[1]);
 		if (!*array)
 			return false;
 		if (!check_label_line_function(*array, asm_s))
