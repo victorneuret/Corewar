@@ -24,11 +24,11 @@ label_t *label_s)
 {
 	char **str = NULL;
 
+	insert_label_define(new_len, label_s);
 	if (line[1]) {
 		str = parse_line(line[1]);
 		if (!str)
 			return -1;
-		insert_label_define(new_len, label_s);
 		if (!call_function(fd, str, new_len, label_s)) {
 			free_str_array(str);
 			return -1;
@@ -36,7 +36,6 @@ label_t *label_s)
 		free_str_array(str);
 		return 0;
 	}
-	insert_label_define(new_len, label_s);
 	return 1;
 }
 

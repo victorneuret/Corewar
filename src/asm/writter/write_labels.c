@@ -39,7 +39,7 @@ label_t *label_s)
 		if (my_strncmp(label, label_s[i].label,
 		my_strlen(label)) == 0) {
 			label_s[i].label_call = realloc(label_s[i].label_call,
-			label_s[i].calls + 2);
+			sizeof(size_t));
 			label_s[i].label_call[label_s[i].calls] = call;
 			label_s[i].calls += 1;
 			label_s[i].offset = 0;
