@@ -20,7 +20,7 @@ static void reverse_bytes(int fd, label_t *label_s, int32_t size, size_t i)
 	} else {
 		size = reverse_bits(size);
 		write(fd, &size, sizeof(int32_t));
-		}
+	}
 }
 
 void write_labels(int fd, label_t *label_s)
@@ -32,7 +32,7 @@ void write_labels(int fd, label_t *label_s)
 			continue;
 		for (size_t j = 0; j < label_s[i].calls; j++) {
 			size = label_s[i].label_define -
-			label_s[i].label_call[j] + 1;
+			label_s[i].offset[j];
 			lseek(fd, 0x890 + label_s[i].label_call[j], SEEK_SET);
 			reverse_bytes(fd, label_s, size, i);
 		}

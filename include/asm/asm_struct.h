@@ -23,7 +23,7 @@ typedef struct {
 
 typedef struct {
 	char *label;
-	off_t offset;
+	uint16_t *offset;
 	uint16_t *label_call;
 	uint16_t label_define;
 	size_t calls;

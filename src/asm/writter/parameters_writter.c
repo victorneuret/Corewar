@@ -40,21 +40,21 @@ size_t get_arg_bytes(uint8_t code, int32_t *value, uint32_t *new_len,
 uint8_t function)
 {
 	if (code == T_REG) {
-		*new_len += 1;
+		new_len[0] += 1;
 		return sizeof(uint8_t);
 	}
 	else if (code == T_IND) {
 		*value = reverse16_bits(*value);
-		*new_len += 2;
+		new_len[0] += 2;
 		return sizeof(uint16_t);
 	} else {
 		if (function == 10 || function == 11 || function == 14) {
 			*value = reverse16_bits(*value);
-			*new_len += 2;
+			new_len[0] += 2;
 			return sizeof(uint16_t);
 		}
 		*value = reverse_bits(*value);
-		*new_len += 4;
+		new_len[0] += 4;
 		return sizeof(uint32_t);
 	}
 }

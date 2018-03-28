@@ -27,15 +27,15 @@ bool write_bytes(char *file, asm_t *asm_s)
 {
 	int fd = open(file, O_RDWR | O_CREAT, 0666);
 	const uint32_t size_offset = sizeof(int) + PROG_NAME_LENGTH + 4;
-	uint32_t new_len = 0;
+	uint32_t new_len[2] = {0, 0};
 
 	if (file == NULL || fd == -1)
 		return false;
 	if (write_header(fd, asm_s)) {
-		write_function(fd, asm_s, &new_len);
+		write_function(fd, asm_s, new_len);
 		lseek(fd, size_offset, SEEK_SET);
-		new_len = reverse_bits(new_len);
-		write(fd, &new_len, sizeof(uint32_t));
+		new_len[0] = reverse_bits(new_len[0]);
+		write(fd, &new_len[0], sizeof(uint32_t));
 		close(fd);
 		return true;
 	}
