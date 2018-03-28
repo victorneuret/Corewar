@@ -75,6 +75,8 @@ static bool corewar(int ac, char **av)
 		if (str_eq(av[i], "-h"))
 			return print_file_bytes("src/corewar/README.txt");
 	args = parse_arguments(av);
+	if (args->champ_count < 2)
+		return true;
 	if (!args)
 		return false;
 	if (champions_exist(args) && attribute_ids(args)) {
