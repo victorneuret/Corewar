@@ -16,7 +16,7 @@ vm_core_t *init_vm_core(args_t *args)
 	vm_core->alive = true;
 	vm_core->dump = args->nbr_cycle;
 	vm_core->cycle_to_die = CYCLE_TO_DIE;
-	vm_core->cycle_before_die = CYCLE_TO_DIE;
+	vm_core->cycle_before_die = 0;
 	vm_core->last_alive = 0;
 	vm_core->nb_live = 0;
 	vm_core->champ_name = NULL;

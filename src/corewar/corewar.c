@@ -12,7 +12,7 @@
 static bool run_vm(champion_t *champ_list, vm_core_t *vm_core)
 {
 	for (vm_core->cycle = 0; vm_core->alive; vm_core->cycle++) {
-		if (vm_core->cycle_to_die <= 0)
+		if (vm_core->cycle_to_die <= 1)
 			break;
 		switch (exec_champ(champ_list, vm_core)) {
 		case -1: return false;
