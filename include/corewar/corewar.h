@@ -24,6 +24,7 @@
 
 typedef struct vm {
 	uint64_t cycle;
+	int64_t dump;
 	uint64_t cycle_to_die;
 	uint64_t cycle_before_die;
 	uint64_t nb_live;
@@ -40,3 +41,4 @@ champion_t *init_champions(args_t *args, champion_t *champ_list);
 vm_core_t *init_vm_core(args_t *args);
 bool init_memory(champion_t *champ_list, vm_core_t *vm_core, args_t *arg);
 bool init_pc_reg(champion_t *new);
+bool dump(vm_core_t *vm_core);

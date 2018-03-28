@@ -23,6 +23,8 @@ static bool run_vm(champion_t *champ_list, vm_core_t *vm_core)
 			vm_core->nb_live = 0;
 		}
 		vm_core->cycle_before_die++;
+		if ((int64_t) vm_core->cycle == vm_core->dump)
+			return (dump(vm_core));
 	}
 	if (vm_core->champ_name)
 		my_printf("The player %d(%s) has won.\n",

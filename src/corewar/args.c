@@ -68,7 +68,7 @@ args_t *parse_arguments(char **av)
 	if (!args)
 		return 0;
 	args->champ_count = 1;
-	args->nbr_cycle = get_or_default(av, "-dump", CYCLE_TO_DIE);
+	args->nbr_cycle = get_or_default(av, "-dump");
 	args->programs = get_programs(args, av);
 	args->champ_count -= 1;
 	if (!args->programs) {

@@ -7,4 +7,4 @@
 
 #pragma once
 
-int get_or_default(char **arr, char *key, int default_value);
+int get_or_default(char **arr, char *key);
