@@ -75,11 +75,11 @@ bool check_all_alive(champion_t *champ_list)
 
 int8_t exec_champ(champion_t *champ_list, vm_core_t *vm_core)
 {
-	if (vm_core->cycle_before_die >= vm_core->cycle_to_die)
-		if (!check_all_alive(champ_list)) {
-			vm_core->cycle_before_die = 0;
+	if (vm_core->cycle_before_die >= (int64_t) vm_core->cycle_to_die) {
+		vm_core->cycle_before_die = -1;
+		if (!check_all_alive(champ_list))
 			return 1;
-		}
+	}
 	for (champion_t *champ = champ_list; champ; champ = champ->next) {
 		if (!wait_cycle(champ, vm_core))
 			return -1;

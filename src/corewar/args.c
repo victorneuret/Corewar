@@ -19,7 +19,7 @@ static void init_prog(prog_t *prog)
 {
 	prog->prog_nb = 0;
 	prog->prog_path = 0;
-	prog->load_addr = 0;
+	prog->load_addr = -1;
 }
 
 static bool is_option_managed(char **av, args_t *args,

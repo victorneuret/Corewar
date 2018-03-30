@@ -12,7 +12,7 @@
 typedef struct {
 	char *prog_path;
 	int32_t prog_nb;
-	uint64_t load_addr;
+	int64_t load_addr;
 } prog_t;
 
 typedef struct {
