@@ -40,8 +40,7 @@ label_t *label_s)
 	if (!label)
 		return;
 	for (size_t i = 0; label_s[i].label; i++) {
-		if (my_strncmp(label, label_s[i].label,
-		my_strlen(label)) == 0) {
+		if (str_eq(label, label_s[i].label) == 1) {
 			label_s[i].label_call = realloc(label_s[i].label_call,
 			sizeof(uint16_t*) * count);
 			label_s[i].offset = realloc(label_s[i].offset,
@@ -50,9 +49,9 @@ label_t *label_s)
 			label_s[i].offset[label_s[i].calls] = call[1];
 			label_s[i].calls += 1;
 			label_s[i].bytes = byte;
+			count++;
 		}
 	}
-	count++;
 	free(label);
 }
 

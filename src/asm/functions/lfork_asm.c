@@ -20,7 +20,6 @@ bool lfork_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 	new_len[1] = new_len[0];
 	write(fd, &i, sizeof(uint8_t));
 	if (is_label(args)) {
-		//new_len[0] += 1;
 		insert_label_call(true, args,
 		(uint32_t[2]){new_len[0] + 1, new_len[1]}, label_s);
 	}
