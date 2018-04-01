@@ -6,12 +6,15 @@
 */
 
 #include "asm/lexer/parameters_syntax.h"
+#include "asm/utils/clean_str.h"
 
 static bool check_function_parameters(char **args, uint8_t func, asm_t *asm_s)
 {
 	uint8_t nb = 0;
 	size_t j = 0;
 
+	for (int i = 0; args[i]; i++)
+		args[i] = clean_str(args[i]);
 	for (uint8_t i = 0; args[i]; i++) {
 		for (j = 0; (args[i][j] == ' ' || args[i][j] == '\t') &&
 		args[i][j] != '\0'; j++);
