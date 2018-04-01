@@ -8,6 +8,13 @@
 #include "asm/functions/functions_array.h"
 #include "asm/utils/clean_str.h"
 
+static void check_label(char **array, uint8_t j, uint32_t *new_len,
+label_t *label_s)
+{
+	if (is_label(array[j]))
+		insert_label_call(false, array[j], new_len, label_s);
+}
+
 bool xor_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 {
 	uint8_t i = 8;
@@ -23,8 +30,7 @@ bool xor_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 	new_len[0] += 2;
 	for (uint8_t j = 0; j < op_tab[i - 1].nbr_args; j++) {
 		array[j] = clean_str(array[j]);
-		if (is_label(array[j]))
-			insert_label_call(false, array[j], new_len, label_s);
+		check_label(array, j, new_len, label_s);
 		value = get_arg_value(array[j], get_arg_size(array[j]));
 		size = get_arg_bytes(get_arg_size(array[j]), &value,
 		new_len, i);
