@@ -2,10 +2,18 @@
 ** EPITECH PROJECT, 2018
 ** CPE_corewar_2017
 ** File description:
-** functions_array.c
+** and_asm
 */
 
 #include "asm/functions/functions_array.h"
+#include "asm/utils/clean_str.h"
+
+static void check_label(char **array, uint8_t j, uint32_t *new_len,
+label_t *label_s)
+{
+	if (is_label(array[j]))
+		insert_label_call(false, array[j], new_len, label_s);
+}
 
 bool and_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 {
@@ -16,12 +24,13 @@ bool and_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 
 	if (!array)
 		return false;
+	new_len[1] = new_len[0];
 	write(fd, &i, sizeof(uint8_t));
 	write_function_value(fd, i, array);
-	*new_len += 2;
+	new_len[0] += 2;
 	for (uint8_t j = 0; j < op_tab[i - 1].nbr_args; j++) {
-		if (is_label(array[j]))
-			insert_label_call(false, array[j], *new_len, label_s);
+		array[j] = clean_str(array[j]);
+		check_label(array, j, new_len, label_s);
 		value = get_arg_value(array[j], get_arg_size(array[j]));
 		size = get_arg_bytes(get_arg_size(array[j]), &value,
 		new_len, i);

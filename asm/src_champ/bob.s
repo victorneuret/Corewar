@@ -11,7 +11,7 @@
 
 aff r3
 live %0
-start: sti r1, %:field1, %1
+start: sti r1, %:field2, %1
 sti r1, %:field2, %1
 sti r1, %:field3, %1
 sti r1, %:field4, %1
