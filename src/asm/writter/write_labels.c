@@ -33,6 +33,8 @@ void insert_label_define(uint32_t *new_len, label_t *label_s)
 void insert_label_call(bool byte, char *label, uint32_t *call,
 label_t *label_s)
 {
+	static int count = 1;
+
 	label = clean_str(label);
 	label = substring(label, 2, my_strlen(label));
 	if (!label)
@@ -41,15 +43,16 @@ label_t *label_s)
 		if (my_strncmp(label, label_s[i].label,
 		my_strlen(label)) == 0) {
 			label_s[i].label_call = realloc(label_s[i].label_call,
-			sizeof(uint16_t*));
+			sizeof(uint16_t*) * count);
 			label_s[i].offset = realloc(label_s[i].offset,
-			sizeof(uint16_t*));
+			sizeof(uint16_t*) * count);
 			label_s[i].label_call[label_s[i].calls] = call[0];
 			label_s[i].offset[label_s[i].calls] = call[1];
 			label_s[i].calls += 1;
 			label_s[i].bytes = byte;
 		}
 	}
+	count++;
 	free(label);
 }
 
