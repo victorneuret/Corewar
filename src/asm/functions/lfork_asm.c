@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** CPE_corewar_2017
 ** File description:
-** functions_array.c
+** lfork_asm
 */
 
 #include "asm/functions/functions_array.h"
@@ -21,7 +21,8 @@ bool lfork_asm(int fd, char *args, uint32_t *new_len, label_t *label_s)
 	write(fd, &i, sizeof(uint8_t));
 	if (is_label(args)) {
 		//new_len[0] += 1;
-		insert_label_call(true, args, (uint32_t[2]){new_len[0] + 1, new_len[1]}, label_s);
+		insert_label_call(true, args,
+		(uint32_t[2]){new_len[0] + 1, new_len[1]}, label_s);
 	}
 	value = (uint16_t) getnbr(str);
 	value = reverse16_bits(value);
